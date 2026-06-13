@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<!--Well,once 25 votes-->
+<head>
+	<meta charset="utf-8">
+	<title>Harry Potter Sorting</title>
+	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+	<style>
+		body {
+			margin: 0;
+			overflow: hidden;
+			background: #000;
+			font-family: 'Inter', sans-serif;
+			user-select: none;
+		}
+
+		canvas {
+			display: block;
+		}
+
+		#bg-img {
+			width: 110%;
+			height: 110%;
+			object-fit: cover;
+			filter: brightness(0.4);
+			position: fixed;
+			top: -5%;
+			left: -5%;
+			z-index: -1;
+		}
+
+		#ui-cont {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			z-index: 20;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding-top: 20px;
+		}
+
+		.card-ui {
+			background: rgba(15, 10, 30, 0.85);
+			border: 2px solid rgba(168, 85, 247, 0.4);
+			border-radius: 24px;
+			pointer-events: auto;
+			padding: 24px;
+			width: 90%;
+			max-width: 600px;
+			text-align: center;
+			box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+		}
+
+		.main-titl {
+			font-family: 'Cinzel', serif;
+			color: #fff;
+			margin: 0 0 12px 0;
+			font-size: 24px;
+			letter-spacing: 1px;
+		}
+
+		.instr {
+			font-size: 10px;
+			color: #d8b4fe;
+			margin-bottom: 16px;
+			text-transform: uppercase;
+			letter-spacing: 3px;
+			font-weight: 900;
+			animation: pulse-key 2s infinite;
+		}
+
+		.pbar-bg {
+			width: 100%;
+			background: rgba(255, 255, 255, 0.1);
+			height: 6px;
+			border-radius: 10px;
+			overflow: hidden;
+		}
+
+		.pbar-fill {
+			height: 100%;
+			background: linear-gradient(90deg, #a855f7, #f0abfc);
+			transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			width: 0%;
+		}
+
+		#res-scr {
+			display: none;
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.95);
+			z-index: 50;
+			align-items: center;
+			justify-content: center;
+			pointer-events: auto;
+		}
+
+		#res-scr.vis {
+			display: flex;
+		}
+
+		.res-box {
+			max-width: 500px;
+			width: 90%;
+			padding: 40px;
+			border-radius: 30px;
+			border: 2px solid #a855f7;
+			background: #0a0515;
+			text-align: center;
+			box-shadow: 0 0 100px rgba(168, 85, 247, 0.2);
+		}
+
+		.res-head {
+			font-family: 'Cinzel', serif;
+			font-size: 48px;
+			margin-bottom: 24px;
+			opacity: 0;
+			transition: opacity 1s;
+		}
+
+		.res-crest {
+			margin-bottom: 30px;
+			opacity: 0;
+			transition: opacity 1s;
+		}
+
+		.res-img {
+			max-height: 180px;
+			filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
+		}
+
+		.res-desc {
+			color: #d1d5db;
+			margin-bottom: 40px;
+			font-size: 18px;
+			font-style: italic;
+			opacity: 0;
+			transition: opacity 1s;
+		}
+
+		.res-btn {
+			background: #9333ea;
+			color: #fff;
+			padding: 14px 40px;
+			border-radius: 12px;
+			font-weight: 900;
+			text-transform: uppercase;
+			border: none;
+			cursor: pointer;
+			opacity: 0;
+			transition: 0.3s;
+			letter-spacing: 2px;
+		}
+
+		.res-btn:hover {
+			background: #a855f7;
+			transform: scale(1.05);
+		}
+
+		.vis-shw {
+			opacity: 1 !important;
+		}
+
+		@keyframes pulse-key {
+
+			0%,
+			100% {
+				opacity: 1;
+			}
+
+			50% {
+				opacity: 0.5;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<img id="bg-img" src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Saturn_%28planet%29_large.jpg">
+	<div id="ui-cont">
+		<div class="card-ui">
+			<h2 id="q-txt" class="main-titl">...</h2>
+			<div class="instr">Reach a choice & press [S] or [DOWN]</div>
+			<div class="pbar-bg">
+				<div id="p-fill" class="pbar-fill"></div>
+			</div>
+		</div>
+	</div>
+	<div id="res-scr">
+		<div class="res-box">
+			<h1 id="r-head" class="res-head"></h1>
+			<div id="r-cont" class="res-crest"><img id="r-img" class="res-img" src=""></div>
+			<p id="r-desc" class="res-desc"></p>
+			<button onclick="window.location.reload()" id="r-btn" class="res-btn">Restart</button>
+		</div>
+	</div>
+	<canvas id="cnv-el"></canvas>
+	<script>
+		var cnv = document.getElementById('cnv-el');
+		var ctx = cnv.getContext('2d');
+		var qTxt = document.getElementById('q-txt');
+		var pFill = document.getElementById('p-fill');
+		var rScren = document.getElementById('res-scr');
+		var rHead = document.getElementById('r-head');
+		var rDesc = document.getElementById('r-desc');
+		var rImg = document.getElementById('r-img');
+		var rBtn = document.getElementById('r-btn');
+		var rCont = document.getElementById('r-cont');
+		var houses = {
+			gryf: {
+				name: "Gryffindor",
+				url: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Blason_Gryffondor.svg",
+				col: "#ffcc00",
+				desc: "Daring, nerve, and chivalry set Gryffindors apart."
+			},
+			slyth: {
+				name: "Slytherin",
+				url: "https://upload.wikimedia.org/wikipedia/commons/3/34/Slytherin.png",
+				col: "#2a7e19",
+				desc: "Cunning folk who use any means to achieve their ends."
+			},
+			ravn: {
+				name: "Ravenclaw",
+				url: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Blason_Serdaigle.svg",
+				col: "#2d6b94",
+				desc: "Wit and learning will always find their kind here."
+			},
+			huff: {
+				name: "Hufflepuff",
+				url: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Coat_of_arms_Hufflepuff.svg",
+				col: "#ecb939",
+				desc: "Just, loyal, patient, and unafraid of toil."
+			}
+		};
+		var qstns = [{
+				t: "A troll is loose! Your move?",
+				a: ["Charge it!", "Set a trap", "Alert a Prefect", "Use it as a distraction"],
+				e: ["gryf", "ravn", "huff", "slyth"]
+			},
+			{
+				t: "Pick a magical companion:",
+				a: ["Golden Eagle", "Wise Owl", "Loyal Toad", "Silver Snake"],
+				e: ["gryf", "ravn", "huff", "slyth"]
+			},
+			{
+				t: "The Room of Requirement offers:",
+				a: ["A Training Arena", "A Hidden Library", "A Cozy Lounge", "A Secret Vault"],
+				e: ["gryf", "ravn", "huff", "slyth"]
+			},
+			{
+				t: "Which spell is most vital?",
+				a: ["Expelliarmus", "Obliviate", "Accio", "Crucio"],
+				e: ["gryf", "ravn", "huff", "slyth"]
+			},
+			{
+				t: "Favorite class?",
+				a: ["Defense", "Potions", "Herbology", "Ancient Runes"],
+				e: ["gryf", "slyth", "huff", "ravn"]
+			},
+			{
+				t: "The Forbidden Forest calls...",
+				a: ["Explore it", "Track creatures", "Protect the border", "Find secret ingredients"],
+				e: ["gryf", "ravn", "huff", "slyth"]
+			},
+			{
+				t: "A mysterious box is left on your bed. You:",
+				a: ["Open it instantly", "Check for curses", "Call a teacher", "Keep it hidden"],
+				e: ["gryf", "ravn", "huff", "slyth"]
+			},
+			{
+				t: "Which path do you take?",
+				a: ["The Sunlit Path", "The Winding Path", "The Shadowed Path", "The Flowery Path"],
+				e: ["gryf", "ravn", "slyth", "huff"]
+			},
+			{
+				t: "Pick a legendary artifact:",
+				a: ["Sword of Valor", "Diadem of Wisdom", "Locket of Ambition", "Cup of Loyalty"],
+				e: ["gryf", "ravn", "slyth", "huff"]
+			},
+			{
+				t: "A classmate is being bullied. You:",
+				a: ["Intervene now", "Plan a clever trap", "Tell a professor", "Comfort them later"],
+				e: ["gryf", "ravn", "slyth", "huff"]
+			}
+		];
+		var gameSt = {
+			curQ: 0,
+			scors: {
+				gryf: 0,
+				slyth: 0,
+				ravn: 0,
+				huff: 0
+			},
+			done: false,
+			keys: {},
+			cam: {
+				x: 0,
+				y: 0
+			},
+			plats: [],
+			trail: [],
+			frame: 0,
+			lastT: 0
+		};
+		var plyer = {
+			x: 100,
+			y: 400,
+			w: 32,
+			h: 32,
+			vx: 0,
+			vy: 0,
+			speed: 1.9,
+			jump: 20.7,
+			grav: 0.85,
+			fric: 0.88,
+			onG: false,
+			dir: 1
+		};
+
+		function drawRect(x, y, w, h, r) {
+			ctx.beginPath();
+			ctx.moveTo(x + r, y);
+			ctx.lineTo(x + w - r, y);
+			ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+			ctx.lineTo(x + w, y + h - r);
+			ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+			ctx.lineTo(x + r, y + h);
+			ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+			ctx.lineTo(x, y + r);
+			ctx.quadraticCurveTo(x, y, x + r, y);
+			ctx.closePath();
+		}
+
+		function buildLev() {
+			var cur = qstns[gameSt.curQ];
+			qTxt.innerText = cur.t;
+			pFill.style.width = (gameSt.curQ / qstns.length * 100) + "%";
+			gameSt.plats = [{
+				x: 50,
+				y: 550,
+				w: 200,
+				h: 30,
+				ty: 'f'
+			}];
+			var m = gameSt.curQ % 2;
+			if (m === 0) {
+				gameSt.plats.push({
+					x: 250,
+					y: 350,
+					w: 120,
+					h: 20,
+					ty: 'f'
+				});
+				gameSt.plats.push({
+					x: 50,
+					y: 150,
+					w: 120,
+					h: 20,
+					ty: 'f'
+				});
+				gameSt.plats.push({
+					x: 350,
+					y: -50,
+					w: 120,
+					h: 20,
+					ty: 'f'
+				});
+				gameSt.plats.push({
+					x: -300,
+					y: 250,
+					w: 220,
+					h: 45,
+					ty: 'a',
+					idx: 0,
+					txt: cur.a[0]
+				});
+				gameSt.plats.push({
+					x: 750,
+					y: 350,
+					w: 220,
+					h: 45,
+					ty: 'a',
+					idx: 1,
+					txt: cur.a[1]
+				});
+				gameSt.plats.push({
+					x: -300,
+					y: 50,
+					w: 220,
+					h: 45,
+					ty: 'a',
+					idx: 2,
+					txt: cur.a[2]
+				});
+				gameSt.plats.push({
+					x: 750,
+					y: -150,
+					w: 220,
+					h: 45,
+					ty: 'a',
+					idx: 3,
+					txt: cur.a[3]
+				});
+			} else {
+				gameSt.plats.push({
+					x: 400,
+					y: 450,
+					w: 100,
+					h: 20,
+					ty: 'f'
+				});
+				gameSt.plats.push({
+					x: 800,
+					y: 350,
+					w: 100,
+					h: 20,
+					ty: 'f'
+				});
+				gameSt.plats.push({
+					x: 1100,
+					y: 550,
+					w: 240,
+					h: 45,
+					ty: 'a',
+					idx: 0,
+					txt: cur.a[0]
+				});
+				gameSt.plats.push({
+					x: 1500,
+					y: 350,
+					w: 240,
+					h: 45,
+					ty: 'a',
+					idx: 1,
+					txt: cur.a[1]
+				});
+				gameSt.plats.push({
+					x: 1900,
+					y: 300,
+					w: 240,
+					h: 45,
+					ty: 'a',
+					idx: 2,
+					txt: cur.a[2]
+				});
+				gameSt.plats.push({
+					x: 2300,
+					y: 250,
+					w: 240,
+					h: 45,
+					ty: 'a',
+					idx: 3,
+					txt: cur.a[3]
+				});
+			}
+		}
+
+		function update() {
+			if (gameSt.done) return;
+			if (gameSt.keys[37] || gameSt.keys[65]) {
+				plyer.vx -= plyer.speed;
+				plyer.dir = -1;
+			}
+			if (gameSt.keys[39] || gameSt.keys[68]) {
+				plyer.vx += plyer.speed;
+				plyer.dir = 1;
+			}
+			plyer.vx *= plyer.fric;
+			plyer.x += plyer.vx;
+			for (var i = 0; i < gameSt.plats.length; i++) {
+				var b = gameSt.plats[i];
+				if (plyer.y + plyer.h > b.y && plyer.y < b.y + b.h) {
+					if (plyer.vx > 0 && plyer.x + plyer.w > b.x && plyer.x < b.x) {
+						plyer.x = b.x - plyer.w;
+						plyer.vx = 0;
+					} else if (plyer.vx < 0 && plyer.x < b.x + b.w && plyer.x + plyer.w > b.x + b.w) {
+						plyer.x = b.x + b.w;
+						plyer.vx = 0;
+					}
+				}
+			}
+			plyer.vy += plyer.grav;
+			plyer.y += plyer.vy;
+			plyer.onG = false;
+			for (var j = 0; j < gameSt.plats.length; j++) {
+				var k = gameSt.plats[j];
+				if (plyer.x + plyer.w - 5 > k.x && plyer.x + 5 < k.x + k.w) {
+					if (plyer.vy > 0 && plyer.y + plyer.h > k.y && plyer.y + plyer.h < k.y + k.h + plyer.vy) {
+						plyer.y = k.y - plyer.h;
+						plyer.vy = 0;
+						plyer.onG = true;
+						if (k.ty === 'a' && (gameSt.keys[40] || gameSt.keys[83])) selChoice(k.idx);
+					} else if (plyer.vy < 0 && plyer.y < k.y + k.h && plyer.y > k.y + k.h + plyer.vy) {
+						plyer.y = k.y + k.h;
+						plyer.vy = 0;
+					}
+				}
+			}
+			if (plyer.y > 2000) rstPlyer();
+			gameSt.cam.x += (plyer.x - cnv.width / 2 - gameSt.cam.x) * 0.05;
+			gameSt.cam.y += (plyer.y - cnv.height / 2 - gameSt.cam.y) * 0.05;
+			document.getElementById('bg-img').style.transform = "translate(" + (-gameSt.cam.x * 0.04) + "px, " + (-gameSt.cam.y * 0.04) + "px)";
+			if (gameSt.frame % 8 === 0) gameSt.trail.push({
+				x: plyer.x,
+				y: plyer.y,
+				a: 0.6
+			});
+			for (var t = 0; t < gameSt.trail.length; t++) {
+				gameSt.trail[t].a -= 0.01;
+				if (gameSt.trail[t].a <= 0) gameSt.trail.splice(t, 1);
+			}
+			gameSt.frame++;
+		}
+
+		function selChoice(idx) {
+			var houseEf = qstns[gameSt.curQ].e[idx];
+			gameSt.scors[houseEf]++;
+			gameSt.curQ++;
+			if (gameSt.curQ >= qstns.length) showRes();
+			else {
+				buildLev();
+				rstPlyer();
+			}
+		}
+
+		function rstPlyer() {
+			plyer.x = 100;
+			plyer.y = 450;
+			plyer.vx = 0;
+			plyer.vy = 0;
+		}
+
+		function showRes() {
+			gameSt.done = true;
+			var maxS = -1,
+				winH = 'gryf';
+			for (var k in gameSt.scors) {
+				if (gameSt.scors[k] > maxS) {
+					maxS = gameSt.scors[k];
+					winH = k;
+				}
+			}
+			var winData = houses[winH];
+			rHead.innerText = winData.name;
+			rHead.style.color = winData.col;
+			rImg.src = winData.url;
+			rDesc.innerText = winData.desc;
+			rScren.classList.add('vis');
+			setTimeout(function() {
+				rHead.classList.add('vis-shw');
+			}, 400);
+			setTimeout(function() {
+				rCont.classList.add('vis-shw');
+			}, 1000);
+			setTimeout(function() {
+				rDesc.classList.add('vis-shw');
+			}, 1600);
+			setTimeout(function() {
+				rBtn.classList.add('vis-shw');
+			}, 2200);
+		}
+
+		function drawLoop(now) {
+			if (!gameSt.lastT) gameSt.lastT = now;
+			var dt = now - gameSt.lastT;
+			if (dt >= 16.6) {
+				gameSt.lastT = now;
+				update();
+			}
+			ctx.clearRect(0, 0, cnv.width, cnv.height);
+			ctx.save();
+			ctx.translate(-gameSt.cam.x, -gameSt.cam.y);
+			for (var t = 0; t < gameSt.trail.length; t++) {
+				var trl = gameSt.trail[t];
+				ctx.fillStyle = "rgba(168, 85, 247, " + (trl.a * 0.3) + ")";
+				ctx.fillRect(trl.x + 4, trl.y + 4, plyer.w - 8, plyer.h - 8);
+			}
+			for (var i = 0; i < gameSt.plats.length; i++) {
+				var plt = gameSt.plats[i];
+				var isAns = plt.ty === 'a';
+				ctx.fillStyle = isAns ? "rgba(76, 29, 149, 0.85)" : "rgba(30, 27, 75, 0.95)";
+				ctx.strokeStyle = isAns ? "#d8b4fe" : "#64748b";
+				ctx.lineWidth = 3;
+				drawRect(plt.x, plt.y, plt.w, plt.h, 12);
+				ctx.fill();
+				ctx.stroke();
+				if (isAns) {
+					ctx.fillStyle = "#fff";
+					ctx.font = "900 11px Inter";
+					ctx.textAlign = "center";
+					ctx.fillText(plt.txt.toUpperCase(), plt.x + plt.w / 2, plt.y + plt.h / 2 + 5);
+				}
+			}
+			var pulseVal = Math.sin(Date.now() * 0.005) * 15;
+			ctx.shadowBlur = 30 + pulseVal;
+			ctx.shadowColor = "rgba(168, 85, 247, 0.8)";
+			ctx.fillStyle = "#a855f7";
+			ctx.strokeStyle = "#fff";
+			ctx.lineWidth = 3;
+			drawRect(plyer.x, plyer.y, plyer.w, plyer.h, 6);
+			ctx.fill();
+			ctx.stroke();
+			ctx.shadowBlur = 0;
+			ctx.strokeStyle = "#fff";
+			ctx.lineWidth = 4;
+			ctx.lineCap = "round";
+			var eyeOff = plyer.dir * 5;
+			ctx.beginPath();
+			ctx.moveTo(plyer.x + 12 + eyeOff, plyer.y + 8);
+			ctx.lineTo(plyer.x + 12 + eyeOff, plyer.y + 24);
+			ctx.moveTo(plyer.x + 20 + eyeOff, plyer.y + 8);
+			ctx.lineTo(plyer.x + 20 + eyeOff, plyer.y + 24);
+			ctx.stroke();
+			ctx.restore();
+			requestAnimationFrame(drawLoop);
+		}
+		window.addEventListener('keydown', function(e) {
+			if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) e.preventDefault();
+			gameSt.keys[e.keyCode] = true;
+			if ((e.keyCode === 32 || e.keyCode === 38 || e.keyCode === 87) && plyer.onG) {
+				plyer.vy = -plyer.jump;
+				plyer.onG = false;
+			}
+		});
+		window.addEventListener('keyup', function(e) {
+			gameSt.keys[e.keyCode] = false;
+		});
+		window.addEventListener('resize', function() {
+			cnv.width = window.innerWidth;
+			cnv.height = window.innerHeight;
+		});
+		cnv.width = window.innerWidth;
+		cnv.height = window.innerHeight;
+		buildLev();
+		rstPlyer();
+		requestAnimationFrame(drawLoop);
+	</script>
+</body>
+
+</html>
