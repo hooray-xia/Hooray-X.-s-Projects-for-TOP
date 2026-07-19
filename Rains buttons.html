@@ -1,0 +1,4100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--welcome to my button collection! Here, I have multiple buttons. You should definetly give me credit if you use it and appeciate my work, not only this has many lines of code, it took me weeks to type my code. I used AI to fix some messy code so yeah I used AI
+Start date: march-1
+deadline date: may-4
+
+
+-->
+    <meta charset="UTF-8">
+    <title>Button Collection v2</title>
+    <style>
+    pre {
+			max-height: 300px;
+			overflow: auto;
+			background: linear-gradient(145deg, rgba(0, 15, 40, 0.9) 0%, rgba(0, 30, 70, 0.8) 100%);
+			border: 1px solid var(--neon);
+			border-radius: 12px;
+			padding: 20px;
+			box-shadow: 0 0 15px rgba(0, 234, 255, 0.15), inset 0 0 30px rgba(0, 0, 0, 0.6);
+			color: #a8e8f7;
+			font-family: 'Courier New', monospace;
+			scrollbar-width: none;
+			backdrop-filter: blur(4px);
+		}
+
+		code {
+			font-family: monospace;
+			color: #d0f0ff;
+			text-shadow: 0 0 2px rgba(0, 100, 255, 0.5);
+		}
+
+		pre::-webkit-scrollbar {
+			display: none;
+		}
+
+		::-webkit-scrollbar {
+			display: none;
+		}
+    /* Center the details/summary button */
+details {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+summary {
+    cursor: pointer;
+    padding: 8px 12px;
+    background: #2a2a3a;
+    color: #a88bff;
+    border-radius: 8px;
+    font-size: 12px;
+    display: inline-block;
+    transition: background 0.2s;
+    list-style: none;
+    text-align: center;
+}
+
+.code-content {
+    background: #1e1e2a;
+    color: #e0e0e0;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 13px;
+    border: 1px solid #333;
+    width: 100%;
+}
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        
+        summary:hover {
+            background: #3a3a4a;
+        }
+        
+        .code-content {
+            background: #1e1e2a;
+            color: #e0e0e0;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 13px;
+            border: 1px solid #333;
+        }
+        
+        .code-content pre {
+            background: #0a0a0f;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 11px;
+            font-family: 'Courier New', monospace;
+            color: #0f0;
+            margin-top: 8px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .code-content h4 {
+            color: #88ffaa;
+            margin: 0 0 5px 0;
+            font-size: 13px;
+        }
+        
+        .code-content p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+        /* GLOBAL & RESETS */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Modal Box */
+        .modal {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-header h2 {
+            margin: 0;
+            color: #333;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #333;
+        }
+
+        .modal-body {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .modal-footer .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+        button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+       body {
+           font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 20px 60px;
+            box-sizing: border-box;
+        }
+       body.image-faded .hero-bg {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+       body.image-faded .hero {
+            min-height: auto;
+            padding-top: 24px;
+        }
+       body.image-faded .hero-copy {
+            gap: 0;
+        }
+       body.image-faded .hero-copy h1 {
+            color: #000;
+        }
+       .hero-bg {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.9s ease, visibility 0.9s ease;
+            z-index: 0;
+        }
+       .page-shell {
+            width: min(1200px, 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            position: relative;
+            z-index: 1;
+        }
+       .hero {
+            width: min(960px, 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+       .hero-copy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            width: 100%;
+            text-align: center;
+        }
+       .hero-copy h1 {
+            margin: 0;
+            font-size: clamp(2.8rem, 7vw, 4.8rem);
+            font-weight: 800;
+            line-height: 1;
+            color: #fff;
+            transition: color 0.7s ease;
+        }
+       .hero-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            transition: opacity 0.7s ease, transform 0.7s ease, max-height 0.7s ease, visibility 0.7s ease;
+            max-height: 260px;
+            overflow: hidden;
+        }
+       body.image-faded .hero-actions {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-24px);
+            max-height: 0;
+        }
+       .hero-copy p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 500px;
+        }
+       .hero-thumb {
+            flex: 0 1 360px;
+            width: min(360px, 100%);
+            display: none;
+        }
+       .button-list {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(32px);
+            transition: opacity 0.7s ease, transform 0.7s ease, max-height 0.7s ease, visibility 0.7s ease;
+        }
+       body.image-faded .button-list {
+            max-height: 20000px;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+       ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+        }
+        
+        /* ========== BUTTON 1 ========== */
+        .btn1 {
+            font-family: inherit;
+            font-size: 20px;
+            background: royalblue;
+            color: white;
+            padding: 0.7em 1em;
+            padding-left: 0.9em;
+            display: flex;
+            align-items: center;
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .btn1 span {
+            display: block;
+            margin-left: 0.3em;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn1 svg {
+            display: block;
+            transform-origin: center center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .btn1:hover .svg-wrapper {
+            animation: fly-1 0.6s ease-in-out infinite alternate;
+        }
+        .btn1:hover svg {
+            transform: translateX(1.2em) rotate(45deg) scale(1.1);
+        }
+        .btn1:hover span {
+            transform: translateX(5em);
+        }
+        .btn1:active {
+            transform: scale(0.95);
+        }
+        @keyframes fly-1 {
+            from { transform: translateY(0.1em); }
+            to { transform: translateY(-0.1em); }
+        }
+        /* ========== BUTTON 2 ========== */
+        .btn2 {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 16px 36px;
+            border: 4px solid transparent;
+            font-size: 16px;
+            background-color: inherit;
+            border-radius: 100px;
+            font-weight: 600;
+            color: greenyellow;
+            box-shadow: 0 0 0 2px greenyellow;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn2 svg {
+            position: absolute;
+            width: 24px;
+            fill: greenyellow;
+            z-index: 9;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn2 .arr-1 { right: 16px; }
+        .btn2 .arr-2 { left: -25%; }
+        .btn2 .circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: greenyellow;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn2 .text {
+            position: relative;
+            z-index: 1;
+            transform: translateX(-12px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn2:hover {
+            box-shadow: 0 0 0 12px transparent;
+            color: #212121;
+            border-radius: 12px;
+        }
+        .btn2:hover .arr-1 { right: -25%; }
+        .btn2:hover .arr-2 { left: 16px; }
+        .btn2:hover .text { transform: translateX(12px); }
+        .btn2:hover svg { fill: #212121; }
+        .btn2:active { scale: 0.95; box-shadow: 0 0 0 4px greenyellow; }
+        .btn2:hover .circle { width: 220px; height: 220px; opacity: 1; }
+        /* ========== BUTTON 3 ========== */
+        .btn3 {
+            background: #a370f0;
+            color: white;
+            font-family: inherit;
+            padding: 0.35em;
+            padding-left: 1.2em;
+            font-size: 17px;
+            font-weight: 500;
+            border-radius: 0.9em;
+            border: none;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            box-shadow: inset 0 0 1.6em -0.6em #714da6;
+            overflow: hidden;
+            position: relative;
+            height: 2.8em;
+            padding-right: 3.3em;
+            cursor: pointer;
+        }
+        .btn3 .icon {
+            background: white;
+            margin-left: 1em;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.2em;
+            width: 2.2em;
+            border-radius: 0.7em;
+            box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+            right: 0.3em;
+            transition: all 0.3s;
+        }
+        .btn3:hover .icon { width: calc(100% - 0.6em); }
+        .btn3 .icon svg { width: 1.1em; transition: transform 0.3s; color: #7b52b9; }
+        .btn3:hover .icon svg { transform: translateX(0.1em); }
+        .btn3:active .icon { transform: scale(0.95); }
+        /* ========== BUTTON 4 ========== */
+        .btn4 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            color: white;
+            text-shadow: 2px 2px rgb(116, 116, 116);
+            text-transform: uppercase;
+            cursor: pointer;
+            border: solid 2px black;
+            letter-spacing: 6px;
+            font-weight: 600;
+            font-size: 17px;
+            background-color: hsl(49deg 98% 60%);
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .btn4:active { transform: scale(0.9); transition: all 100ms ease; }
+        .btn4 svg { transition: all 0.5s ease; z-index: 2; }
+        .btn4 .play { transition: all 0.5s ease; transition-delay: 300ms; }
+        .btn4:hover svg { transform: scale(3) translate(50%); }
+        .btn4 .now {
+            position: absolute;
+            left: 0;
+            transform: translateX(-100%);
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+        .btn4:hover .now { transform: translateX(10px); transition-delay: 300ms; }
+        .btn4:hover .play { transform: translateX(200%); transition-delay: 300ms; }
+        /* ========== BUTTON 5 ========== */
+        .btn5 {
+            position: relative;
+            padding: 10px 22px;
+            border-radius: 6px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            background-color: #7d2ae8;
+            transition: all 0.2s ease;
+        }
+        .btn5:active { transform: scale(0.96); }
+        .btn5:before, .btn5:after {
+            position: absolute;
+            content: "";
+            width: 150%;
+            left: 50%;
+            height: 100%;
+            transform: translateX(-50%);
+            z-index: -1000;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+        .btn5:hover:before {
+            top: -70%;
+            background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, transparent 20%, #7d2ae8 20%, transparent 30%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+            background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+            background-position: 50% 120%;
+            animation: greentopBubbles 0.6s ease;
+        }
+        .btn5:hover:after {
+            bottom: -70%;
+            background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+            background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
+            background-position: 50% 0%;
+            animation: greenbottomBubbles 0.6s ease;
+        }
+        @keyframes greentopBubbles {
+            0% { background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%; }
+            50% { background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%; }
+            100% { background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%; background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+        }
+        @keyframes greenbottomBubbles {
+            0% { background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%; }
+            50% { background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%; }
+            100% { background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%; background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+        }
+        /* ========== BUTTON 6 (continue-application) ========== */
+        .continue-application {
+            --color: #fff;
+            --bg: #404660;
+            --background-hover: #3A4059;
+            --background-left: #2B3044;
+            --folder: #F3E9CB;
+            --folder-inner: #BEB393;
+            --paper: #FFFFFF;
+            --paper-lines: #BBC1E1;
+            --paper-behind: #E1E6F9;
+            --pencil-cap: #fff;
+            --pencil-top: #275EFE;
+            --pencil-middle: #fff;
+            --pencil-bottom: #5C86FF;
+            --shadow: rgba(13, 15, 25, 0.2);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 19px;
+            padding: 17px 29px 17px 69px;
+            transition: background 0.3s;
+            color: var(--color);
+            background: var(--bg);
+        }
+        .continue-application > div {
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 53px;
+            position: absolute;
+            overflow: hidden;
+            border-radius: 5px 0 0 5px;
+            background: var(--background-left);
+        }
+        .continue-application > div .folder {
+            width: 23px;
+            height: 27px;
+            position: absolute;
+            left: 15px;
+            top: 13px;
+        }
+        .continue-application > div .folder .top {
+            left: 0;
+            top: 0;
+            z-index: 2;
+            position: absolute;
+            transform: translateX(var(--fx, 0));
+            transition: transform 0.4s ease var(--fd, 0.3s);
+        }
+        .continue-application > div .folder .top svg {
+            width: 24px;
+            height: 27px;
+            display: block;
+            fill: var(--folder);
+            transform-origin: 0 50%;
+            transition: transform 0.3s ease var(--fds, 0.45s);
+            transform: perspective(120px) rotateY(var(--fr, 0deg));
+        }
+        .continue-application > div .folder:before, .continue-application > div .folder:after, .continue-application > div .folder .paper {
+            content: "";
+            position: absolute;
+            left: var(--l, 0);
+            top: var(--t, 0);
+            width: var(--w, 100%);
+            height: var(--h, 100%);
+            border-radius: 1px;
+            background: var(--b, var(--folder-inner));
+        }
+        .continue-application > div .folder:before {
+            box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow), 0 3.5px 7px var(--shadow);
+            transform: translateX(var(--fx, 0));
+            transition: transform 0.4s ease var(--fd, 0.3s);
+        }
+        .continue-application > div .folder:after, .continue-application > div .folder .paper {
+            --l: 1px;
+            --t: 1px;
+            --w: 21px;
+            --h: 25px;
+            --b: var(--paper-behind);
+        }
+        .continue-application > div .folder:after {
+            transform: translate(var(--pbx, 0), var(--pby, 0));
+            transition: transform 0.4s ease var(--pbd, 0s);
+        }
+        .continue-application > div .folder .paper {
+            z-index: 1;
+            --b: var(--paper);
+        }
+        .continue-application > div .folder .paper:before, .continue-application > div .folder .paper:after {
+            content: "";
+            width: var(--wp, 14px);
+            height: 2px;
+            border-radius: 1px;
+            transform: scaleY(0.5);
+            left: 3px;
+            top: var(--tp, 3px);
+            position: absolute;
+            background: var(--paper-lines);
+            box-shadow: 0 12px 0 0 var(--paper-lines), 0 24px 0 0 var(--paper-lines);
+        }
+        .continue-application > div .folder .paper:after { --tp: 6px; --wp: 10px; }
+        .continue-application > div .pencil {
+            height: 2px;
+            width: 3px;
+            border-radius: 1px 1px 0 0;
+            top: 8px;
+            left: 105%;
+            position: absolute;
+            z-index: 3;
+            transform-origin: 50% 19px;
+            background: var(--pencil-cap);
+            transform: translateX(var(--pex, 0)) rotate(35deg);
+            transition: transform 0.4s ease var(--pbd, 0s);
+        }
+        .continue-application > div .pencil:before, .continue-application > div .pencil:after {
+            content: "";
+            position: absolute;
+            display: block;
+            background: var(--b, linear-gradient(var(--pencil-top) 55%, var(--pencil-middle) 55.1%, var(--pencil-middle) 60%, var(--pencil-bottom) 60.1%));
+            width: var(--w, 5px);
+            height: var(--h, 20px);
+            border-radius: var(--br, 2px 2px 0 0);
+            top: var(--t, 2px);
+            left: var(--l, -1px);
+        }
+        .continue-application > div .pencil:before { clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px); }
+        .continue-application > div .pencil:after {
+            --b: none;
+            --w: 3px;
+            --h: 6px;
+            --br: 0 2px 1px 0;
+            --t: 3px;
+            --l: 3px;
+            border-top: 1px solid var(--pencil-top);
+            border-right: 1px solid var(--pencil-top);
+        }
+        .continue-application:before, .continue-application:after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 2px;
+            border-radius: 1px;
+            background: var(--color);
+            transform-origin: 9px 1px;
+            transform: translateX(var(--cx, 0)) scale(0.5) rotate(var(--r, -45deg));
+            top: 26px;
+            right: 16px;
+            transition: transform 0.3s;
+        }
+        .continue-application:after { --r: 45deg; }
+        .continue-application:hover {
+            --cx: 2px;
+            --bg: var(--background-hover);
+            --fx: -40px;
+            --fr: -60deg;
+            --fd: .15s;
+            --fds: 0s;
+            --pbx: 3px;
+            --pby: -3px;
+            --pbd: .15s;
+            --pex: -24px;
+        }
+        /* ========== BUTTON 7 (buttonn - send message) ========== */
+        .buttonn {
+            --primary: #ff5569;
+            --radius: 14px;
+            cursor: pointer;
+            border-radius: var(--radius);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+            border: none;
+            box-shadow: 0 0.5px 0.5px 1px rgba(255,255,255,0.2), 0 10px 20px rgba(0,0,0,0.2), 0 4px 5px 0px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+            min-width: 200px;
+            padding: 20px;
+            height: 68px;
+            font-family: sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            background: var(--neutral-1);
+        }
+        .buttonn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 1px 2px rgba(255,255,255,0.3), 0 15px 30px rgba(0,0,0,0.3), 0 10px 3px -3px rgba(0,0,0,0.04);
+        }
+        .buttonn:active { transform: scale(1); box-shadow: 0 0 1px 2px rgba(255,255,255,0.3), 0 10px 3px -3px rgba(0,0,0,0.2); }
+        .buttonn:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            border: 2.5px solid transparent;
+            background: linear-gradient(var(--neutral-1), var(--neutral-2)) padding-box,
+                linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.45)) border-box;
+            z-index: 0;
+            transition: all 0.4s ease;
+        }
+        .buttonn:hover::after { transform: scale(1.05, 1.1); box-shadow: inset 0 -1px 3px 0 white; }
+        .buttonn::before {
+            content: "";
+            inset: 7px 6px 6px 6px;
+            position: absolute;
+            background: linear-gradient(to top, var(--neutral-1), var(--neutral-2));
+            border-radius: 30px;
+            filter: blur(0.5px);
+            z-index: 2;
+        }
+        .state p { display: flex; align-items: center; justify-content: center; }
+        .state .icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            transform: scale(1.25);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .state .icon svg { overflow: visible; filter: drop-shadow(0 1px 0.6px rgba(0,0,0,0.5)); }
+        .outline {
+            position: absolute;
+            border-radius: inherit;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            inset: -2px -3.5px;
+        }
+        .outline::before {
+            content: "";
+            position: absolute;
+            inset: -100%;
+            background: conic-gradient(from 180deg, transparent 60%, white 80%, transparent 100%);
+            animation: spin 2s linear infinite;
+            animation-play-state: paused;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .buttonn:hover .outline { opacity: 1; }
+        .buttonn:hover .outline::before { animation-play-state: running; }
+        .state p span {
+            display: block;
+            opacity: 0;
+            animation: slideDown 0.8s ease forwards calc(var(--i) * 0.03s);
+        }
+        .buttonn:hover p span { opacity: 1; animation: wave 0.5s ease forwards calc(var(--i) * 0.02s); }
+        .buttonn:focus p span { opacity: 1; animation: disapear 0.6s ease forwards calc(var(--i) * 0.03s); }
+        @keyframes wave {
+            30% { opacity: 1; transform: translateY(4px) translateX(0) rotate(0); }
+            50% { opacity: 1; transform: translateY(-3px) translateX(0) rotate(0); color: var(--primary); }
+            100% { opacity: 1; transform: translateY(0) translateX(0) rotate(0); }
+        }
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-20px) translateX(5px) rotate(-90deg); color: var(--primary); filter: blur(5px); }
+            30% { opacity: 1; transform: translateY(4px) translateX(0) rotate(0); filter: blur(0); }
+            50% { opacity: 1; transform: translateY(-3px) translateX(0) rotate(0); }
+            100% { opacity: 1; transform: translateY(0) translateX(0) rotate(0); }
+        }
+        @keyframes disapear { from { opacity: 1; } to { opacity: 0; transform: translateX(5px) translateY(20px); color: var(--primary); filter: blur(5px); } }
+        .state--default .icon svg { animation: land 0.6s ease forwards; }
+        .buttonn:hover .state--default .icon { transform: rotate(45deg) scale(1.25); }
+        .buttonn:focus .state--default svg { animation: takeOff 0.8s linear forwards; }
+        .buttonn:focus .state--default .icon { transform: rotate(0) scale(1.25); }
+        @keyframes takeOff { 0% { opacity: 1; } 60% { opacity: 1; transform: translateX(70px) rotate(45deg) scale(2); } 100% { opacity: 0; transform: translateX(160px) rotate(45deg) scale(0); } }
+        @keyframes land { 0% { transform: translateX(-60px) translateY(30px) rotate(-50deg) scale(2); opacity: 0; filter: blur(3px); } 100% { transform: translateX(0) translateY(0) rotate(0); opacity: 1; filter: blur(0); } }
+        .state--default .icon:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            height: 2px;
+            width: 0;
+            left: -5px;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.5));
+        }
+        .buttonn:focus .state--default .icon:before { animation: contrail 0.8s linear forwards; }
+        @keyframes contrail { 0% { width: 0; opacity: 1; } 8% { width: 15px; } 60% { opacity: 0.7; width: 80px; } 100% { opacity: 0; width: 160px; } }
+        .state { padding-left: 29px; z-index: 2; display: flex; position: relative; }
+        .state--default span:nth-child(4) { margin-right: 5px; }
+        .state--sent { display: none; }
+        .state--sent svg { transform: scale(1.25); margin-right: 8px; }
+        .buttonn:focus .state--default { position: absolute; }
+        .buttonn:focus .state--sent { display: flex; }
+        .buttonn:focus .state--sent span { opacity: 0; animation: slideDown 0.8s ease forwards calc(var(--i) * 0.2s); }
+        .buttonn:focus .state--sent .icon svg { opacity: 0; animation: appear 1.2s ease forwards 0.8s; }
+        @keyframes appear {
+            0% { opacity: 0; transform: scale(4) rotate(-40deg); color: var(--primary); filter: blur(4px); }
+            30% { opacity: 1; transform: scale(0.6); filter: blur(1px); }
+            50% { opacity: 1; transform: scale(1.2); filter: blur(0); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        /* ========== BUTTON 8 (Btn download) ========== */
+        .Btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: rgb(27,27,27);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition-duration: 0.3s;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.11);
+        }
+        .svgIcon { fill: rgb(214,178,255); }
+        .icon2 {
+            width: 18px;
+            height: 5px;
+            border-bottom: 2px solid rgb(182,143,255);
+            border-left: 2px solid rgb(182,143,255);
+            border-right: 2px solid rgb(182,143,255);
+        }
+        .tooltip {
+            position: absolute;
+            right: -105px;
+            opacity: 0;
+            background: rgb(12,12,12);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 0.2s;
+            pointer-events: none;
+            letter-spacing: 0.5px;
+        }
+        .tooltip::before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgb(12,12,12);
+            transform: rotate(45deg);
+            left: -5%;
+        }
+        .Btn:hover .tooltip { opacity: 1; }
+        .Btn:hover { background: rgb(150,94,255); }
+        .Btn:hover .icon2 {
+            border-bottom: 2px solid rgb(235,235,235);
+            border-left: 2px solid rgb(235,235,235);
+            border-right: 2px solid rgb(235,235,235);
+        }
+        .Btn:hover .svgIcon {
+            fill: white;
+            animation: slide-in-top 0.6s cubic-bezier(0.25,0.46,0.45,0.94) both;
+        }
+        @keyframes slide-in-top { 0% { transform: translateY(-10px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+        /* ========== BUTTON 9 (brutalist-button) ========== */
+        .brutalist-button {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            width: 169px;
+            height: 60px;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            border: 3px solid #fff;
+            outline: 3px solid #000;
+            box-shadow: 6px 6px 0 #00a4ef;
+            transition: all 0.1s ease-out;
+            padding: 0 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .brutalist-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            z-index: 1;
+            opacity: 0;
+        }
+        @keyframes slide { 0% { left: -100%; } 100% { left: 100%; } }
+        .brutalist-button:hover::before { opacity: 1; animation: slide 2s infinite; }
+        .brutalist-button:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 #000;
+        }
+        .brutalist-button:active {
+            transform: translate(4px, 4px);
+            box-shadow: none;
+            background: #fff;
+            color: #000;
+            border-color: #000;
+        }
+        .ms-logo {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            width: 26px;
+            height: 26px;
+            margin-right: 8px;
+            transition: transform 0.2s;
+            position: relative;
+            z-index: 1;
+        }
+        .brutalist-button:hover .ms-logo { transform: rotate(-10deg) scale(1.1); }
+        .brutalist-button:active .ms-logo { transform: rotate(10deg) scale(0.9); }
+        .ms-logo-square { width: 100%; height: 100%; }
+        .ms-logo-square:nth-child(1) { background: #f25022; }
+        .ms-logo-square:nth-child(2) { background: #7fba00; }
+        .ms-logo-square:nth-child(3) { background: #00a4ef; }
+        .ms-logo-square:nth-child(4) { background: #ffb900; }
+        .button-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            transition: transform 0.2s;
+            position: relative;
+            z-index: 1;
+        }
+        .brutalist-button:hover .button-text { transform: skew(-5deg); }
+        .brutalist-button:active .button-text { transform: skew(5deg); }
+        .button-text span:first-child { font-size: 11px; text-transform: uppercase; }
+        .button-text span:last-child { font-size: 16px; text-transform: uppercase; }
+        /* ========== BUTTON 10 (btnn stars + glow – merged) ========== */
+        .star-btn {
+            position: relative;
+            padding: 12px 35px;
+            background: #fec195;
+            font-size: 17px;
+            font-weight: 500;
+            color: #181818;
+            border: 3px solid #fec195;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .star-btn strong {
+            z-index: 2;
+            font-family: monospace;
+            font-size: 12px;
+            letter-spacing: 5px;
+            color: #181818;
+        }
+        .star-btn .star-1, .star-btn .star-2, .star-btn .star-3,
+        .star-btn .star-4, .star-btn .star-5, .star-btn .star-6 {
+            position: absolute;
+            filter: drop-shadow(0 0 0 #fffdef);
+            z-index: -5;
+            transition: all 0.6s cubic-bezier(0.05,0.83,0.43,0.96);
+        }
+        .star-1 { top: 20%; left: 20%; width: 25px; }
+        .star-2 { top: 45%; left: 45%; width: 15px; }
+        .star-3 { top: 40%; left: 40%; width: 5px; }
+        .star-4 { top: 20%; left: 40%; width: 8px; transition-duration: 0.8s; }
+        .star-5 { top: 25%; left: 45%; width: 15px; transition-duration: 0.6s; }
+        .star-6 { top: 5%; left: 50%; width: 5px; transition-duration: 0.8s; }
+        .star-btn:hover {
+            background: transparent;
+            color: #fec195;
+            box-shadow: 0 0 25px #fec1958c;
+        }
+        .star-btn:hover .star-1 { top: -80%; left: -30%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .star-btn:hover .star-2 { top: -25%; left: 10%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .star-btn:hover .star-3 { top: 55%; left: 25%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .star-btn:hover .star-4 { top: 30%; left: 80%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .star-btn:hover .star-5 { top: 25%; left: 115%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .star-btn:hover .star-6 { top: 5%; left: 60%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .fil0 { fill: #fffdef; }
+        /* ========== BUTTON 11 (ui-btn chitchat) ========== */
+        .ui-btn {
+            --btn-default-bg: rgb(41,41,41);
+            --btn-padding: 15px 20px;
+            --btn-hover-bg: rgb(51,51,51);
+            --btn-letter-spacing: 0.1rem;
+            --btn-animation-duration: 1.2s;
+            --btn-shadow: 0 2px 10px 0 rgba(0,0,0,0.137);
+            --hover-btn-color: #FAC921;
+            --default-btn-color: #fff;
+            --font-size: 16px;
+            --font-weight: 600;
+            --font-family: Menlo, monospace;
+            box-sizing: border-box;
+            padding: var(--btn-padding);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--default-btn-color);
+            font: var(--font-weight) var(--font-size) var(--font-family);
+            background: var(--btn-default-bg);
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            overflow: hidden;
+            box-shadow: var(--btn-shadow);
+        }
+        .ui-btn span {
+            letter-spacing: var(--btn-letter-spacing);
+            transition: 0.3s;
+            position: relative;
+        }
+        .ui-btn span::before {
+            content: "";
+            position: absolute;
+            background: inherit;
+        }
+        .ui-btn:hover, .ui-btn:focus { background: var(--btn-hover-bg); }
+        .ui-btn:hover span, .ui-btn:focus span { color: var(--hover-btn-color); }
+        .ui-btn:hover span::before, .ui-btn:focus span::before { animation: chitchat linear both var(--btn-animation-duration); }
+        @keyframes chitchat {
+            0% { content: "#"; } 5% { content: "."; } 10% { content: "^{"; } 15% { content: "-!"; }
+            20% { content: "#$_"; } 25% { content: "№:0"; } 30% { content: "#{+."; }
+            40% { content: "?{4@%"; } 45% { content: "=.,^!"; } 50% { content: "?2@%"; }
+            60% { content: "?{%:%"; right: 0; } 65% { content: "|{f[4"; right: 0; }
+            70% { content: "{4%0%"; right: 0; } 80% { content: "{0%"; right: 0; }
+            85% { content: "]>'"; right: 0; } 90% { content: "4"; right: 0; }
+            95% { content: "2"; right: 0; } 100% { content: ""; right: 0; }
+        }
+        /* ========== BUTTON 12 (like button heart) ========== */
+        #heart { display: none; }
+        .like-button {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            height: 48px;
+            width: 136px;
+            border-radius: 16px;
+            border: none;
+            background: #1d1d1d;
+            overflow: hidden;
+            box-shadow: inset -2px -2px 5px rgba(255,255,255,0.2), inset 2px 2px 5px rgba(0,0,0,0.1), 4px 4px 10px rgba(0,0,0,0.4), -2px -2px 8px rgba(255,255,255,0.1);
+        }
+        .like {
+            width: 70%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            cursor: pointer;
+        }
+        .like-icon { fill: #505050; height: 28px; width: 28px; }
+        .like-text { color: #fcfcfc; font-size: 16px; font-family: 'Segoe UI', sans-serif; }
+        .like-count {
+            position: absolute;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #717070;
+            font-size: 16px;
+            border-left: 2px solid #4e4e4e;
+            transition: all 0.5s ease-out;
+        }
+        .like-count.two { transform: translateY(40px); }
+        .on:checked ~ .like .like-icon { fill: #fc4e4e; animation: enlarge 0.2s ease-out 1; }
+        .on:checked ~ .like-count.two { transform: translateX(0); color: #fcfcfc; }
+        .on:checked ~ .like-count.one { transform: translateY(-40px); }
+        @keyframes enlarge { 0% { transform: scale(0.5); } 100% { transform: scale(1.2); } }
+        /* ========== BUTTON 13 (luxury elegant) ========== */
+        .luxury-btn {
+            position: relative;
+            min-width: 200px;
+            padding: 15px 30px;
+            border: none;
+            background: linear-gradient(135deg, #2a1a4a 0%, #4a2b8a 100%);
+            color: #e0e0e0;
+            cursor: pointer;
+            overflow: hidden;
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(74,43,138,0.2);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+        }
+        .luxury-btn__text {
+            position: relative;
+            z-index: 2;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .luxury-btn__border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .luxury-btn__border-path {
+            stroke: #d4af37;
+            stroke-width: 2;
+            transition: stroke-dasharray 0.3s, stroke-dashoffset 0.3s;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+        }
+        .luxury-btn:hover .luxury-btn__border-path { stroke-dashoffset: 0; }
+        .luxury-btn__ornament-left, .luxury-btn__ornament-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            color: #d4af37;
+            transition: transform 0.3s;
+        }
+        .luxury-btn__ornament-left { left: 15px; }
+        .luxury-btn__ornament-right { right: 15px; }
+        .luxury-btn:hover .luxury-btn__ornament-left { transform: translateY(-50%) rotate(-180deg); }
+        .luxury-btn:hover .luxury-btn__ornament-right { transform: translateY(-50%) rotate(180deg); }
+        .luxury-btn__shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+            animation: shine-effect 3s infinite;
+        }
+        @keyframes shine-effect {
+            0% { transform: translateX(0); opacity: 0; }
+            10% { opacity: 0.5; }
+            50% { transform: translateX(200%); opacity: 0.5; }
+            100% { transform: translateX(200%); opacity: 0; }
+        }
+        .luxury-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(74,43,138,0.3);
+            background: linear-gradient(135deg, #321f57 0%, #5633a6 100%);
+        }
+        .luxury-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(74,43,138,0.1);
+            background: linear-gradient(135deg, #231640 0%, #3d2475 100%);
+        }
+        /* ========== BUTTON 14 (getaround) ========== */
+        .getaround-container {
+            position: relative;
+            display: inline-block;
+        }
+        .getaround-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #4a6bff, #6a11cb);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25,0.8,0.25,1);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+        .getaround-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(106,17,203,0.4), rgba(74,107,255,0.4));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+        .getaround-button::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease-out;
+            z-index: -1;
+        }
+        .getaround-button:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }
+        .getaround-button:hover::before { opacity: 1; }
+        .getaround-button:hover::after { transform: scale(1); }
+        .getaround-button:active { transform: translateY(-2px); box-shadow: 0 5px 10px rgba(0,0,0,0.15); }
+        .getaround-text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-right: 12px;
+            transition: letter-spacing 0.3s ease;
+        }
+        .getaround-button:hover .getaround-text { letter-spacing: 1px; }
+        .getaround-icon {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            transition: transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+        }
+        .getaround-button:hover .getaround-icon { transform: rotate(360deg); }
+        .getaround-tooltip {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: rgba(255,255,255,0.98);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+            z-index: 100;
+            margin-top: 12px;
+        }
+        .getaround-container:hover .getaround-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+        .getaround-tooltip::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 10px solid transparent;
+            border-bottom-color: rgba(255,255,255,0.98);
+        }
+        .getaround-icons {
+            display: flex;
+            gap: 16px;
+        }
+        .getaround-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #f1f3f5;
+            transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .getaround-icon-btn svg { width: 24px; height: 24px; transition: all 0.3s; }
+        .getaround-icon-btn:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .getaround-icon-btn:active { transform: translateY(-2px) scale(1.05); }
+        .getaround-icon-btn.python:hover { background: linear-gradient(135deg, #3776ab, #ffd343); }
+        .getaround-icon-btn.python:hover svg { fill: white; }
+        .getaround-icon-btn.chat:hover { background: linear-gradient(135deg, #25d366, #128c7e); }
+        .getaround-icon-btn.chat:hover svg { fill: white; }
+        .getaround-icon-btn.like:hover { background: linear-gradient(135deg, #ff4d4d, #d32f2f); }
+        .getaround-icon-btn.like:hover svg { fill: white; }
+        .getaround-button { animation: getaround-pulse 3s infinite; }
+        @keyframes getaround-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(74,107,255,0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(74,107,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(74,107,255,0); }
+        }
+    </style>
+    <style>
+        
+.btn15 {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btn15 {
+  --primary-color: #111;
+  --hovered-color: #c84747;
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  font-size: 20px;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn15 p {
+  margin: 0;
+  position: relative;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.btn15::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  left: 0;
+  bottom: -7px;
+  background: var(--hovered-color);
+  height: 2px;
+  transition: 0.3s ease-out;
+}
+
+.btn15 p::before {
+  position: absolute;
+  /*   box-sizing: border-box; */
+  content: "Subscribe";
+  width: 0%;
+  inset: 0;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: 0.3s ease-out;
+}
+
+.btn15:hover::after {
+  width: 100%;
+}
+
+.btn15:hover p::before {
+  width: 100%;
+}
+
+.btn15:hover svg {
+  transform: translateX(4px);
+  color: var(--hovered-color);
+}
+
+.btn15 svg {
+  color: var(--primary-color);
+  transition: 0.2s;
+  position: relative;
+  width: 15px;
+  transition-delay: 0.2s;
+}
+
+    </style>
+    <style>
+.btn16 {
+  --h-button: 48px;
+  --w-button: 102px;
+  --round: 0.75rem;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  background: radial-gradient(
+      65.28% 65.28% at 50% 100%,
+      rgba(223, 113, 255, 0.8) 0%,
+      rgba(223, 113, 255, 0) 100%
+    ),
+    linear-gradient(0deg, #7a5af8, #7a5af8);
+  border-radius: var(--round);
+  border: none;
+  outline: none;
+  padding: 12px 18px;
+}
+
+.btn16::before,
+.btn16::after {
+  content: "";
+  position: absolute;
+  inset: var(--space);
+  transition: all 0.5s ease-in-out;
+  border-radius: calc(var(--round) - var(--space));
+  z-index: 0;
+}
+
+.btn16::before {
+  --space: 1px;
+  background: linear-gradient(
+    177.95deg,
+    rgba(255, 255, 255, 0.19) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.btn16::after {
+  --space: 2px;
+  background: radial-gradient(
+      65.28% 65.28% at 50% 100%,
+      rgba(223, 113, 255, 0.8) 0%,
+      rgba(223, 113, 255, 0) 100%
+    ),
+    linear-gradient(0deg, #7a5af8, #7a5af8);
+}
+
+.btn16:active {
+  transform: scale(0.95);
+}
+
+.btn16 .fold {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 1rem;
+  width: 1rem;
+  display: inline-block;
+  transition: all 0.5s ease-in-out;
+  background: radial-gradient(
+    100% 75% at 55%,
+    rgba(223, 113, 255, 0.8) 0%,
+    rgba(223, 113, 255, 0) 100%
+  );
+  box-shadow: 0 0 3px black;
+  border-bottom-left-radius: 0.5rem;
+  border-top-right-radius: var(--round);
+}
+
+.btn16 .fold::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150%;
+  height: 150%;
+  transform: rotate(45deg) translateX(0%) translateY(-18px);
+  background-color: #e8e8e8;
+  pointer-events: none;
+}
+
+.btn16:hover .fold {
+  margin-top: -1rem;
+  margin-right: -1rem;
+}
+
+.btn16 .points_wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.btn16 .points_wrapper .point {
+  bottom: -10px;
+  position: absolute;
+  animation: floating-points infinite ease-in-out;
+  pointer-events: none;
+  width: 2px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 9999px;
+}
+
+@keyframes floating-points {
+  0% {
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-55px);
+    opacity: 0;
+  }
+}
+
+.btn16 .points_wrapper .point:nth-child(1) {
+  left: 10%;
+  opacity: 1;
+  animation-duration: 2.35s;
+  animation-delay: 0.2s;
+}
+
+.btn16 .points_wrapper .point:nth-child(2) {
+  left: 30%;
+  opacity: 0.7;
+  animation-duration: 2.5s;
+  animation-delay: 0.5s;
+}
+
+.btn16 .points_wrapper .point:nth-child(3) {
+  left: 25%;
+  opacity: 0.8;
+  animation-duration: 2.2s;
+  animation-delay: 0.1s;
+}
+
+.btn16 .points_wrapper .point:nth-child(4) {
+  left: 44%;
+  opacity: 0.6;
+  animation-duration: 2.05s;
+}
+
+.btn16 .points_wrapper .point:nth-child(5) {
+  left: 50%;
+  opacity: 1;
+  animation-duration: 1.9s;
+}
+
+.btn16 .points_wrapper .point:nth-child(6) {
+  left: 75%;
+  opacity: 0.5;
+  animation-duration: 1.5s;
+  animation-delay: 1.5s;
+}
+
+.btn16 .points_wrapper .point:nth-child(7) {
+  left: 88%;
+  opacity: 0.9;
+  animation-duration: 2.2s;
+  animation-delay: 0.2s;
+}
+
+.btn16 .points_wrapper .point:nth-child(8) {
+  left: 58%;
+  opacity: 0.8;
+  animation-duration: 2.25s;
+  animation-delay: 0.2s;
+}
+
+.btn16 .points_wrapper .point:nth-child(9) {
+  left: 98%;
+  opacity: 0.6;
+  animation-duration: 2.6s;
+  animation-delay: 0.1s;
+}
+
+.btn16 .points_wrapper .point:nth-child(10) {
+  left: 65%;
+  opacity: 1;
+  animation-duration: 2.5s;
+  animation-delay: 0.2s;
+}
+
+.btn16 .inner {
+  z-index: 2;
+  gap: 6px;
+  position: relative;
+  width: 100%;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: color 0.2s ease-in-out;
+}
+
+.btn16 .inner svg.icon {
+  width: 18px;
+  height: 18px;
+  transition: fill 0.1s linear;
+}
+
+.btn16:focus svg.icon {
+  fill: white;
+}
+
+.btn16:hover svg.icon {
+  fill: transparent;
+  animation:
+    dasharray 1s linear forwards,
+    filled 0.1s linear forwards 0.95s;
+}
+
+@keyframes dasharray {
+  from {
+    stroke-dasharray: 0 0 0 0;
+  }
+  to {
+    stroke-dasharray: 68 68 0 0;
+  }
+}
+
+@keyframes filled {
+  to {
+    fill: white;
+  }
+}
+    </style>
+    <style>
+
+.buttons {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: fit-content;
+  width: fit-content;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.buttons:hover {
+  padding: 60px;
+}
+
+.buttons:hover .button {
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.main-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border: none;
+  background: #e8e8e8;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+  border-radius: 50%;
+  transition: 0.2s;
+  z-index: 100;
+}
+
+.button {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border: none;
+  background: #e8e8e8;
+  box-shadow: 5px 5px 12px rgba(202, 202, 202, 0), -5px -5px 12px rgba(255, 255, 255, 0);
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.discord-button:hover {
+  background: #5865F2;
+}
+
+.buttons:hover .discord-button {
+  translate: 70px 0px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.twitter-button:hover {
+  background: #1CA1F1;
+}
+
+.buttons:hover .twitter-button {
+  translate: 47px -47px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.reddit-button:hover {
+  background: #FF4500;
+}
+
+.buttons:hover .reddit-button {
+  translate: 0px -70px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.messenger-button:hover {
+  background: #0093FF;
+}
+
+.buttons:hover .messenger-button {
+  translate: -47px -47px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.pinterest-button:hover {
+  background: #F0002A;
+}
+
+.buttons:hover .pinterest-button {
+  translate: -70px 0px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.instagram-button:hover {
+  background: #F914AF;
+}
+
+.buttons:hover .instagram-button {
+  translate: -47px 47px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.snapchat-button:hover {
+  background: #FFFC00;
+}
+
+.buttons:hover .snapchat-button {
+  translate: 0px 70px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+
+.whatsapp-button:hover {
+  background: #25D366;
+}
+
+.buttons:hover .whatsapp-button {
+  translate: 47px 47px;
+  box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+}
+    </style>
+    <style> 
+.c-button {
+  color: #000;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 0.9em 1.6em;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+}
+
+.c-button--gooey {
+  color: #06c8d9;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 4px solid #06c8d9;
+  border-radius: 0;
+  position: relative;
+  transition: all 700ms ease;
+}
+
+.c-button--gooey .c-button__blobs {
+  height: 100%;
+  filter: url(#goo);
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: -3px;
+  right: -1px;
+  z-index: -1;
+}
+
+.c-button--gooey .c-button__blobs div {
+  background-color: #06c8d9;
+  width: 34%;
+  height: 100%;
+  border-radius: 100%;
+  position: absolute;
+  transform: scale(1.4) translateY(125%) translateZ(0);
+  transition: all 700ms ease;
+}
+
+.c-button--gooey .c-button__blobs div:nth-child(1) {
+  left: -5%;
+}
+
+.c-button--gooey .c-button__blobs div:nth-child(2) {
+  left: 30%;
+  transition-delay: 60ms;
+}
+
+.c-button--gooey .c-button__blobs div:nth-child(3) {
+  left: 66%;
+  transition-delay: 25ms;
+}
+
+.c-button--gooey:hover {
+  color: #fff;
+}
+
+.c-button--gooey:hover .c-button__blobs div {
+  transform: scale(1.4) translateY(0) translateZ(0);
+}
+    </style>
+</head>
+<body>
+    <img class="hero-bg" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Lake_Tekapo_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" alt="Lake Tekapo background">
+    <div class="page-shell">
+    <section class="hero">
+        <div class="hero-copy">
+            <h1><strong>Button Collection</strong></h1>
+            <div class="hero-actions">
+            <p>Browse the collection and explore the interactive button styles below.</p>
+            <button class="btn2" id="exploreButton" type="button">
+                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+                <span class="text">Explore</span>
+                <span class="circle"></span>
+                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+            </button>
+            </div>
+        </div>
+        <div class="hero-thumb"></div>
+    </section>
+    <ul class="button-list">
+        <!-- Button 1 -->
+        <li>
+        <button class="btn1" onclick="openModal()">
+        <div class="svg-wrapper-1"><div class="svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path></svg>
+            
+        </div>
+        </div>
+        <span>Button</span>
+        </button>
+        <details>
+                <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>A button with a flying paper plane icon. On hover, the icon flies out to the right while the text slides away to the left.</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button 1&lt;/title&gt;
+      &lt;style&gt;
+            .btn1 {
+            font-family: inherit;
+            font-size: 20px;
+            background: royalblue;
+            color: white;
+            padding: 0.7em 1em;
+            padding-left: 0.9em;
+            display: flex;
+            align-items: center;
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .btn1 span {
+            display: block;
+            margin-left: 0.3em;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn1 svg {
+            display: block;
+            transform-origin: center center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .btn1:hover .svg-wrapper {
+            animation: fly-1 0.6s ease-in-out infinite alternate;
+        }
+        .btn1:hover svg {
+            transform: translateX(1.2em) rotate(45deg) scale(1.1);
+        }
+        .btn1:hover span {
+            transform: translateX(5em);
+        }
+        .btn1:active {
+            transform: scale(0.95);
+        }
+        @keyframes fly-1 {
+            from { transform: translateY(0.1em); }
+            to { transform: translateY(-0.1em); }
+        }
+  
+        &lt;/style&gt;
+    &lt;/head&gt;
+    
+    &lt;body&gt;
+        
+        
+        &lt;button class="btn1" &gt;
+        &lt;div class="svg-wrapper-1"&gt;&lt;div class="svg-wrapper"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"&gt;&lt;path fill="none" d="M0 0h24v24H0z"&gt;&lt;/path&gt;&lt;path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"&gt;&lt;/path&gt;&lt/svg&gt;
+            
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;span&gt;Button&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        
+        <!-- Button 2 -->
+        <li><button class="btn2"><svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg><span class="text">Button 2</span><span class="circle"></span><svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg></button>
+            <details>
+                <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>A cool button which arrows appear. Thats my best description :P</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button 1&lt;/title&gt;
+      &lt;style&gt;
+            .btn2 {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 16px 36px;
+            border: 4px solid transparent;
+            font-size: 16px;
+            background-color: inherit;
+            border-radius: 100px;
+            font-weight: 600;
+            color: greenyellow;
+            box-shadow: 0 0 0 2px greenyellow;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn2 svg {
+            position: absolute;
+            width: 24px;
+            fill: greenyellow;
+            z-index: 9;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn2 .arr-1 { right: 16px; }
+        .btn2 .arr-2 { left: -25%; }
+        .btn2 .circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: greenyellow;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn2 .text {
+            position: relative;
+            z-index: 1;
+            transform: translateX(-12px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn2:hover {
+            box-shadow: 0 0 0 12px transparent;
+            color: #212121;
+            border-radius: 12px;
+        }
+        .btn2:hover .arr-1 { right: -25%; }
+        .btn2:hover .arr-2 { left: 16px; }
+        .btn2:hover .text { transform: translateX(12px); }
+        .btn2:hover svg { fill: #212121; }
+        .btn2:active { scale: 0.95; box-shadow: 0 0 0 4px greenyellow; }
+        .btn2:hover .circle { width: 220px; height: 220px; opacity: 1; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    
+    &lt;body&gt;
+        
+        
+        &lt;button class="btn2"&gt;&lt;svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;span class="text"&gt;Button 2&lt;/span&gt;&lt;span class="circle"&gt;&lt;/span&gt;&lt;svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+            
+       
+    &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        <!-- Button 3 -->
+        <li><button class="btn3">Button 3<div class="icon"><svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg></div></button>
+            <details>
+                <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>A cool button which arrows appear to the full. Thats my best description :P</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button 1&lt;/title&gt;
+      &lt;style&gt;
+            .btn3 {
+            background: #a370f0;
+            color: white;
+            font-family: inherit;
+            padding: 0.35em;
+            padding-left: 1.2em;
+            font-size: 17px;
+            font-weight: 500;
+            border-radius: 0.9em;
+            border: none;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            box-shadow: inset 0 0 1.6em -0.6em #714da6;
+            overflow: hidden;
+            position: relative;
+            height: 2.8em;
+            padding-right: 3.3em;
+            cursor: pointer;
+        }
+        .btn3 .icon {
+            background: white;
+            margin-left: 1em;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.2em;
+            width: 2.2em;
+            border-radius: 0.7em;
+            box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+            right: 0.3em;
+            transition: all 0.3s;
+        }
+        .btn3:hover .icon { width: calc(100% - 0.6em); }
+        .btn3 .icon svg { width: 1.1em; transition: transform 0.3s; color: #7b52b9; }
+        .btn3:hover .icon svg { transform: translateX(0.1em); }
+        .btn3:active .icon { transform: scale(0.95); }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    
+    &lt;body&gt;
+        
+       &lt;button class="btn3"&gt;Button 3&lt;div class="icon"&gt;&lt;svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M0 0h24v24H0z" fill="none"&gt;&lt;/path&gt;&lt;path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;/button&gt;
+        
+            
+       
+    &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        <!-- Button 4 -->
+        <li>
+        <button class="btn4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36px" height="36px"><rect width="36" height="36" x="0" y="0" fill="#fdd835"></rect><path fill="#e53935" d="M38.67,42H11.52C11.27,40.62,11,38.57,11,36c0-5,0-11,0-11s1.44-7.39,3.22-9.59 c1.67-2.06,2.76-3.48,6.78-4.41c3-0.7,7.13-0.23,9,1c2.15,1.42,3.37,6.67,3.81,11.29c1.49-0.3,5.21,0.2,5.5,1.28 C40.89,30.29,39.48,38.31,38.67,42z"></path><path fill="#b71c1c" d="M39.02,42H11.99c-0.22-2.67-0.48-7.05-0.49-12.72c0.83,4.18,1.63,9.59,6.98,9.79 c3.48,0.12,8.27,0.55,9.83-2.45c1.57-3,3.72-8.95,3.51-15.62c-0.19-5.84-1.75-8.2-2.13-8.7c0.59,0.66,3.74,4.49,4.01,11.7 c0.03,0.83,0.06,1.72,0.08,2.66c4.21-0.15,5.93,1.5,6.07,2.35C40.68,33.85,39.8,38.9,39.02,42z"></path><path fill="#212121" d="M35,27.17c0,3.67-0.28,11.2-0.42,14.83h-2C32.72,38.42,33,30.83,33,27.17 c0-5.54-1.46-12.65-3.55-14.02c-1.65-1.08-5.49-1.48-8.23-0.85c-3.62,0.83-4.57,1.99-6.14,3.92L15,16.32 c-1.31,1.6-2.59,6.92-3,8.96v10.8c0,2.58,0.28,4.61,0.54,5.92H10.5c-0.25-1.41-0.5-3.42-0.5-5.92l0.02-11.09 c0.15-0.77,1.55-7.63,3.43-9.94l0.08-0.09c1.65-2.03,2.96-3.63,7.25-4.61c3.28-0.76,7.67-0.25,9.77,1.13 C33.79,13.6,35,22.23,35,27.17z"></path><path fill="#01579b" d="M17.165,17.283c5.217-0.055,9.391,0.283,9,6.011c-0.391,5.728-8.478,5.533-9.391,5.337 c-0.913-0.196-7.826-0.043-7.696-5.337C9.209,18,13.645,17.32,17.165,17.283z"></path><path fill="#212121" d="M40.739,37.38c-0.28,1.99-0.69,3.53-1.22,4.62h-2.43c0.25-0.19,1.13-1.11,1.67-4.9 c0.57-4-0.23-11.79-0.93-12.78c-0.4-0.4-2.63-0.8-4.37-0.89l0.1-1.99c1.04,0.05,4.53,0.31,5.71,1.49 C40.689,24.36,41.289,33.53,40.739,37.38z"></path><path fill="#81d4fa" d="M10.154,20.201c0.261,2.059-0.196,3.351,2.543,3.546s8.076,1.022,9.402-0.554 c1.326-1.576,1.75-4.365-0.891-5.267C19.336,17.287,12.959,16.251,10.154,20.201z"></path><path fill="#212121" d="M17.615,29.677c-0.502,0-0.873-0.03-1.052-0.069c-0.086-0.019-0.236-0.035-0.434-0.06 c-5.344-0.679-8.053-2.784-8.052-6.255c0.001-2.698,1.17-7.238,8.986-7.32l0.181-0.002c3.444-0.038,6.414-0.068,8.272,1.818 c1.173,1.191,1.712,3,1.647,5.53c-0.044,1.688-0.785,3.147-2.144,4.217C22.785,29.296,19.388,29.677,17.615,29.677z M17.086,17.973 c-7.006,0.074-7.008,4.023-7.008,5.321c-0.001,3.109,3.598,3.926,6.305,4.27c0.273,0.035,0.48,0.063,0.601,0.089 c0.563,0.101,4.68,0.035,6.855-1.732c0.865-0.702,1.299-1.57,1.326-2.653c0.051-1.958-0.301-3.291-1.073-4.075 c-1.262-1.281-3.834-1.255-6.825-1.222L17.086,17.973z"></path><path fill="#e1f5fe" d="M15.078,19.043c1.957-0.326,5.122-0.529,4.435,1.304c-0.489,1.304-7.185,2.185-7.185,0.652 C12.328,19.467,15.078,19.043,15.078,19.043z"></path></svg><span class="now">now!</span><span class="play">play</span></button>
+            <details>
+                <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>Definetly not promoting a gameee</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button 1&lt;/title&gt;
+      &lt;style&gt;
+            .btn4 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            color: white;
+            text-shadow: 2px 2px rgb(116, 116, 116);
+            text-transform: uppercase;
+            cursor: pointer;
+            border: solid 2px black;
+            letter-spacing: 6px;
+            font-weight: 600;
+            font-size: 17px;
+            background-color: hsl(49deg 98% 60%);
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .btn4:active { transform: scale(0.9); transition: all 100ms ease; }
+        .btn4 svg { transition: all 0.5s ease; z-index: 2; }
+        .btn4 .play { transition: all 0.5s ease; transition-delay: 300ms; }
+        .btn4:hover svg { transform: scale(3) translate(50%); }
+        .btn4 .now {
+            position: absolute;
+            left: 0;
+            transform: translateX(-100%);
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+        .btn4:hover .now { transform: translateX(10px); transition-delay: 300ms; }
+        .btn4:hover .play { transform: translateX(200%); transition-delay: 300ms; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    
+    &lt;body&gt;
+        
+       
+        &lt;button class="btn4"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36px" height="36px"&gt;&lt;rect width="36" height="36" x="0" y="0" fill="#fdd835"&gt;&lt;/rect&gt;&lt;path fill="#e53935" d="M38.67,42H11.52C11.27,40.62,11,38.57,11,36c0-5,0-11,0-11s1.44-7.39,3.22-9.59 c1.67-2.06,2.76-3.48,6.78-4.41c3-0.7,7.13-0.23,9,1c2.15,1.42,3.37,6.67,3.81,11.29c1.49-0.3,5.21,0.2,5.5,1.28 C40.89,30.29,39.48,38.31,38.67,42z"&gt;&lt;/path&gt;&lt;path fill="#b71c1c" d="M39.02,42H11.99c-0.22-2.67-0.48-7.05-0.49-12.72c0.83,4.18,1.63,9.59,6.98,9.79 c3.48,0.12,8.27,0.55,9.83-2.45c1.57-3,3.72-8.95,3.51-15.62c-0.19-5.84-1.75-8.2-2.13-8.7c0.59,0.66,3.74,4.49,4.01,11.7 c0.03,0.83,0.06,1.72,0.08,2.66c4.21-0.15,5.93,1.5,6.07,2.35C40.68,33.85,39.8,38.9,39.02,42z"&gt;&lt;/path&gt;&lt;path fill="#212121" d="M35,27.17c0,3.67-0.28,11.2-0.42,14.83h-2C32.72,38.42,33,30.83,33,27.17 c0-5.54-1.46-12.65-3.55-14.02c-1.65-1.08-5.49-1.48-8.23-0.85c-3.62,0.83-4.57,1.99-6.14,3.92L15,16.32 c-1.31,1.6-2.59,6.92-3,8.96v10.8c0,2.58,0.28,4.61,0.54,5.92H10.5c-0.25-1.41-0.5-3.42-0.5-5.92l0.02-11.09 c0.15-0.77,1.55-7.63,3.43-9.94l0.08-0.09c1.65-2.03,2.96-3.63,7.25-4.61c3.28-0.76,7.67-0.25,9.77,1.13 C33.79,13.6,35,22.23,35,27.17z"&gt;&lt;/path&gt;&lt;path fill="#01579b" d="M17.165,17.283c5.217-0.055,9.391,0.283,9,6.011c-0.391,5.728-8.478,5.533-9.391,5.337 c-0.913-0.196-7.826-0.043-7.696-5.337C9.209,18,13.645,17.32,17.165,17.283z"&gt;&lt;/path&gt;&lt;path fill="#212121" d="M40.739,37.38c-0.28,1.99-0.69,3.53-1.22,4.62h-2.43c0.25-0.19,1.13-1.11,1.67-4.9 c0.57-4-0.23-11.79-0.93-12.78c-0.4-0.4-2.63-0.8-4.37-0.89l0.1-1.99c1.04,0.05,4.53,0.31,5.71,1.49 C40.689,24.36,41.289,33.53,40.739,37.38z"&gt;&lt;/path&gt;&lt;path fill="#81d4fa" d="M10.154,20.201c0.261,2.059-0.196,3.351,2.543,3.546s8.076,1.022,9.402-0.554 c1.326-1.576,1.75-4.365-0.891-5.267C19.336,17.287,12.959,16.251,10.154,20.201z"&gt;&lt;/path&gt;&lt;path fill="#212121" d="M17.615,29.677c-0.502,0-0.873-0.03-1.052-0.069c-0.086-0.019-0.236-0.035-0.434-0.06 c-5.344-0.679-8.053-2.784-8.052-6.255c0.001-2.698,1.17-7.238,8.986-7.32l0.181-0.002c3.444-0.038,6.414-0.068,8.272,1.818 c1.173,1.191,1.712,3,1.647,5.53c-0.044,1.688-0.785,3.147-2.144,4.217C22.785,29.296,19.388,29.677,17.615,29.677z M17.086,17.973 c-7.006,0.074-7.008,4.023-7.008,5.321c-0.001,3.109,3.598,3.926,6.305,4.27c0.273,0.035,0.48,0.063,0.601,0.089 c0.563,0.101,4.68,0.035,6.855-1.732c0.865-0.702,1.299-1.57,1.326-2.653c0.051-1.958-0.301-3.291-1.073-4.075 c-1.262-1.281-3.834-1.255-6.825-1.222L17.086,17.973z"&gt;&lt;/path&gt;&lt;path fill="#e1f5fe" d="M15.078,19.043c1.957-0.326,5.122-0.529,4.435,1.304c-0.489,1.304-7.185,2.185-7.185,0.652 C12.328,19.467,15.078,19.043,15.078,19.043z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;span class="now"&gt;now!&lt;/span&gt;&lt;span class="play"&gt;play&lt;/span&gt;&lt;/button&gt;
+            
+       
+    &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        <!-- Button 5 -->
+        <li>
+        <button class="btn5">Button</button>
+        <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>A cool button thats is like a firework</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button 1&lt;/title&gt;
+      &lt;style&gt;
+            .btn5 {
+            position: relative;
+            padding: 10px 22px;
+            border-radius: 6px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            background-color: #7d2ae8;
+            transition: all 0.2s ease;
+        }
+        .btn5:active { transform: scale(0.96); }
+        .btn5:before, .btn5:after {
+            position: absolute;
+            content: "";
+            width: 150%;
+            left: 50%;
+            height: 100%;
+            transform: translateX(-50%);
+            z-index: -1000;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+        .btn5:hover:before {
+            top: -70%;
+            background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, transparent 20%, #7d2ae8 20%, transparent 30%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+            background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+            background-position: 50% 120%;
+            animation: greentopBubbles 0.6s ease;
+        }
+        .btn5:hover:after {
+            bottom: -70%;
+            background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+                radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+            background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
+            background-position: 50% 0%;
+            animation: greenbottomBubbles 0.6s ease;
+        }
+        @keyframes greentopBubbles {
+            0% { background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%; }
+            50% { background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%; }
+            100% { background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%; background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+        }
+        @keyframes greenbottomBubbles {
+            0% { background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%; }
+            50% { background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%; }
+            100% { background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%; background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+        }
+        &lt;/style&gt;
+        &lt;body&gt;
+            &lt;button class="btn5"&gt;Button&lt;/button&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        
+        
+        
+        
+        
+        
+        <!-- Button 6 (send message) -->
+        <li>
+        <button class="buttonn">
+        <div class="outline"></div><div class="state state--default"><div class="icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.2199 21.63C13.0399 21.63 11.3699 20.8 10.0499 16.83L9.32988 14.67L7.16988 13.95C3.20988 12.63 2.37988 10.96 2.37988 9.78001C2.37988 8.61001 3.20988 6.93001 7.16988 5.60001L15.6599 2.77001C17.7799 2.06001 19.5499 2.27001 20.6399 3.35001C21.7299 4.43001 21.9399 6.21001 21.2299 8.33001L18.3999 16.82C17.0699 20.8 15.3999 21.63 14.2199 21.63ZM7.63988 7.03001C4.85988 7.96001 3.86988 9.06001 3.86988 9.78001C3.86988 10.5 4.85988 11.6 7.63988 12.52L10.1599 13.36C10.3799 13.43 10.5599 13.61 10.6299 13.83L11.4699 16.35C12.3899 19.13 13.4999 20.12 14.2199 20.12C14.9399 20.12 16.0399 19.13 16.9699 16.35L19.7999 7.86001C20.3099 6.32001 20.2199 5.06001 19.5699 4.41001C18.9199 3.76001 17.6599 3.68001 16.1299 4.19001L7.63988 7.03001Z" fill="currentColor"></path><path d="M10.11 14.4C9.92005 14.4 9.73005 14.33 9.58005 14.18C9.29005 13.89 9.29005 13.41 9.58005 13.12L13.16 9.53C13.45 9.24 13.93 9.24 14.22 9.53C14.51 9.82 14.51 10.3 14.22 10.59L10.64 14.18C10.5 14.33 10.3 14.4 10.11 14.4Z" fill="currentColor"></path></svg></div><p><span style="--i:0">S</span><span style="--i:1">e</span><span style="--i:2">n</span><span style="--i:3">d</span><span style="--i:4">M</span><span style="--i:5">e</span><span style="--i:6">s</span><span style="--i:7">s</span><span style="--i:8">a</span><span style="--i:9">g</span><span style="--i:10">e</span></p></div><div class="state state--sent"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="1em" width="1em"><path fill="currentColor" d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z"></path><path fill="currentColor" d="M10.5795 15.5801C10.3795 15.5801 10.1895 15.5001 10.0495 15.3601L7.21945 12.5301C6.92945 12.2401 6.92945 11.7601 7.21945 11.4701C7.50945 11.1801 7.98945 11.1801 8.27945 11.4701L10.5795 13.7701L15.7195 8.6301C16.0095 8.3401 16.4895 8.3401 16.7795 8.6301C17.0695 8.9201 17.0695 9.4001 16.7795 9.6901L11.1095 15.3601C10.9695 15.5001 10.7795 15.5801 10.5795 15.5801Z"></path></svg></div><p><span style="--i:5">S</span><span style="--i:6">e</span><span style="--i:7">n</span><span style="--i:8">t</span></p></div></button>
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>A cool button which... How do I describe this ;-;</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button 6&lt;/title&gt;
+      &lt;style&gt;
+            .continue-application {
+            --color: #fff;
+            --bg: #404660;
+            --background-hover: #3A4059;
+            --background-left: #2B3044;
+            --folder: #F3E9CB;
+            --folder-inner: #BEB393;
+            --paper: #FFFFFF;
+            --paper-lines: #BBC1E1;
+            --paper-behind: #E1E6F9;
+            --pencil-cap: #fff;
+            --pencil-top: #275EFE;
+            --pencil-middle: #fff;
+            --pencil-bottom: #5C86FF;
+            --shadow: rgba(13, 15, 25, 0.2);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 19px;
+            padding: 17px 29px 17px 69px;
+            transition: background 0.3s;
+            color: var(--color);
+            background: var(--bg);
+        }
+        .continue-application > div {
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 53px;
+            position: absolute;
+            overflow: hidden;
+            border-radius: 5px 0 0 5px;
+            background: var(--background-left);
+        }
+        .continue-application > div .folder {
+            width: 23px;
+            height: 27px;
+            position: absolute;
+            left: 15px;
+            top: 13px;
+        }
+        .continue-application > div .folder .top {
+            left: 0;
+            top: 0;
+            z-index: 2;
+            position: absolute;
+            transform: translateX(var(--fx, 0));
+            transition: transform 0.4s ease var(--fd, 0.3s);
+        }
+        .continue-application > div .folder .top svg {
+            width: 24px;
+            height: 27px;
+            display: block;
+            fill: var(--folder);
+            transform-origin: 0 50%;
+            transition: transform 0.3s ease var(--fds, 0.45s);
+            transform: perspective(120px) rotateY(var(--fr, 0deg));
+        }
+        .continue-application > div .folder:before, .continue-application > div .folder:after, .continue-application > div .folder .paper {
+            content: "";
+            position: absolute;
+            left: var(--l, 0);
+            top: var(--t, 0);
+            width: var(--w, 100%);
+            height: var(--h, 100%);
+            border-radius: 1px;
+            background: var(--b, var(--folder-inner));
+        }
+        .continue-application > div .folder:before {
+            box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow), 0 3.5px 7px var(--shadow);
+            transform: translateX(var(--fx, 0));
+            transition: transform 0.4s ease var(--fd, 0.3s);
+        }
+        .continue-application > div .folder:after, .continue-application > div .folder .paper {
+            --l: 1px;
+            --t: 1px;
+            --w: 21px;
+            --h: 25px;
+            --b: var(--paper-behind);
+        }
+        .continue-application > div .folder:after {
+            transform: translate(var(--pbx, 0), var(--pby, 0));
+            transition: transform 0.4s ease var(--pbd, 0s);
+        }
+        .continue-application > div .folder .paper {
+            z-index: 1;
+            --b: var(--paper);
+        }
+        .continue-application > div .folder .paper:before, .continue-application > div .folder .paper:after {
+            content: "";
+            width: var(--wp, 14px);
+            height: 2px;
+            border-radius: 1px;
+            transform: scaleY(0.5);
+            left: 3px;
+            top: var(--tp, 3px);
+            position: absolute;
+            background: var(--paper-lines);
+            box-shadow: 0 12px 0 0 var(--paper-lines), 0 24px 0 0 var(--paper-lines);
+        }
+        .continue-application > div .folder .paper:after { --tp: 6px; --wp: 10px; }
+        .continue-application > div .pencil {
+            height: 2px;
+            width: 3px;
+            border-radius: 1px 1px 0 0;
+            top: 8px;
+            left: 105%;
+            position: absolute;
+            z-index: 3;
+            transform-origin: 50% 19px;
+            background: var(--pencil-cap);
+            transform: translateX(var(--pex, 0)) rotate(35deg);
+            transition: transform 0.4s ease var(--pbd, 0s);
+        }
+        .continue-application > div .pencil:before, .continue-application > div .pencil:after {
+            content: "";
+            position: absolute;
+            display: block;
+            background: var(--b, linear-gradient(var(--pencil-top) 55%, var(--pencil-middle) 55.1%, var(--pencil-middle) 60%, var(--pencil-bottom) 60.1%));
+            width: var(--w, 5px);
+            height: var(--h, 20px);
+            border-radius: var(--br, 2px 2px 0 0);
+            top: var(--t, 2px);
+            left: var(--l, -1px);
+        }
+        .continue-application > div .pencil:before { clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px); }
+        .continue-application > div .pencil:after {
+            --b: none;
+            --w: 3px;
+            --h: 6px;
+            --br: 0 2px 1px 0;
+            --t: 3px;
+            --l: 3px;
+            border-top: 1px solid var(--pencil-top);
+            border-right: 1px solid var(--pencil-top);
+        }
+        .continue-application:before, .continue-application:after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 2px;
+            border-radius: 1px;
+            background: var(--color);
+            transform-origin: 9px 1px;
+            transform: translateX(var(--cx, 0)) scale(0.5) rotate(var(--r, -45deg));
+            top: 26px;
+            right: 16px;
+            transition: transform 0.3s;
+        }
+        .continue-application:after { --r: 45deg; }
+        .continue-application:hover {
+            --cx: 2px;
+            --bg: var(--background-hover);
+            --fx: -40px;
+            --fr: -60deg;
+            --fd: .15s;
+            --fds: 0s;
+            --pbx: 3px;
+            --pby: -3px;
+            --pbd: .15s;
+            --pex: -24px;
+        }
+        &lt;/style&gt;
+        &lt;body&gt;
+           &lt;button class="buttonn"&gt;&lt;div class="outline"&gt;&lt;/div&gt;&lt;div class="state state--default"&gt;&lt;div class="icon"&gt;&lt;svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M14.2199 21.63C13.0399 21.63 11.3699 20.8 10.0499 16.83L9.32988 14.67L7.16988 13.95C3.20988 12.63 2.37988 10.96 2.37988 9.78001C2.37988 8.61001 3.20988 6.93001 7.16988 5.60001L15.6599 2.77001C17.7799 2.06001 19.5499 2.27001 20.6399 3.35001C21.7299 4.43001 21.9399 6.21001 21.2299 8.33001L18.3999 16.82C17.0699 20.8 15.3999 21.63 14.2199 21.63ZM7.63988 7.03001C4.85988 7.96001 3.86988 9.06001 3.86988 9.78001C3.86988 10.5 4.85988 11.6 7.63988 12.52L10.1599 13.36C10.3799 13.43 10.5599 13.61 10.6299 13.83L11.4699 16.35C12.3899 19.13 13.4999 20.12 14.2199 20.12C14.9399 20.12 16.0399 19.13 16.9699 16.35L19.7999 7.86001C20.3099 6.32001 20.2199 5.06001 19.5699 4.41001C18.9199 3.76001 17.6599 3.68001 16.1299 4.19001L7.63988 7.03001Z" fill="currentColor"&gt;&lt;/path&gt;&lt;path d="M10.11 14.4C9.92005 14.4 9.73005 14.33 9.58005 14.18C9.29005 13.89 9.29005 13.41 9.58005 13.12L13.16 9.53C13.45 9.24 13.93 9.24 14.22 9.53C14.51 9.82 14.51 10.3 14.22 10.59L10.64 14.18C10.5 14.33 10.3 14.4 10.11 14.4Z" fill="currentColor"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;p&gt;&lt;span style="--i:0"&gt;S&lt;/span&gt;&lt;span style="--i:1"&gt;e&lt;/span&gt;&lt;span style="--i:2"&gt;n&lt;/span&gt;&lt;span style="--i:3"&gt;d&lt;/span&gt;&lt;span style="--i:4"&gt;M&lt;/span&gt;&lt;span style="--i:5"&gt;e&lt;/span&gt;&lt;span style="--i:6"&gt;s&lt;/span&gt;&lt;span style="--i:7"&gt;s&lt;/span&gt;&lt;span style="--i:8"&gt;a&lt;/span&gt;&lt;span style="--i:9"&gt;g&lt;/span&gt;&lt;span style="--i:10"&gt;e&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class="state state--sent"&gt;&lt;div class="icon"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="1em" width="1em"&gt;&lt;path fill="currentColor" d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z"&gt;&lt;/path&gt;&lt;path fill="currentColor" d="M10.5795 15.5801C10.3795 15.5801 10.1895 15.5001 10.0495 15.3601L7.21945 12.5301C6.92945 12.2401 6.92945 11.7601 7.21945 11.4701C7.50945 11.1801 7.98945 11.1801 8.27945 11.4701L10.5795 13.7701L15.7195 8.6301C16.0095 8.3401 16.4895 8.3401 16.7795 8.6301C17.0695 8.9201 17.0695 9.4001 16.7795 9.6901L11.1095 15.3601C10.9695 15.5001 10.7795 15.5801 10.5795 15.5801Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;p&gt;&lt;span style="--i:5"&gt;S&lt;/span&gt;&lt;span style="--i:6"&gt;e&lt;/span&gt;&lt;span style="--i:7"&gt;n&lt;/span&gt;&lt;span style="--i:8"&gt;t&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;/button&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        <!-- Button 7 (continue application) -->
+        <li>
+        <button class="continue-application">
+        <div><div class="pencil"></div><div class="folder"><div class="top"><svg viewBox="0 0 24 27"><path d="M1,0 L23,0 C23.5522847,-1.01453063e-16 24,0.44771525 24,1 L24,8.17157288 C24,8.70200585 23.7892863,9.21071368 23.4142136,9.58578644 L20.5857864,12.4142136 C20.2107137,12.7892863 20,13.2979941 20,13.8284271 L20,26 C20,26.5522847 19.5522847,27 19,27 L1,27 C0.44771525,27 6.76353751e-17,26.5522847 0,26 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z"></path></svg></div><div class="paper"></div></div></div>Button7</button>
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>dung dung dung! A notebook button!</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button 6&lt;/title&gt;
+      &lt;style&gt;
+             .continue-application {
+            --color: #fff;
+            --bg: #404660;
+            --background-hover: #3A4059;
+            --background-left: #2B3044;
+            --folder: #F3E9CB;
+            --folder-inner: #BEB393;
+            --paper: #FFFFFF;
+            --paper-lines: #BBC1E1;
+            --paper-behind: #E1E6F9;
+            --pencil-cap: #fff;
+            --pencil-top: #275EFE;
+            --pencil-middle: #fff;
+            --pencil-bottom: #5C86FF;
+            --shadow: rgba(13, 15, 25, 0.2);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 19px;
+            padding: 17px 29px 17px 69px;
+            transition: background 0.3s;
+            color: var(--color);
+            background: var(--bg);
+        }
+        .continue-application > div {
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 53px;
+            position: absolute;
+            overflow: hidden;
+            border-radius: 5px 0 0 5px;
+            background: var(--background-left);
+        }
+        .continue-application > div .folder {
+            width: 23px;
+            height: 27px;
+            position: absolute;
+            left: 15px;
+            top: 13px;
+        }
+        .continue-application > div .folder .top {
+            left: 0;
+            top: 0;
+            z-index: 2;
+            position: absolute;
+            transform: translateX(var(--fx, 0));
+            transition: transform 0.4s ease var(--fd, 0.3s);
+        }
+        .continue-application > div .folder .top svg {
+            width: 24px;
+            height: 27px;
+            display: block;
+            fill: var(--folder);
+            transform-origin: 0 50%;
+            transition: transform 0.3s ease var(--fds, 0.45s);
+            transform: perspective(120px) rotateY(var(--fr, 0deg));
+        }
+        .continue-application > div .folder:before, .continue-application > div .folder:after, .continue-application > div .folder .paper {
+            content: "";
+            position: absolute;
+            left: var(--l, 0);
+            top: var(--t, 0);
+            width: var(--w, 100%);
+            height: var(--h, 100%);
+            border-radius: 1px;
+            background: var(--b, var(--folder-inner));
+        }
+        .continue-application > div .folder:before {
+            box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow), 0 3.5px 7px var(--shadow);
+            transform: translateX(var(--fx, 0));
+            transition: transform 0.4s ease var(--fd, 0.3s);
+        }
+        .continue-application > div .folder:after, .continue-application > div .folder .paper {
+            --l: 1px;
+            --t: 1px;
+            --w: 21px;
+            --h: 25px;
+            --b: var(--paper-behind);
+        }
+        .continue-application > div .folder:after {
+            transform: translate(var(--pbx, 0), var(--pby, 0));
+            transition: transform 0.4s ease var(--pbd, 0s);
+        }
+        .continue-application > div .folder .paper {
+            z-index: 1;
+            --b: var(--paper);
+        }
+        .continue-application > div .folder .paper:before, .continue-application > div .folder .paper:after {
+            content: "";
+            width: var(--wp, 14px);
+            height: 2px;
+            border-radius: 1px;
+            transform: scaleY(0.5);
+            left: 3px;
+            top: var(--tp, 3px);
+            position: absolute;
+            background: var(--paper-lines);
+            box-shadow: 0 12px 0 0 var(--paper-lines), 0 24px 0 0 var(--paper-lines);
+        }
+        .continue-application > div .folder .paper:after { --tp: 6px; --wp: 10px; }
+        .continue-application > div .pencil {
+            height: 2px;
+            width: 3px;
+            border-radius: 1px 1px 0 0;
+            top: 8px;
+            left: 105%;
+            position: absolute;
+            z-index: 3;
+            transform-origin: 50% 19px;
+            background: var(--pencil-cap);
+            transform: translateX(var(--pex, 0)) rotate(35deg);
+            transition: transform 0.4s ease var(--pbd, 0s);
+        }
+        .continue-application > div .pencil:before, .continue-application > div .pencil:after {
+            content: "";
+            position: absolute;
+            display: block;
+            background: var(--b, linear-gradient(var(--pencil-top) 55%, var(--pencil-middle) 55.1%, var(--pencil-middle) 60%, var(--pencil-bottom) 60.1%));
+            width: var(--w, 5px);
+            height: var(--h, 20px);
+            border-radius: var(--br, 2px 2px 0 0);
+            top: var(--t, 2px);
+            left: var(--l, -1px);
+        }
+        .continue-application > div .pencil:before { clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px); }
+        .continue-application > div .pencil:after {
+            --b: none;
+            --w: 3px;
+            --h: 6px;
+            --br: 0 2px 1px 0;
+            --t: 3px;
+            --l: 3px;
+            border-top: 1px solid var(--pencil-top);
+            border-right: 1px solid var(--pencil-top);
+        }
+        .continue-application:before, .continue-application:after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 2px;
+            border-radius: 1px;
+            background: var(--color);
+            transform-origin: 9px 1px;
+            transform: translateX(var(--cx, 0)) scale(0.5) rotate(var(--r, -45deg));
+            top: 26px;
+            right: 16px;
+            transition: transform 0.3s;
+        }
+        .continue-application:after { --r: 45deg; }
+        .continue-application:hover {
+            --cx: 2px;
+            --bg: var(--background-hover);
+            --fx: -40px;
+            --fr: -60deg;
+            --fd: .15s;
+            --fds: 0s;
+            --pbx: 3px;
+            --pby: -3px;
+            --pbd: .15s;
+            --pex: -24px;
+        }
+        &lt;/style&gt;
+        &lt;body&gt;
+          &lt;button class="buttonn"&gt;&lt;div class="outline"&gt;&lt;/div&gt;&lt;div class="state state--default"&gt;&lt;div class="icon"&gt;&lt;svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M14.2199 21.63C13.0399 21.63 11.3699 20.8 10.0499 16.83L9.32988 14.67L7.16988 13.95C3.20988 12.63 2.37988 10.96 2.37988 9.78001C2.37988 8.61001 3.20988 6.93001 7.16988 5.60001L15.6599 2.77001C17.7799 2.06001 19.5499 2.27001 20.6399 3.35001C21.7299 4.43001 21.9399 6.21001 21.2299 8.33001L18.3999 16.82C17.0699 20.8 15.3999 21.63 14.2199 21.63ZM7.63988 7.03001C4.85988 7.96001 3.86988 9.06001 3.86988 9.78001C3.86988 10.5 4.85988 11.6 7.63988 12.52L10.1599 13.36C10.3799 13.43 10.5599 13.61 10.6299 13.83L11.4699 16.35C12.3899 19.13 13.4999 20.12 14.2199 20.12C14.9399 20.12 16.0399 19.13 16.9699 16.35L19.7999 7.86001C20.3099 6.32001 20.2199 5.06001 19.5699 4.41001C18.9199 3.76001 17.6599 3.68001 16.1299 4.19001L7.63988 7.03001Z" fill="currentColor"&gt;&lt;/path&gt;&lt;path d="M10.11 14.4C9.92005 14.4 9.73005 14.33 9.58005 14.18C9.29005 13.89 9.29005 13.41 9.58005 13.12L13.16 9.53C13.45 9.24 13.93 9.24 14.22 9.53C14.51 9.82 14.51 10.3 14.22 10.59L10.64 14.18C10.5 14.33 10.3 14.4 10.11 14.4Z" fill="currentColor"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;p&gt;&lt;span style="--i:0"&gt;S&lt;/span&gt;&lt;span style="--i:1"&gt;e&lt;/span&gt;&lt;span style="--i:2"&gt;n&lt;/span&gt;&lt;span style="--i:3"&gt;d&lt;/span&gt;&lt;span style="--i:4"&gt;M&lt;/span&gt;&lt;span style="--i:5"&gt;e&lt;/span&gt;&lt;span style="--i:6"&gt;s&lt;/span&gt;&lt;span style="--i:7"&gt;s&lt;/span&gt;&lt;span style="--i:8"&gt;a&lt;/span&gt;&lt;span style="--i:9"&gt;g&lt;/span&gt;&lt;span style="--i:10"&gt;e&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class="state state--sent"&gt;&lt;div class="icon"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="1em" width="1em"&gt;&lt;path fill="currentColor" d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z"&gt;&lt;/path&gt;&lt;path fill="currentColor" d="M10.5795 15.5801C10.3795 15.5801 10.1895 15.5001 10.0495 15.3601L7.21945 12.5301C6.92945 12.2401 6.92945 11.7601 7.21945 11.4701C7.50945 11.1801 7.98945 11.1801 8.27945 11.4701L10.5795 13.7701L15.7195 8.6301C16.0095 8.3401 16.4895 8.3401 16.7795 8.6301C17.0695 8.9201 17.0695 9.4001 16.7795 9.6901L11.1095 15.3601C10.9695 15.5001 10.7795 15.5801 10.5795 15.5801Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;p&gt;&lt;span style="--i:5"&gt;S&lt;/span&gt;&lt;span style="--i:6"&gt;e&lt;/span&gt;&lt;span style="--i:7"&gt;n&lt;/span&gt;&lt;span style="--i:8"&gt;t&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;/button&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        <!-- Button 8 (download) -->
+        <li>
+        <button class="Btn"><svg class="svgIcon" viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><span class="icon2"></span><span class="tooltip">Download</span>
+            
+            
+            
+        </button>
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>dung dung dung! A download button!</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button&lt;/title&gt;
+      &lt;style&gt;
+             .Btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: rgb(27,27,27);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition-duration: 0.3s;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.11);
+        }
+        .svgIcon { fill: rgb(214,178,255); }
+        .icon2 {
+            width: 18px;
+            height: 5px;
+            border-bottom: 2px solid rgb(182,143,255);
+            border-left: 2px solid rgb(182,143,255);
+            border-right: 2px solid rgb(182,143,255);
+        }
+        .tooltip {
+            position: absolute;
+            right: -105px;
+            opacity: 0;
+            background: rgb(12,12,12);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 0.2s;
+            pointer-events: none;
+            letter-spacing: 0.5px;
+        }
+        .tooltip::before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgb(12,12,12);
+            transform: rotate(45deg);
+            left: -5%;
+        }
+        .Btn:hover .tooltip { opacity: 1; }
+        .Btn:hover { background: rgb(150,94,255); }
+        .Btn:hover .icon2 {
+            border-bottom: 2px solid rgb(235,235,235);
+            border-left: 2px solid rgb(235,235,235);
+            border-right: 2px solid rgb(235,235,235);
+        }
+        .Btn:hover .svgIcon {
+            fill: white;
+            animation: slide-in-top 0.6s cubic-bezier(0.25,0.46,0.45,0.94) both;
+        }
+        @keyframes slide-in-top { 0% { transform: translateY(-10px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+        &lt;/style&gt;
+        &lt;body&gt;
+           &lt;button class="Btn"&gt;&lt;svg class="svgIcon" viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;span class="icon2"&gt;&lt;/span&gt;&lt;span class="tooltip"&gt;Download&lt;/span&gt;&lt;/button&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        <!-- Button 9 (brutalist) -->
+        <li>
+        <button class="brutalist-button">
+        <div class="ms-logo"><div class="ms-logo-square"></div><div class="ms-logo-square"></div><div class="ms-logo-square"></div><div class="ms-logo-square"></div></div><div class="button-text"><span>Button 9 & Microsoft is hell</span></div></button>
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>Miscroft is hell! Do I have to say more?</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button&lt;/title&gt;
+      &lt;style&gt;
+             .brutalist-button {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            width: 169px;
+            height: 60px;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            border: 3px solid #fff;
+            outline: 3px solid #000;
+            box-shadow: 6px 6px 0 #00a4ef;
+            transition: all 0.1s ease-out;
+            padding: 0 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .brutalist-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            z-index: 1;
+            opacity: 0;
+        }
+        @keyframes slide { 0% { left: -100%; } 100% { left: 100%; } }
+        .brutalist-button:hover::before { opacity: 1; animation: slide 2s infinite; }
+        .brutalist-button:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 #000;
+        }
+        .brutalist-button:active {
+            transform: translate(4px, 4px);
+            box-shadow: none;
+            background: #fff;
+            color: #000;
+            border-color: #000;
+        }
+        .ms-logo {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            width: 26px;
+            height: 26px;
+            margin-right: 8px;
+            transition: transform 0.2s;
+            position: relative;
+            z-index: 1;
+        }
+        .brutalist-button:hover .ms-logo { transform: rotate(-10deg) scale(1.1); }
+        .brutalist-button:active .ms-logo { transform: rotate(10deg) scale(0.9); }
+        .ms-logo-square { width: 100%; height: 100%; }
+        .ms-logo-square:nth-child(1) { background: #f25022; }
+        .ms-logo-square:nth-child(2) { background: #7fba00; }
+        .ms-logo-square:nth-child(3) { background: #00a4ef; }
+        .ms-logo-square:nth-child(4) { background: #ffb900; }
+        .button-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            transition: transform 0.2s;
+            position: relative;
+            z-index: 1;
+        }
+        .brutalist-button:hover .button-text { transform: skew(-5deg); }
+        .brutalist-button:active .button-text { transform: skew(5deg); }
+        .button-text span:first-child { font-size: 11px; text-transform: uppercase; }
+        .button-text span:last-child { font-size: 16px; text-transform: uppercase; }
+        &lt;/style&gt;
+        &lt;body&gt;
+           &lt;button class="brutalist-button"&gt;
+        &lt;div class="ms-logo"&gt;&lt;div class="ms-logo-square"&gt;&lt;/div&gt;&lt;div class="ms-logo-square"&gt;&lt;/div&gt;&lt;div class="ms-logo-square"&gt;&lt;/div&gt;&lt;div class="ms-logo-square"&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="button-text"&gt;&lt;span&gt;Button 9 &amp; Microsoft is hell&lt;/span&gt;&lt;/div&gt;&lt;/button&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        <!-- Button 10 (stars & glow) -->
+        <li>
+        <button class="star-btn">
+        <strong>SPACE</strong><div id="container-stars"><div id="stars"></div></div><div id="glow"><div class="circle"></div><div class="circle"></div></div><div class="star-1"><svg class="fil0" viewBox="0 0 24 24"><path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"></path></svg></div><div class="star-2"><svg class="fil0" viewBox="0 0 24 24"><path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"></path></svg></div><div class="star-3"><svg class="fil0" viewBox="0 0 24 24"><path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"></path></svg></div><div class="star-4"><svg class="fil0" viewBox="0 0 24 24"><path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"></path></svg></div><div class="star-5"><svg class="fil0" viewBox="0 0 24 24"><path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"></path></svg></div><div class="star-6"><svg class="fil0" viewBox="0 0 24 24"><path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"></path></svg></div></button>
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>Look out the stars, look how they shine for you... - Yellow</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button&lt;/title&gt;
+      &lt;style&gt;
+             .star-btn {
+            position: relative;
+            padding: 12px 35px;
+            background: #fec195;
+            font-size: 17px;
+            font-weight: 500;
+            color: #181818;
+            border: 3px solid #fec195;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .star-btn strong {
+            z-index: 2;
+            font-family: monospace;
+            font-size: 12px;
+            letter-spacing: 5px;
+            color: #181818;
+        }
+        .star-btn .star-1, .star-btn .star-2, .star-btn .star-3,
+        .star-btn .star-4, .star-btn .star-5, .star-btn .star-6 {
+            position: absolute;
+            filter: drop-shadow(0 0 0 #fffdef);
+            z-index: -5;
+            transition: all 0.6s cubic-bezier(0.05,0.83,0.43,0.96);
+        }
+        .star-1 { top: 20%; left: 20%; width: 25px; }
+        .star-2 { top: 45%; left: 45%; width: 15px; }
+        .star-3 { top: 40%; left: 40%; width: 5px; }
+        .star-4 { top: 20%; left: 40%; width: 8px; transition-duration: 0.8s; }
+        .star-5 { top: 25%; left: 45%; width: 15px; transition-duration: 0.6s; }
+        .star-6 { top: 5%; left: 50%; width: 5px; transition-duration: 0.8s; }
+        .star-btn:hover {
+            background: transparent;
+            color: #fec195;
+            box-shadow: 0 0 25px #fec1958c;
+        }
+        .star-btn:hover .star-1 { top: -80%; left: -30%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .star-btn:hover .star-2 { top: -25%; left: 10%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .star-btn:hover .star-3 { top: 55%; left: 25%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .star-btn:hover .star-4 { top: 30%; left: 80%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .star-btn:hover .star-5 { top: 25%; left: 115%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .star-btn:hover .star-6 { top: 5%; left: 60%; filter: drop-shadow(0 0 10px #fffdef); z-index: 2; }
+        .fil0 { fill: #fffdef; }
+        &lt;/style&gt;
+        &lt;body&gt;
+            &lt;button class="star-btn"&gt;&lt;strong&gt;SPACE&lt;/strong&gt;&lt;div id="container-stars"&gt;&lt;div id="stars"&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id="glow"&gt;&lt;div class="circle"&gt;&lt;/div&gt;&lt;div class="circle"&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="star-1"&gt;&lt;svg class="fil0" viewBox="0 0 24 24"&gt;&lt;path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class="star-2"&gt;&lt;svg class="fil0" viewBox="0 0 24 24"&gt;&lt;path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class="star-3"&gt;&lt;svg class="fil0" viewBox="0 0 24 24"&gt;&lt;path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class="star-4"&gt;&lt;svg class="fil0" viewBox="0 0 24 24"&gt;&lt;path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class="star-5"&gt;&lt;svg class="fil0" viewBox="0 0 24 24"&gt;&lt;path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class="star-6"&gt;&lt;svg class="fil0" viewBox="0 0 24 24"&gt;&lt;path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;/button&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        
+        
+        
+        <!-- Button 11 (ui-btn chitchat) -->
+        <li>
+        <button class="ui-btn"><span>Button</span></button>
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>Noooooo my buttons are hacked!</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button&lt;/title&gt;
+      &lt;style&gt;
+            .ui-btn {
+            --btn-default-bg: rgb(41,41,41);
+            --btn-padding: 15px 20px;
+            --btn-hover-bg: rgb(51,51,51);
+            --btn-letter-spacing: 0.1rem;
+            --btn-animation-duration: 1.2s;
+            --btn-shadow: 0 2px 10px 0 rgba(0,0,0,0.137);
+            --hover-btn-color: #FAC921;
+            --default-btn-color: #fff;
+            --font-size: 16px;
+            --font-weight: 600;
+            --font-family: Menlo, monospace;
+            box-sizing: border-box;
+            padding: var(--btn-padding);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--default-btn-color);
+            font: var(--font-weight) var(--font-size) var(--font-family);
+            background: var(--btn-default-bg);
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            overflow: hidden;
+            box-shadow: var(--btn-shadow);
+        }
+        .ui-btn span {
+            letter-spacing: var(--btn-letter-spacing);
+            transition: 0.3s;
+            position: relative;
+        }
+        .ui-btn span::before {
+            content: "";
+            position: absolute;
+            background: inherit;
+        }
+        .ui-btn:hover, .ui-btn:focus { background: var(--btn-hover-bg); }
+        .ui-btn:hover span, .ui-btn:focus span { color: var(--hover-btn-color); }
+        .ui-btn:hover span::before, .ui-btn:focus span::before { animation: chitchat linear both var(--btn-animation-duration); }
+        @keyframes chitchat {
+            0% { content: "#"; } 5% { content: "."; } 10% { content: "^{"; } 15% { content: "-!"; }
+            20% { content: "#$_"; } 25% { content: "№:0"; } 30% { content: "#{+."; }
+            40% { content: "?{4@%"; } 45% { content: "=.,^!"; } 50% { content: "?2@%"; }
+            60% { content: "?{%:%"; right: 0; } 65% { content: "|{f[4"; right: 0; }
+            70% { content: "{4%0%"; right: 0; } 80% { content: "{0%"; right: 0; }
+            85% { content: "]>'"; right: 0; } 90% { content: "4"; right: 0; }
+            95% { content: "2"; right: 0; } 100% { content: ""; right: 0; }
+        }
+        &lt;/style&gt;
+        &lt;body&gt;
+           &lt;button class="ui-btn"&gt;&lt;span&gt;Button&lt;/span&gt;&lt;/button&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+        
+        
+        
+        
+        
+        <!-- Button 12 (like button) -->
+        <li>
+        <div class="like-button">
+        <input class="on" id="heart" type="checkbox"><label class="like" for="heart"><svg class="like-icon" viewBox="0 0 24 24"><path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z"></path></svg><span class="like-text">Likes</span></label><span class="like-count one">68</span><span class="like-count two">69</span></div>
+            
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>Noooooo my buttons are hacked!</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button&lt;/title&gt;
+      &lt;style&gt;
+            #heart { display: none; }
+        .like-button {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            height: 48px;
+            width: 136px;
+            border-radius: 16px;
+            border: none;
+            background: #1d1d1d;
+            overflow: hidden;
+            box-shadow: inset -2px -2px 5px rgba(255,255,255,0.2), inset 2px 2px 5px rgba(0,0,0,0.1), 4px 4px 10px rgba(0,0,0,0.4), -2px -2px 8px rgba(255,255,255,0.1);
+        }
+        .like {
+            width: 70%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            cursor: pointer;
+        }
+        .like-icon { fill: #505050; height: 28px; width: 28px; }
+        .like-text { color: #fcfcfc; font-size: 16px; font-family: 'Segoe UI', sans-serif; }
+        .like-count {
+            position: absolute;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #717070;
+            font-size: 16px;
+            border-left: 2px solid #4e4e4e;
+            transition: all 0.5s ease-out;
+        }
+        .like-count.two { transform: translateY(40px); }
+        .on:checked ~ .like .like-icon { fill: #fc4e4e; animation: enlarge 0.2s ease-out 1; }
+        .on:checked ~ .like-count.two { transform: translateX(0); color: #fcfcfc; }
+        .on:checked ~ .like-count.one { transform: translateY(-40px); }
+        @keyframes enlarge { 0% { transform: scale(0.5); } 100% { transform: scale(1.2); } }
+        &lt;/style&gt;
+        &lt;body&gt;
+           &lt;div class="like-button"&gt;&lt;input class="on" id="heart" type="checkbox"&gt;&lt;label class="like" for="heart"&gt;&lt;svg class="like-icon" viewBox="0 0 24 24"&gt;&lt;path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;span class="like-text"&gt;Likes&lt;/span&gt;&lt;/label&gt;&lt;span class="like-count one"&gt;68&lt;/span&gt;&lt;span class="like-count two"&gt;69&lt;/span&gt;&lt;/div&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+            
+            
+            
+            
+            
+            
+        </li>
+        <!-- Button 13 (luxury elegant) -->
+        <li>
+        <button class="luxury-btn"><svg preserveAspectRatio="none" viewBox="0 0 100 100" height="100%" width="100%" class="luxury-btn__border"><path stroke="currentColor" fill="none" d="M5,20 Q50,5 95,20 Q95,50 95,80 Q50,95 5,80 Q5,50 5,20" class="luxury-btn__border-path"></path></svg><svg viewBox="0 0 15 15" height="15" width="15" class="luxury-btn__ornament-left"><path fill="none" stroke="currentColor" d="M7.5,1 L14,7.5 L7.5,14 L1,7.5 L7.5,1Z"></path><circle fill="currentColor" r="2" cy="7.5" cx="7.5"></circle></svg><span class="luxury-btn__text">Elegant</span><svg viewBox="0 0 15 15" height="15" width="15" class="luxury-btn__ornament-right"><path fill="none" stroke="currentColor" d="M7.5,1 L14,7.5 L7.5,14 L1,7.5 L7.5,1Z"></path><circle fill="currentColor" r="2" cy="7.5" cx="7.5"></circle></svg><svg preserveAspectRatio="none" viewBox="0 0 100 100" height="100%" width="100%" class="luxury-btn__shine"><defs><linearGradient y2="0%" x2="100%" y1="0%" x1="0%" id="shineGradient"><stop stop-color="transparent" offset="0%"></stop><stop stop-color="rgba(255,255,255,0.2)" offset="50%"></stop><stop stop-color="transparent" offset="100%"></stop></linearGradient></defs><path fill="url(#shineGradient)" d="M0,0 L100,0 L100,100 L0,100Z"></path></svg></button>
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>Noooooo my buttons are hacked!</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button&lt;/title&gt;
+      &lt;style&gt;
+            .luxury-btn {
+            position: relative;
+            min-width: 200px;
+            padding: 15px 30px;
+            border: none;
+            background: linear-gradient(135deg, #2a1a4a 0%, #4a2b8a 100%);
+            color: #e0e0e0;
+            cursor: pointer;
+            overflow: hidden;
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(74,43,138,0.2);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+        }
+        .luxury-btn__text {
+            position: relative;
+            z-index: 2;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .luxury-btn__border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .luxury-btn__border-path {
+            stroke: #d4af37;
+            stroke-width: 2;
+            transition: stroke-dasharray 0.3s, stroke-dashoffset 0.3s;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+        }
+        .luxury-btn:hover .luxury-btn__border-path { stroke-dashoffset: 0; }
+        .luxury-btn__ornament-left, .luxury-btn__ornament-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            color: #d4af37;
+            transition: transform 0.3s;
+        }
+        .luxury-btn__ornament-left { left: 15px; }
+        .luxury-btn__ornament-right { right: 15px; }
+        .luxury-btn:hover .luxury-btn__ornament-left { transform: translateY(-50%) rotate(-180deg); }
+        .luxury-btn:hover .luxury-btn__ornament-right { transform: translateY(-50%) rotate(180deg); }
+        .luxury-btn__shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+            animation: shine-effect 3s infinite;
+        }
+        @keyframes shine-effect {
+            0% { transform: translateX(0); opacity: 0; }
+            10% { opacity: 0.5; }
+            50% { transform: translateX(200%); opacity: 0.5; }
+            100% { transform: translateX(200%); opacity: 0; }
+        }
+        .luxury-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(74,43,138,0.3);
+            background: linear-gradient(135deg, #321f57 0%, #5633a6 100%);
+        }
+        .luxury-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(74,43,138,0.1);
+            background: linear-gradient(135deg, #231640 0%, #3d2475 100%);
+        }
+        &lt;/style&gt;
+        &lt;body&gt;
+           &lt;button class="luxury-btn"&gt;&lt;svg preserveAspectRatio="none" viewBox="0 0 100 100" height="100%" width="100%" class="luxury-btn__border"&gt;&lt;path stroke="currentColor" fill="none" d="M5,20 Q50,5 95,20 Q95,50 95,80 Q50,95 5,80 Q5,50 5,20" class="luxury-btn__border-path"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;svg viewBox="0 0 15 15" height="15" width="15" class="luxury-btn__ornament-left"&gt;&lt;path fill="none" stroke="currentColor" d="M7.5,1 L14,7.5 L7.5,14 L1,7.5 L7.5,1Z"&gt;&lt;/path&gt;&lt;circle fill="currentColor" r="2" cy="7.5" cx="7.5"&gt;&lt;/circle&gt;&lt;/svg&gt;&lt;span class="luxury-btn__text"&gt;Elegant&lt;/span&gt;&lt;svg viewBox="0 0 15 15" height="15" width="15" class="luxury-btn__ornament-right"&gt;&lt;path fill="none" stroke="currentColor" d="M7.5,1 L14,7.5 L7.5,14 L1,7.5 L7.5,1Z"&gt;&lt;/path&gt;&lt;circle fill="currentColor" r="2" cy="7.5" cx="7.5"&gt;&lt;/circle&gt;&lt;/svg&gt;&lt;svg preserveAspectRatio="none" viewBox="0 0 100 100" height="100%" width="100%" class="luxury-btn__shine"&gt;&lt;defs&gt;&lt;linearGradient y2="0%" x2="100%" y1="0%" x1="0%" id="shineGradient"&gt;&lt;stop stop-color="transparent" offset="0%"&gt;&lt;/stop&gt;&lt;stop stop-color="rgba(255,255,255,0.2)" offset="50%"&gt;&lt;/stop&gt;&lt;stop stop-color="transparent" offset="100%"&gt;&lt;/stop&gt;&lt;/linearGradient&gt;&lt;/defs&gt;&lt;path fill="url(#shineGradient)" d="M0,0 L100,0 L100,100 L0,100Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+            
+        </li>
+        
+        <!-- Button 14 (getaround) -->
+        <li><div class="getaround-container"><div class="getaround-button"><span class="getaround-text">Get Around</span><svg viewBox="0 0 24 24" class="getaround-icon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"></path></svg></div><div class="getaround-tooltip"><div class="getaround-icons"><a class="getaround-icon-btn python" href="#"><svg viewBox="0 0 24 24"><path d="M11.9 2.2c-4.5 0-8.2 3.7-8.2 8.2 0 4.5 3.7 8.2 8.2 8.2 4.5 0 8.2-3.7 8.2-8.2 0-4.5-3.7-8.2-8.2-8.2zm0 14.9c-3.7 0-6.7-3-6.7-6.7 0-3.7 3-6.7 6.7-6.7 3.7 0 6.7 3 6.7 6.7 0 3.7-3 6.7-6.7 6.7zM8.5 7.8c-.4 0-.8-.3-.8-.8 0-.4.3-.8.8-.8.4 0 .8.3.8.8 0 .4-.4.8-.8.8zm6.9 0c-.4 0-.8-.3-.8-.8 0-.4.3-.8.8-.8.4 0 .8.3.8.8 0 .4-.4.8-.8.8z"></path></svg></a><a class="getaround-icon-btn chat" href="#"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"></path></svg></a><a class="getaround-icon-btn like" href="#"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></a></div></div></div>
+            
+            
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>Noooooo my buttons are hacked!</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button&lt;/title&gt;
+      &lt;style&gt;
+        
+        .getaround-container {
+            position: relative;
+            display: inline-block;
+        }
+        .getaround-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #4a6bff, #6a11cb);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25,0.8,0.25,1);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+        .getaround-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(106,17,203,0.4), rgba(74,107,255,0.4));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+        .getaround-button::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease-out;
+            z-index: -1;
+        }
+        .getaround-button:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }
+        .getaround-button:hover::before { opacity: 1; }
+        .getaround-button:hover::after { transform: scale(1); }
+        .getaround-button:active { transform: translateY(-2px); box-shadow: 0 5px 10px rgba(0,0,0,0.15); }
+        .getaround-text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-right: 12px;
+            transition: letter-spacing 0.3s ease;
+        }
+        .getaround-button:hover .getaround-text { letter-spacing: 1px; }
+        .getaround-icon {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            transition: transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+        }
+        .getaround-button:hover .getaround-icon { transform: rotate(360deg); }
+        .getaround-tooltip {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: rgba(255,255,255,0.98);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+            z-index: 100;
+            margin-top: 12px;
+        }
+        .getaround-container:hover .getaround-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+        .getaround-tooltip::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 10px solid transparent;
+            border-bottom-color: rgba(255,255,255,0.98);
+        }
+        .getaround-icons {
+            display: flex;
+            gap: 16px;
+        }
+        .getaround-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #f1f3f5;
+            transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .getaround-icon-btn svg { width: 24px; height: 24px; transition: all 0.3s; }
+        .getaround-icon-btn:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .getaround-icon-btn:active { transform: translateY(-2px) scale(1.05); }
+        .getaround-icon-btn.python:hover { background: linear-gradient(135deg, #3776ab, #ffd343); }
+        .getaround-icon-btn.python:hover svg { fill: white; }
+        .getaround-icon-btn.chat:hover { background: linear-gradient(135deg, #25d366, #128c7e); }
+        .getaround-icon-btn.chat:hover svg { fill: white; }
+        .getaround-icon-btn.like:hover { background: linear-gradient(135deg, #ff4d4d, #d32f2f); }
+        .getaround-icon-btn.like:hover svg { fill: white; }
+        .getaround-button { animation: getaround-pulse 3s infinite; }
+        @keyframes getaround-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(74,107,255,0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(74,107,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(74,107,255,0); }
+        }    
+        &lt;/style&gt;
+        &lt;body&gt;
+           &lt;div class="getaround-container"&gt;&lt;div class="getaround-button"&gt;&lt;span class="getaround-text"&gt;Get Around&lt;/span&gt;&lt;svg viewBox="0 0 24 24" class="getaround-icon"&gt;&lt;path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class="getaround-tooltip"&gt;&lt;div class="getaround-icons"&gt;&lt;a class="getaround-icon-btn python" href="#"&gt;&lt;svg viewBox="0 0 24 24"&gt;&lt;path d="M11.9 2.2c-4.5 0-8.2 3.7-8.2 8.2 0 4.5 3.7 8.2 8.2 8.2 4.5 0 8.2-3.7 8.2-8.2 0-4.5-3.7-8.2-8.2-8.2zm0 14.9c-3.7 0-6.7-3-6.7-6.7 0-3.7 3-6.7 6.7-6.7 3.7 0 6.7 3 6.7 6.7 0 3.7-3 6.7-6.7 6.7zM8.5 7.8c-.4 0-.8-.3-.8-.8 0-.4.3-.8.8-.8.4 0 .8.3.8.8 0 .4-.4.8-.8.8zm6.9 0c-.4 0-.8-.3-.8-.8 0-.4.3-.8.8-.8.4 0 .8.3.8.8 0 .4-.4.8-.8.8z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a class="getaround-icon-btn chat" href="#"&gt;&lt;svg viewBox="0 0 24 24"&gt;&lt;path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a class="getaround-icon-btn like" href="#"&gt;&lt;svg viewBox="0 0 24 24"&gt;&lt;path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+            
+            
+            
+        </li>
+        
+        <li>
+<button class="btn15">
+  <p>Subscribe</p>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-6 w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="4"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M14 5l7 7m0 0l-7 7m7-7H3"
+    ></path>
+  </svg>
+</button>
+
+            
+            
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>Subscribe, which is exactly what you should do now!</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button&lt;/title&gt;
+      &lt;style&gt;
+        
+        
+.btn15 {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btn15 {
+  --primary-color: #111;
+  --hovered-color: #c84747;
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  font-size: 20px;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn15 p {
+  margin: 0;
+  position: relative;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.btn15::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  left: 0;
+  bottom: -7px;
+  background: var(--hovered-color);
+  height: 2px;
+  transition: 0.3s ease-out;
+}
+
+.btn15 p::before {
+  position: absolute;
+  /*   box-sizing: border-box; */
+  content: "Subscribe";
+  width: 0%;
+  inset: 0;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: 0.3s ease-out;
+}
+
+.btn15:hover::after {
+  width: 100%;
+}
+
+.btn15:hover p::before {
+  width: 100%;
+}
+
+.btn15:hover svg {
+  transform: translateX(4px);
+  color: var(--hovered-color);
+}
+
+.btn15 svg {
+  color: var(--primary-color);
+  transition: 0.2s;
+  position: relative;
+  width: 15px;
+  transition-delay: 0.2s;
+}
+
+    
+            
+        &lt;/style&gt;
+        &lt;body&gt;
+           &lt;button class="btn15"&gt;
+  &lt;p&gt;Subscribe&lt;/p&gt;
+  &lt;svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4"&gt;
+    &lt;path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"&gt;&lt;/path&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+            
+            
+            
+        </li>
+        <li>
+<button type="button" class="btn16">
+  <span class="fold"></span>
+
+  <div class="points_wrapper">
+    <i class="point"></i>
+    <i class="point"></i>
+    <i class="point"></i>
+    <i class="point"></i>
+    <i class="point"></i>
+    <i class="point"></i>
+    <i class="point"></i>
+    <i class="point"></i>
+    <i class="point"></i>
+    <i class="point"></i>
+  </div>
+
+  <span class="inner"
+    ><svg
+      class="icon"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2.5"
+    >
+      <polyline
+        points="13.18 1.37 13.18 9.64 21.45 9.64 10.82 22.63 10.82 14.36 2.55 14.36 13.18 1.37"
+      ></polyline></svg
+    >Credits</span
+  >
+</button>
+
+
+            
+            
+            <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>Credits button!</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button&lt;/title&gt;
+      &lt;style&gt;
+        
+.btn16 {
+  --h-button: 48px;
+  --w-button: 102px;
+  --round: 0.75rem;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  background: radial-gradient(
+      65.28% 65.28% at 50% 100%,
+      rgba(223, 113, 255, 0.8) 0%,
+      rgba(223, 113, 255, 0) 100%
+    ),
+    linear-gradient(0deg, #7a5af8, #7a5af8);
+  border-radius: var(--round);
+  border: none;
+  outline: none;
+  padding: 12px 18px;
+}
+
+.btn16::before,
+.btn16::after {
+  content: "";
+  position: absolute;
+  inset: var(--space);
+  transition: all 0.5s ease-in-out;
+  border-radius: calc(var(--round) - var(--space));
+  z-index: 0;
+}
+
+.btn16::before {
+  --space: 1px;
+  background: linear-gradient(
+    177.95deg,
+    rgba(255, 255, 255, 0.19) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.btn16::after {
+  --space: 2px;
+  background: radial-gradient(
+      65.28% 65.28% at 50% 100%,
+      rgba(223, 113, 255, 0.8) 0%,
+      rgba(223, 113, 255, 0) 100%
+    ),
+    linear-gradient(0deg, #7a5af8, #7a5af8);
+}
+
+.btn16:active {
+  transform: scale(0.95);
+}
+
+.btn16 .fold {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 1rem;
+  width: 1rem;
+  display: inline-block;
+  transition: all 0.5s ease-in-out;
+  background: radial-gradient(
+    100% 75% at 55%,
+    rgba(223, 113, 255, 0.8) 0%,
+    rgba(223, 113, 255, 0) 100%
+  );
+  box-shadow: 0 0 3px black;
+  border-bottom-left-radius: 0.5rem;
+  border-top-right-radius: var(--round);
+}
+
+.btn16 .fold::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150%;
+  height: 150%;
+  transform: rotate(45deg) translateX(0%) translateY(-18px);
+  background-color: #e8e8e8;
+  pointer-events: none;
+}
+
+.btn16:hover .fold {
+  margin-top: -1rem;
+  margin-right: -1rem;
+}
+
+.btn16 .points_wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.btn16 .points_wrapper .point {
+  bottom: -10px;
+  position: absolute;
+  animation: floating-points infinite ease-in-out;
+  pointer-events: none;
+  width: 2px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 9999px;
+}
+
+@keyframes floating-points {
+  0% {
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-55px);
+    opacity: 0;
+  }
+}
+
+.btn16 .points_wrapper .point:nth-child(1) {
+  left: 10%;
+  opacity: 1;
+  animation-duration: 2.35s;
+  animation-delay: 0.2s;
+}
+
+.btn16 .points_wrapper .point:nth-child(2) {
+  left: 30%;
+  opacity: 0.7;
+  animation-duration: 2.5s;
+  animation-delay: 0.5s;
+}
+
+.btn16 .points_wrapper .point:nth-child(3) {
+  left: 25%;
+  opacity: 0.8;
+  animation-duration: 2.2s;
+  animation-delay: 0.1s;
+}
+
+.btn16 .points_wrapper .point:nth-child(4) {
+  left: 44%;
+  opacity: 0.6;
+  animation-duration: 2.05s;
+}
+
+.btn16 .points_wrapper .point:nth-child(5) {
+  left: 50%;
+  opacity: 1;
+  animation-duration: 1.9s;
+}
+
+.btn16 .points_wrapper .point:nth-child(6) {
+  left: 75%;
+  opacity: 0.5;
+  animation-duration: 1.5s;
+  animation-delay: 1.5s;
+}
+
+.btn16 .points_wrapper .point:nth-child(7) {
+  left: 88%;
+  opacity: 0.9;
+  animation-duration: 2.2s;
+  animation-delay: 0.2s;
+}
+
+.btn16 .points_wrapper .point:nth-child(8) {
+  left: 58%;
+  opacity: 0.8;
+  animation-duration: 2.25s;
+  animation-delay: 0.2s;
+}
+
+.btn16 .points_wrapper .point:nth-child(9) {
+  left: 98%;
+  opacity: 0.6;
+  animation-duration: 2.6s;
+  animation-delay: 0.1s;
+}
+
+.btn16 .points_wrapper .point:nth-child(10) {
+  left: 65%;
+  opacity: 1;
+  animation-duration: 2.5s;
+  animation-delay: 0.2s;
+}
+
+.btn16 .inner {
+  z-index: 2;
+  gap: 6px;
+  position: relative;
+  width: 100%;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: color 0.2s ease-in-out;
+}
+
+.btn16 .inner svg.icon {
+  width: 18px;
+  height: 18px;
+  transition: fill 0.1s linear;
+}
+
+.btn16:focus svg.icon {
+  fill: white;
+}
+
+.btn16:hover svg.icon {
+  fill: transparent;
+  animation:
+    dasharray 1s linear forwards,
+    filled 0.1s linear forwards 0.95s;
+}
+
+@keyframes dasharray {
+  from {
+    stroke-dasharray: 0 0 0 0;
+  }
+  to {
+    stroke-dasharray: 68 68 0 0;
+  }
+}
+
+@keyframes filled {
+  to {
+    fill: white;
+  }
+}
+    
+            
+        &lt;/style&gt;
+        &lt;body&gt;
+&lt;button type="button" class="button"&gt;
+  &lt;span class="fold"&gt;&lt;/span&gt;
+
+  &lt;div class="points_wrapper"&gt;
+    &lt;i class="point"&gt;&lt;/i&gt;
+    &lt;i class="point"&gt;&lt;/i&gt;
+    &lt;i class="point"&gt;&lt;/i&gt;
+    &lt;i class="point"&gt;&lt;/i&gt;
+    &lt;i class="point"&gt;&lt;/i&gt;
+    &lt;i class="point"&gt;&lt;/i&gt;
+    &lt;i class="point"&gt;&lt;/i&gt;
+    &lt;i class="point"&gt;&lt;/i&gt;
+    &lt;i class="point"&gt;&lt;/i&gt;
+    &lt;i class="point"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+
+  &lt;span class="inner"&gt;
+    &lt;svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"&gt;
+      &lt;polyline points="13.18 1.37 13.18 9.64 21.45 9.64 10.82 22.63 10.82 14.36 2.55 14.36 13.18 1.37"&gt;&lt;/polyline&gt;
+    &lt;/svg&gt;
+    Credits
+  &lt;/span&gt;
+&lt;/button&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+            
+            
+            
+        </li>
+        <li>
+<div class="buttons">
+  <button class="main-button">
+  <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M15.75 5.125a3.125 3.125 0 1 1 .754 2.035l-8.397 3.9a3.124 3.124 0 0 1 0 1.88l8.397 3.9a3.125 3.125 0 1 1-.61 1.095l-8.397-3.9a3.125 3.125 0 1 1 0-4.07l8.397-3.9a3.125 3.125 0 0 1-.144-.94Z"></path>
+  </svg>
+</button>
+<button class="discord-button button" style="transition-delay: 0s, 0s, 0s; transition-property: translate, background, box-shadow;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="30" width="30">
+     <path d="M18.654 6.368a15.87 15.87 0 0 0-3.908-1.213.06.06 0 0 0-.062.03c-.17.3-.357.693-.487 1a14.628 14.628 0 0 0-4.39 0 9.911 9.911 0 0 0-.494-1 .061.061 0 0 0-.063-.03c-1.35.233-2.664.64-3.908 1.213a.05.05 0 0 0-.025.022c-2.49 3.719-3.172 7.346-2.837 10.928a.068.068 0 0 0 .025.045 15.936 15.936 0 0 0 4.794 2.424.06.06 0 0 0 .067-.023c.37-.504.699-1.036.982-1.595a.06.06 0 0 0-.034-.084 10.65 10.65 0 0 1-1.497-.714.06.06 0 0 1-.024-.08.06.06 0 0 1 .018-.022c.1-.075.201-.155.297-.234a.06.06 0 0 1 .061-.008c3.143 1.435 6.545 1.435 9.65 0a.062.062 0 0 1 .033-.005.061.061 0 0 1 .03.013c.096.08.197.159.298.234a.06.06 0 0 1 .016.081.062.062 0 0 1-.021.021c-.479.28-.98.518-1.499.713a.06.06 0 0 0-.032.085c.288.558.618 1.09.98 1.595a.06.06 0 0 0 .067.023 15.885 15.885 0 0 0 4.802-2.424.06.06 0 0 0 .025-.045c.4-4.14-.671-7.738-2.84-10.927a.04.04 0 0 0-.024-.023Zm-9.837 8.769c-.947 0-1.726-.87-1.726-1.935 0-1.066.765-1.935 1.726-1.935.968 0 1.74.876 1.726 1.935 0 1.066-.765 1.935-1.726 1.935Zm6.38 0c-.946 0-1.726-.87-1.726-1.935 0-1.066.764-1.935 1.725-1.935.969 0 1.741.876 1.726 1.935 0 1.066-.757 1.935-1.726 1.935Z"></path>
+  </svg>
+</button>
+<button class="twitter-button button" style="transition-delay: 0.1s, 0s, 0.1s; transition-property: translate, background, box-shadow;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="30" width="30">
+     <path d="M8.432 19.8c7.245 0 11.209-6.005 11.209-11.202 0-.168 0-.338-.007-.506A8.023 8.023 0 0 0 21.6 6.049a7.99 7.99 0 0 1-2.266.622 3.961 3.961 0 0 0 1.736-2.18 7.84 7.84 0 0 1-2.505.951 3.943 3.943 0 0 0-6.715 3.593A11.19 11.19 0 0 1 3.73 4.92a3.947 3.947 0 0 0 1.222 5.259 3.989 3.989 0 0 1-1.784-.49v.054a3.946 3.946 0 0 0 3.159 3.862 3.964 3.964 0 0 1-1.775.069 3.939 3.939 0 0 0 3.68 2.733 7.907 7.907 0 0 1-4.896 1.688 7.585 7.585 0 0 1-.936-.054A11.213 11.213 0 0 0 8.432 19.8Z"></path>
+  </svg>
+</button>
+<button class="reddit-button button" style="transition-delay: 0.2s, 0s, 0.2s; transition-property: translate, background, box-shadow;">
+  <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M9.708 12a1.039 1.039 0 0 0-1.037 1.037c0 .574.465 1.05 1.037 1.04a1.04 1.04 0 0 0 0-2.077Zm2.304 4.559c.394 0 1.754-.048 2.47-.764a.29.29 0 0 0 0-.383.266.266 0 0 0-.382 0c-.442.454-1.408.61-2.088.61-.681 0-1.635-.156-2.089-.61a.266.266 0 0 0-.382 0 .266.266 0 0 0 0 .383c.705.704 2.065.763 2.471.763Zm1.24-3.509a1.04 1.04 0 0 0 1.039 1.037c.572 0 1.037-.476 1.037-1.037a1.039 1.039 0 0 0-2.075 0Z"></path>
+     <path d="M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Zm-4.785-1.456c-.394 0-.753.155-1.015.406-1.001-.716-2.375-1.181-3.901-1.241l.667-3.127 2.173.466a1.038 1.038 0 1 0 1.037-1.087 1.037 1.037 0 0 0-.93.585l-2.422-.512a.254.254 0 0 0-.264.106.232.232 0 0 0-.035.096l-.74 3.485c-1.55.048-2.947.513-3.963 1.24a1.466 1.466 0 0 0-1.927-.082 1.454 1.454 0 0 0 .318 2.457 2.542 2.542 0 0 0-.037.441c0 2.244 2.614 4.07 5.836 4.07 3.222 0 5.835-1.813 5.835-4.07a2.73 2.73 0 0 0-.036-.44c.502-.227.86-.74.86-1.337 0-.813-.656-1.456-1.456-1.456Z"></path>
+</svg>
+</button>
+<button class="messenger-button button" style="transition-delay: 0.3s, 0s, 0.3s; transition-property: translate, background, box-shadow;">
+  <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M2 11.7C2 6.126 6.366 2 12 2s10 4.126 10 9.7c0 5.574-4.366 9.7-10 9.7-1.012 0-1.982-.134-2.895-.384a.799.799 0 0 0-.534.038l-1.985.877a.8.8 0 0 1-1.122-.707l-.055-1.779a.799.799 0 0 0-.269-.57C3.195 17.135 2 14.615 2 11.7Zm6.932-1.824-2.937 4.66c-.281.448.268.952.689.633l3.156-2.395a.6.6 0 0 1 .723-.003l2.336 1.753a1.501 1.501 0 0 0 2.169-.4l2.937-4.66c.283-.448-.267-.952-.689-.633l-3.156 2.395a.6.6 0 0 1-.723.003l-2.336-1.754a1.5 1.5 0 0 0-2.169.4v.001Z"></path>
+  </svg>
+</button>
+<button class="pinterest-button button" style="transition-delay: 0.4s, 0s, 0.4s; transition-property: translate, background, box-shadow;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="30" width="30">
+     <path d="M12.48 2.4a9.6 9.6 0 0 0-3.498 18.543c-.084-.76-.16-1.927.033-2.757.175-.75 1.125-4.772 1.125-4.772s-.287-.575-.287-1.424c0-1.336.774-2.332 1.738-2.332.818 0 1.214.614 1.214 1.352 0 .824-.524 2.055-.795 3.196-.226.955.48 1.735 1.422 1.735 1.706 0 3.018-1.8 3.018-4.397 0-2.298-1.653-3.904-4.01-3.904-2.732 0-4.335 2.048-4.335 4.165 0 .825.318 1.71.714 2.191a.288.288 0 0 1 .067.276c-.073.302-.235.955-.266 1.088-.042.176-.14.213-.322.129-1.2-.558-1.949-2.311-1.949-3.72 0-3.028 2.201-5.808 6.344-5.808 3.33 0 5.918 2.372 5.918 5.544 0 3.308-2.087 5.971-4.981 5.971-.974 0-1.888-.505-2.201-1.103l-.598 2.283c-.217.834-.803 1.879-1.194 2.516A9.6 9.6 0 1 0 12.48 2.4Z"></path>
+  </svg>
+</button>
+<button class="instagram-button button" style="transition-delay: 0.5s, 0s, 0.5s; transition-property: translate, background, box-shadow;">
+  <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M12 2c-2.714 0-3.055.013-4.121.06-1.066.05-1.793.217-2.429.465a4.896 4.896 0 0 0-1.771 1.154A4.909 4.909 0 0 0 2.525 5.45c-.248.635-.416 1.362-.465 2.425C2.013 8.944 2 9.284 2 12.001c0 2.715.013 3.055.06 4.121.05 1.066.217 1.792.465 2.428a4.91 4.91 0 0 0 1.154 1.771 4.88 4.88 0 0 0 1.77 1.154c.637.247 1.362.416 2.427.465 1.068.047 1.408.06 4.124.06 2.716 0 3.055-.012 4.122-.06 1.064-.05 1.793-.218 2.43-.465a4.893 4.893 0 0 0 1.77-1.154 4.91 4.91 0 0 0 1.153-1.771c.246-.636.415-1.363.465-2.428.047-1.066.06-1.406.06-4.122s-.012-3.056-.06-4.124c-.05-1.064-.219-1.791-.465-2.426a4.907 4.907 0 0 0-1.154-1.771 4.888 4.888 0 0 0-1.771-1.154c-.637-.248-1.365-.416-2.429-.465-1.067-.047-1.406-.06-4.123-.06H12Zm-.896 1.803H12c2.67 0 2.987.008 4.04.057.975.044 1.505.208 1.858.344.466.181.8.399 1.15.748.35.35.566.683.747 1.15.138.352.3.882.344 1.857.049 1.053.059 1.37.059 4.039 0 2.668-.01 2.986-.059 4.04-.044.974-.207 1.503-.344 1.856a3.09 3.09 0 0 1-.748 1.149 3.09 3.09 0 0 1-1.15.747c-.35.137-.88.3-1.857.345-1.053.047-1.37.059-4.04.059s-2.987-.011-4.041-.059c-.975-.045-1.504-.208-1.856-.345a3.097 3.097 0 0 1-1.15-.747 3.1 3.1 0 0 1-.75-1.15c-.136-.352-.3-.882-.344-1.857-.047-1.054-.057-1.37-.057-4.041 0-2.67.01-2.985.057-4.039.045-.975.208-1.505.345-1.857.181-.466.399-.8.749-1.15a3.09 3.09 0 0 1 1.15-.748c.352-.137.881-.3 1.856-.345.923-.042 1.28-.055 3.144-.056v.003Zm6.235 1.66a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 6.865a5.136 5.136 0 1 0-.16 10.272A5.136 5.136 0 0 0 12 6.865Zm0 1.801a3.334 3.334 0 1 1 0 6.668 3.334 3.334 0 0 1 0-6.668Z"></path>
+  </svg>
+</button>
+<button class="snapchat-button button" style="transition-delay: 0.6s, 0s, 0.6s; transition-property: translate, background, box-shadow;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="30" width="30">
+     <path d="M21.929 16.407c-.139-.378-.404-.58-.705-.748a1.765 1.765 0 0 0-.154-.08l-.273-.139c-.94-.499-1.674-1.127-2.183-1.872a4.234 4.234 0 0 1-.375-.664c-.043-.125-.04-.195-.01-.259a.424.424 0 0 1 .121-.125l.44-.289a14.1 14.1 0 0 0 .464-.306c.386-.27.656-.558.825-.878a1.745 1.745 0 0 0 .086-1.45c-.256-.672-.891-1.09-1.661-1.09-.206 0-.41.027-.609.082.008-.46-.002-.947-.043-1.424-.146-1.68-.734-2.56-1.347-3.263a5.367 5.367 0 0 0-1.368-1.1C14.204 2.27 13.15 2 11.998 2c-1.15 0-2.2.27-3.131.801-.515.29-.978.663-1.371 1.104-.613.703-1.2 1.584-1.347 3.263-.041.477-.05.965-.045 1.422a2.288 2.288 0 0 0-.608-.081c-.77 0-1.405.418-1.66 1.091a1.747 1.747 0 0 0 .083 1.451c.17.32.44.608.825.877.103.072.263.174.464.307l.424.276c.054.036.1.083.136.138.033.066.034.137-.015.271a4.204 4.204 0 0 1-.369.65c-.497.729-1.21 1.346-2.12 1.84-.481.255-.982.425-1.193 1-.16.435-.055.929.35 1.344.148.156.32.287.51.387a5.54 5.54 0 0 0 1.25.5c.09.023.176.061.253.113.148.13.128.325.324.61.099.147.225.275.37.375.413.286.876.303 1.369.322.444.018.947.038 1.521.225.238.08.486.233.773.41.687.423 1.63 1.003 3.207 1.003s2.525-.583 3.22-1.008c.284-.175.53-.325.761-.401.575-.19 1.079-.21 1.523-.226.491-.019.955-.038 1.369-.323.172-.12.315-.277.42-.46.142-.24.137-.409.27-.525a.783.783 0 0 1 .238-.108 5.552 5.552 0 0 0 1.268-.506c.2-.108.382-.25.536-.42l.005-.006c.38-.406.475-.886.32-1.309Zm-1.401.753c-.855.473-1.424.421-1.866.706-.375.242-.153.763-.425.95-.337.233-1.327-.015-2.607.408-1.056.349-1.73 1.352-3.629 1.352-1.898 0-2.556-1.001-3.63-1.355-1.277-.422-2.27-.175-2.604-.406-.273-.188-.052-.71-.427-.951-.442-.285-1.011-.234-1.865-.704-.545-.3-.236-.488-.055-.575 3.098-1.499 3.592-3.813 3.613-3.985.027-.207.056-.371-.173-.582-.221-.206-1.202-.813-1.475-1.003-.45-.315-.65-.629-.502-1.015.102-.268.351-.369.612-.369.083 0 .166.01.247.028.495.107.975.356 1.252.422a.477.477 0 0 0 .103.014c.147 0 .2-.075.19-.244-.033-.541-.11-1.596-.024-2.582.117-1.355.555-2.028 1.074-2.622.25-.286 1.42-1.525 3.662-1.525 2.24 0 3.415 1.234 3.664 1.52.52.593.957 1.265 1.073 2.622.085.985.012 2.04-.023 2.581-.013.178.042.244.19.244a.442.442 0 0 0 .102-.013c.278-.067.759-.316 1.253-.422a1.14 1.14 0 0 1 .246-.029c.262 0 .511.102.612.369.147.386-.05.7-.5 1.015-.273.19-1.255.797-1.476 1.002-.23.212-.2.375-.174.583.023.175.517 2.489 3.613 3.986.184.091.492.278-.051.58Z"></path>
+  </svg>
+</button>
+<button class="whatsapp-button button" style="transition-delay: 0.7s, 0s, 0.7s; transition-property: translate, background, box-shadow;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="30" width="30">
+     <path d="M19.001 4.908A9.817 9.817 0 0 0 11.992 2C6.534 2 2.085 6.448 2.08 11.908c0 1.748.458 3.45 1.321 4.956L2 22l5.255-1.377a9.916 9.916 0 0 0 4.737 1.206h.005c5.46 0 9.908-4.448 9.913-9.913A9.872 9.872 0 0 0 19 4.908h.001ZM11.992 20.15A8.216 8.216 0 0 1 7.797 19l-.3-.18-3.117.818.833-3.041-.196-.314a8.2 8.2 0 0 1-1.258-4.381c0-4.533 3.696-8.23 8.239-8.23a8.2 8.2 0 0 1 5.825 2.413 8.196 8.196 0 0 1 2.41 5.825c-.006 4.55-3.702 8.24-8.24 8.24Zm4.52-6.167c-.247-.124-1.463-.723-1.692-.808-.228-.08-.394-.123-.556.124-.166.246-.641.808-.784.969-.143.166-.29.185-.537.062-.247-.125-1.045-.385-1.99-1.23-.738-.657-1.232-1.47-1.38-1.716-.142-.247-.013-.38.11-.504.11-.11.247-.29.37-.432.126-.143.167-.248.248-.413.082-.167.043-.31-.018-.433-.063-.124-.557-1.345-.765-1.838-.2-.486-.404-.419-.557-.425-.142-.009-.309-.009-.475-.009a.911.911 0 0 0-.661.31c-.228.247-.864.845-.864 2.067 0 1.22.888 2.395 1.013 2.56.122.167 1.742 2.666 4.229 3.74.587.257 1.05.408 1.41.523.595.19 1.13.162 1.558.1.475-.072 1.464-.6 1.673-1.178.205-.58.205-1.075.142-1.18-.061-.104-.227-.165-.475-.29Z"></path>
+  </svg>
+</button>
+</div>
+
+
+            
+            
+            <details>
+    <summary>View Code & Description</summary>
+    <div class="code-content">
+        <h4>Description</h4>
+        <p>Definitely not promoting social media 😉</p>
+        <h4>Code</h4>
+        <pre><code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Social Media Buttons&lt;/title&gt;
+    &lt;style&gt;
+        .buttons {
+            position: relative;
+            display: grid;
+            place-items: center;
+            height: fit-content;
+            width: fit-content;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        .buttons:hover {
+            padding: 60px;
+        }
+        .buttons:hover .button {
+            box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+        }
+        .main-button {
+            position: relative;
+            display: grid;
+            place-items: center;
+            padding: 10px;
+            border: none;
+            background: #e8e8e8;
+            box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff;
+            border-radius: 50%;
+            transition: 0.2s;
+            z-index: 100;
+        }
+        .button {
+            position: absolute;
+            display: grid;
+            place-items: center;
+            padding: 10px;
+            border: none;
+            background: #e8e8e8;
+            box-shadow: 5px 5px 12px rgba(202, 202, 202, 0), -5px -5px 12px rgba(255, 255, 255, 0);
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        .discord-button:hover { background: #5865F2; }
+        .buttons:hover .discord-button { translate: 70px 0px; box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff; }
+        .twitter-button:hover { background: #1CA1F1; }
+        .buttons:hover .twitter-button { translate: 47px -47px; box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff; }
+        .reddit-button:hover { background: #FF4500; }
+        .buttons:hover .reddit-button { translate: 0px -70px; box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff; }
+        .messenger-button:hover { background: #0093FF; }
+        .buttons:hover .messenger-button { translate: -47px -47px; box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff; }
+        .pinterest-button:hover { background: #F0002A; }
+        .buttons:hover .pinterest-button { translate: -70px 0px; box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff; }
+        .instagram-button:hover { background: #F914AF; }
+        .buttons:hover .instagram-button { translate: -47px 47px; box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff; }
+        .snapchat-button:hover { background: #FFFC00; }
+        .buttons:hover .snapchat-button { translate: 0px 70px; box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff; }
+        .whatsapp-button:hover { background: #25D366; }
+        .buttons:hover .whatsapp-button { translate: 47px 47px; box-shadow: 5px 5px 12px #cacaca, -5px -5px 12px #ffffff; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="buttons"&gt;
+        &lt;button class="main-button"&gt;
+            &lt;svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"&gt;
+                &lt;path d="M15.75 5.125a3.125 3.125 0 1 1 .754 2.035l-8.397 3.9a3.124 3.124 0 0 1 0 1.88l8.397 3.9a3.125 3.125 0 1 1-.61 1.095l-8.397-3.9a3.125 3.125 0 1 1 0-4.07l8.397-3.9a3.125 3.125 0 0 1-.144-.94Z"&gt;&lt;/path&gt;
+            &lt;/svg&gt;
+        &lt;/button&gt;
+        &lt;button class="discord-button button"&gt;&lt;svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"&gt;&lt;path d="M18.654 6.368a15.87 15.87 0 0 0-3.908-1.213.06.06 0 0 0-.062.03c-.17.3-.357.693-.487 1a14.628 14.628 0 0 0-4.39 0 9.911 9.911 0 0 0-.494-1 .061.061 0 0 0-.063-.03c-1.35.233-2.664.64-3.908 1.213a.05.05 0 0 0-.025.022c-2.49 3.719-3.172 7.346-2.837 10.928a.068.068 0 0 0 .025.045 15.936 15.936 0 0 0 4.794 2.424.06.06 0 0 0 .067-.023c.37-.504.699-1.036.982-1.595a.06.06 0 0 0-.034-.084 10.65 10.65 0 0 1-1.497-.714.06.06 0 0 1-.024-.08.06.06 0 0 1 .018-.022c.1-.075.201-.155.297-.234a.06.06 0 0 1 .061-.008c3.143 1.435 6.545 1.435 9.65 0a.062.062 0 0 1 .033-.005.061.061 0 0 1 .03.013c.096.08.197.159.298.234a.06.06 0 0 1 .016.081.062.062 0 0 1-.021.021c-.479.28-.98.518-1.499.713a.06.06 0 0 0-.032.085c.288.558.618 1.09.98 1.595a.06.06 0 0 0 .067.023 15.885 15.885 0 0 0 4.802-2.424.06.06 0 0 0 .025-.045c.4-4.14-.671-7.738-2.84-10.927a.04.04 0 0 0-.024-.023Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;button class="twitter-button button"&gt;&lt;svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"&gt;&lt;path d="M8.432 19.8c7.245 0 11.209-6.005 11.209-11.202 0-.168 0-.338-.007-.506A8.023 8.023 0 0 0 21.6 6.049a7.99 7.99 0 0 1-2.266.622 3.961 3.961 0 0 0 1.736-2.18 7.84 7.84 0 0 1-2.505.951 3.943 3.943 0 0 0-6.715 3.593A11.19 11.19 0 0 1 3.73 4.92a3.947 3.947 0 0 0 1.222 5.259 3.989 3.989 0 0 1-1.784-.49v.054a3.946 3.946 0 0 0 3.159 3.862 3.964 3.964 0 0 1-1.775.069 3.939 3.939 0 0 0 3.68 2.733 7.907 7.907 0 0 1-4.896 1.688 7.585 7.585 0 0 1-.936-.054A11.213 11.213 0 0 0 8.432 19.8Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;button class="reddit-button button"&gt;&lt;svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"&gt;&lt;path d="M9.708 12a1.039 1.039 0 0 0-1.037 1.037c0 .574.465 1.05 1.037 1.04a1.04 1.04 0 0 0 0-2.077Zm2.304 4.559c.394 0 1.754-.048 2.47-.764a.29.29 0 0 0 0-.383.266.266 0 0 0-.382 0c-.442.454-1.408.61-2.088.61-.681 0-1.635-.156-2.089-.61a.266.266 0 0 0-.382 0 .266.266 0 0 0 0 .383c.705.704 2.065.763 2.471.763Zm1.24-3.509a1.04 1.04 0 0 0 1.039 1.037c.572 0 1.037-.476 1.037-1.037a1.039 1.039 0 0 0-2.075 0Z"&gt;&lt;/path&gt;&lt;path d="M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Zm-4.785-1.456c-.394 0-.753.155-1.015.406-1.001-.716-2.375-1.181-3.901-1.241l.667-3.127 2.173.466a1.038 1.038 0 1 0 1.037-1.087 1.037 1.037 0 0 0-.93.585l-2.422-.512a.254.254 0 0 0-.264.106.232.232 0 0 0-.035.096l-.74 3.485c-1.55.048-2.947.513-3.963 1.24a1.466 1.466 0 0 0-1.927-.082 1.454 1.454 0 0 0 .318 2.457 2.542 2.542 0 0 0-.037.441c0 2.244 2.614 4.07 5.836 4.07 3.222 0 5.835-1.813 5.835-4.07a2.73 2.73 0 0 0-.036-.44c.502-.227.86-.74.86-1.337 0-.813-.656-1.456-1.456-1.456Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;button class="messenger-button button"&gt;&lt;svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"&gt;&lt;path d="M2 11.7C2 6.126 6.366 2 12 2s10 4.126 10 9.7c0 5.574-4.366 9.7-10 9.7-1.012 0-1.982-.134-2.895-.384a.799.799 0 0 0-.534.038l-1.985.877a.8.8 0 0 1-1.122-.707l-.055-1.779a.799.799 0 0 0-.269-.57C3.195 17.135 2 14.615 2 11.7Zm6.932-1.824-2.937 4.66c-.281.448.268.952.689.633l3.156-2.395a.6.6 0 0 1 .723-.003l2.336 1.753a1.501 1.501 0 0 0 2.169-.4l2.937-4.66c.283-.448-.267-.952-.689-.633l-3.156 2.395a.6.6 0 0 1-.723.003l-2.336-1.754a1.5 1.5 0 0 0-2.169.4v.001Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;button class="pinterest-button button"&gt;&lt;svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"&gt;&lt;path d="M12.48 2.4a9.6 9.6 0 0 0-3.498 18.543c-.084-.76-.16-1.927.033-2.757.175-.75 1.125-4.772 1.125-4.772s-.287-.575-.287-1.424c0-1.336.774-2.332 1.738-2.332.818 0 1.214.614 1.214 1.352 0 .824-.524 2.055-.795 3.196-.226.955.48 1.735 1.422 1.735 1.706 0 3.018-1.8 3.018-4.397 0-2.298-1.653-3.904-4.01-3.904-2.732 0-4.335 2.048-4.335 4.165 0 .825.318 1.71.714 2.191a.288.288 0 0 1 .067.276c-.073.302-.235.955-.266 1.088-.042.176-.14.213-.322.129-1.2-.558-1.949-2.311-1.949-3.72 0-3.028 2.201-5.808 6.344-5.808 3.33 0 5.918 2.372 5.918 5.544 0 3.308-2.087 5.971-4.981 5.971-.974 0-1.888-.505-2.201-1.103l-.598 2.283c-.217.834-.803 1.879-1.194 2.516A9.6 9.6 0 1 0 12.48 2.4Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;button class="instagram-button button"&gt;&lt;svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"&gt;&lt;path d="M12 2c-2.714 0-3.055.013-4.121.06-1.066.05-1.793.217-2.429.465a4.896 4.896 0 0 0-1.771 1.154A4.909 4.909 0 0 0 2.525 5.45c-.248.635-.416 1.362-.465 2.425C2.013 8.944 2 9.284 2 12.001c0 2.715.013 3.055.06 4.121.05 1.066.217 1.792.465 2.428a4.91 4.91 0 0 0 1.154 1.771 4.88 4.88 0 0 0 1.77 1.154c.637.247 1.362.416 2.427.465 1.068.047 1.408.06 4.124.06 2.716 0 3.055-.012 4.122-.06 1.064-.05 1.793-.218 2.43-.465a4.893 4.893 0 0 0 1.77-1.154 4.91 4.91 0 0 0 1.153-1.771c.246-.636.415-1.363.465-2.428.047-1.066.06-1.406.06-4.122s-.012-3.056-.06-4.124c-.05-1.064-.219-1.791-.465-2.426a4.907 4.907 0 0 0-1.154-1.771 4.888 4.888 0 0 0-1.771-1.154c-.637-.248-1.365-.416-2.429-.465-1.067-.047-1.406-.06-4.123-.06H12Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;button class="snapchat-button button"&gt;&lt;svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"&gt;&lt;path d="M21.929 16.407c-.139-.378-.404-.58-.705-.748a1.765 1.765 0 0 0-.154-.08l-.273-.139c-.94-.499-1.674-1.127-2.183-1.872a4.234 4.234 0 0 1-.375-.664c-.043-.125-.04-.195-.01-.259a.424.424 0 0 1 .121-.125l.44-.289a14.1 14.1 0 0 0 .464-.306c.386-.27.656-.558.825-.878a1.745 1.745 0 0 0 .086-1.45c-.256-.672-.891-1.09-1.661-1.09-.206 0-.41.027-.609.082.008-.46-.002-.947-.043-1.424-.146-1.68-.734-2.56-1.347-3.263a5.367 5.367 0 0 0-1.368-1.1C14.204 2.27 13.15 2 11.998 2c-1.15 0-2.2.27-3.131.801-.515.29-.978.663-1.371 1.104-.613.703-1.2 1.584-1.347 3.263-.041.477-.05.965-.045 1.422a2.288 2.288 0 0 0-.608-.081c-.77 0-1.405.418-1.66 1.091a1.747 1.747 0 0 0 .083 1.451c.17.32.44.608.825.877.103.072.263.174.464.307l.424.276c.054.036.1.083.136.138.033.066.034.137-.015.271a4.204 4.204 0 0 1-.369.65c-.497.729-1.21 1.346-2.12 1.84-.481.255-.982.425-1.193 1-.16.435-.055.929.35 1.344.148.156.32.287.51.387a5.54 5.54 0 0 0 1.25.5c.09.023.176.061.253.113.148.13.128.325.324.61.099.147.225.275.37.375.413.286.876.303 1.369.322.444.018.947.038 1.521.225.238.08.486.233.773.41.687.423 1.63 1.003 3.207 1.003s2.525-.583 3.22-1.008c.284-.175.53-.325.761-.401.575-.19 1.079-.21 1.523-.226.491-.019.955-.038 1.369-.323.172-.12.315-.277.42-.46.142-.24.137-.409.27-.525a.783.783 0 0 1 .238-.108 5.552 5.552 0 0 0 1.268-.506c.2-.108.382-.25.536-.42l.005-.006c.38-.406.475-.886.32-1.309Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;button class="whatsapp-button button"&gt;&lt;svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"&gt;&lt;path d="M19.001 4.908A9.817 9.817 0 0 0 11.992 2C6.534 2 2.085 6.448 2.08 11.908c0 1.748.458 3.45 1.321 4.956L2 22l5.255-1.377a9.916 9.916 0 0 0 4.737 1.206h.005c5.46 0 9.908-4.448 9.913-9.913A9.872 9.872 0 0 0 19 4.908Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</details>
+            
+            
+            
+        </li>
+        <li>
+            
+            <!-- From Uiverse.io by cssbuttons-io --> 
+<button class="c-button c-button--gooey"> Hover me
+  <div class="c-button__blobs">
+  <div></div>
+  <div></div>
+  <div></div>
+  </div>
+</button>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+      <feBlend in="SourceGraphic" in2="goo"></feBlend>
+    </filter>
+  </defs>
+</svg>
+        <details>
+        <summary>View Code & Description</summary>
+                <div class="code-content">
+                    <h4>Description</h4>
+                    <p>Definetly not promoting social media</p>
+                    <h4>Code</h4>
+                    <pre>
+                <code class="language-html">
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+      &lt;title&gt;button&lt;/title&gt;
+      &lt;style&gt; 
+.c-button {
+  color: #000;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 0.9em 1.6em;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+}
+
+.c-button--gooey {
+  color: #06c8d9;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 4px solid #06c8d9;
+  border-radius: 0;
+  position: relative;
+  transition: all 700ms ease;
+}
+
+.c-button--gooey .c-button__blobs {
+  height: 100%;
+  filter: url(#goo);
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: -3px;
+  right: -1px;
+  z-index: -1;
+}
+
+.c-button--gooey .c-button__blobs div {
+  background-color: #06c8d9;
+  width: 34%;
+  height: 100%;
+  border-radius: 100%;
+  position: absolute;
+  transform: scale(1.4) translateY(125%) translateZ(0);
+  transition: all 700ms ease;
+}
+
+.c-button--gooey .c-button__blobs div:nth-child(1) {
+  left: -5%;
+}
+
+.c-button--gooey .c-button__blobs div:nth-child(2) {
+  left: 30%;
+  transition-delay: 60ms;
+}
+
+.c-button--gooey .c-button__blobs div:nth-child(3) {
+  left: 66%;
+  transition-delay: 25ms;
+}
+
+.c-button--gooey:hover {
+  color: #fff;
+}
+
+.c-button--gooey:hover .c-button__blobs div {
+  transform: scale(1.4) translateY(0) translateZ(0);
+}
+    
+            
+        &lt;/style&gt;
+        &lt;body&gt;
+            &lt;!-- From Uiverse.io by cssbuttons-io --&gt; 
+&lt;button class="c-button c-button--gooey"&gt; Hover me
+  &lt;div class="c-button__blobs"&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/button&gt;
+&lt;svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;"&gt;
+  &lt;defs&gt;
+    &lt;filter id="goo"&gt;
+      &lt;feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"&gt;&lt;/feGaussianBlur&gt;
+      &lt;feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"&gt;&lt;/feColorMatrix&gt;
+      &lt;feBlend in="SourceGraphic" in2="goo"&gt;&lt;/feBlend&gt;
+    &lt;/filter&gt;
+  &lt;/defs&gt;
+&lt;/svg&gt;
+        &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+            </details>
+        </li>
+    </ul>
+    </div>
+</body>
+<script>
+        function openModal() {
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal(event) {
+            if (!event || event.target === document.getElementById('modalOverlay')) {
+                document.getElementById('modalOverlay').classList.remove('active');
+            }
+        }
+
+        document.getElementById('exploreButton').addEventListener('click', function () {
+            document.body.classList.add('image-faded');
+        });
+    </script>
+    <!--The Thumbnail Script 2.1.0 12/18/2023 by Bluebird@kaid_157624541333313939750668 and if I'm correct, X--><script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script><script type>var r=600,s=document.documentElement.clientWidth;window.parent.html2canvas=t=>{try{html2canvas(document.body,{width:s,height:s,useCORS:!0,onclone:t=>t.getAnimations().forEach((t=>{try{t.finish()}catch{}}))}).then((t=>{var e=document.createElement("canvas");e.width=r,e.height=r,e.getContext("2d").drawImage(t,0,0,t.width,t.height,0,0,r,r),window.top.postMessage(e.toDataURL(),"*")})).catch((t=>{alert("Thumbnail Script Error: "+t)}))}catch{window.top.postMessage(document.createElement("canvas").toDataURL(),"*")}};</script>
+</html>
