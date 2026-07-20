@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survival [GAME]</title>
+<style>
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background: rgb(17, 24, 39);
+    font-family: Arial, sans-serif;
+    color: rgb(255, 255, 255);
+}
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgb(22, 33, 62), rgb(15, 23, 42));
+}
+#ui {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    padding: 10px 14px;
+    background: linear-gradient(rgba(15, 23, 42, 0.78), rgba(0, 0, 0, 0.58));
+    border: 2px solid rgba(125, 211, 252, 0.38);
+    border-radius: 12px;
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.24), inset 0 0 18px rgba(255, 255, 255, 0.08);
+    line-height: 1.5;
+    user-select: none;
+}
+#msg {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    pointer-events: none;
+    font-size: 26px;
+    font-weight: bold;
+    text-shadow: 0 3px 0 rgb(0, 0, 0);
+}
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="ui"></div>
+<div id="msg"></div>
+<script>
+var canvas = document.getElementById("game");
+var ctx = canvas.getContext("2d");
+var ui = document.getElementById("ui");
+var msg = document.getElementById("msg");
+var W = 0;
+var H = 0;
+function resize() {
+    W = window.innerWidth || document.documentElement.clientWidth || 980;
+    H = window.innerHeight || document.documentElement.clientHeight || 700;
+    if (W < 100) {
+        W = 980;
+    }
+    if (H < 100) {
+        H = 700;
+    }
+    canvas.width = W;
+    canvas.height = H;
+}
+if (window.addEventListener) {
+    window.addEventListener("resize", resize);
+}
+resize();
+var keys = {};
+function keyName(e) {
+    var k = e.key || String.fromCharCode(e.keyCode || e.which);
+    return k.toLowerCase();
+}
+if (window.addEventListener) {
+    window.addEventListener("keydown", function(e) {
+        var k = keyName(e);
+        keys[k] = true;
+        if (k === " " || k === "arrowup" || k === "arrowleft" || k === "arrowright") {
+            e.preventDefault();
+        }
+    });
+    window.addEventListener("keyup", function(e) {
+        keys[keyName(e)] = false;
+    });
+}
+var worldHeight = 4600;
+var gravity = 0.68;
+var platforms = [
+    {x: 110, y: 4480, w: 420, h: 28},
+    {x: 480, y: 4290, w: 300, h: 24},
+    {x: 150, y: 4100, w: 320, h: 24},
+    {x: 560, y: 3910, w: 330, h: 24},
+    {x: 230, y: 3720, w: 330, h: 24},
+    {x: 640, y: 3530, w: 300, h: 24},
+    {x: 290, y: 3340, w: 340, h: 24},
+    {x: 40, y: 3150, w: 310, h: 24},
+    {x: 450, y: 2960, w: 350, h: 24},
+    {x: 130, y: 2770, w: 330, h: 24},
+    {x: 590, y: 2580, w: 320, h: 24},
+    {x: 240, y: 2390, w: 340, h: 24},
+    {x: 50, y: 2200, w: 320, h: 24},
+    {x: 500, y: 2010, w: 340, h: 24},
+    {x: 220, y: 1820, w: 350, h: 24},
+    {x: 600, y: 1630, w: 320, h: 24},
+    {x: 200, y: 1440, w: 360, h: 24},
+    {x: 560, y: 1250, w: 350, h: 24},
+    {x: 180, y: 1060, w: 350, h: 24},
+    {x: 0, y: 610, w: 980, h: 30},
+    {x: 0, y: 390, w: 980, h: 38}
+];
+var coins = [];
+var spikes = [];
+var i;
+for (i = 1; i < 19; i++) {
+    coins.push({x: platforms[i].x + platforms[i].w / 2, y: platforms[i].y - 35, r: 12, got: false, spin: i});
+}
+for (i = 2; i <= 18; i += 2) {
+    spikes.push({x: platforms[i].x + platforms[i].w - 92, y: platforms[i].y - 18, w: 72, h: 18});
+}
+var sword = {x: 600, y: 1195, w: 18, h: 52, got: false};
+var checkpoint = {x: 88, y: 336, w: 34, h: 54, active: false};
+var player = {x: 220, y: 4430, w: 34, h: 34, vx: 0, vy: 0, speed: 6, jump: 16.5, grounded: false, hp: 7, coins: 0, hasSword: false, face: 1, attack: 0, inv: 0};
+var boss = {x: 730, y: 274, w: 96, h: 116, hp: 6, maxHp: 6, alive: true, timer: 0, hurt: 0};
+var lavaY = worldHeight + 220;
+var cameraY = 4050;
+var won = false;
+var gameOver = false;
+var fireballs = [];
+var flash = "";
+var flashTime = 0;
+function rects(a, b) {
+    return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+}
+function distance(x1, y1, x2, y2) {
+    var dx = x1 - x2;
+    var dy = y1 - y2;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+function say(text, time) {
+    flash = text;
+    flashTime = time || 100;
+}
+function resetToCheckpoint() {
+    if (checkpoint.active) {
+        player.x = 130;
+        player.y = 318;
+        lavaY = 650;
+    } else {
+        player.x = 220;
+        player.y = 4430;
+        lavaY = worldHeight + 220;
+    }
+    player.vx = 0;
+    player.vy = 0;
+    player.hp = 7;
+    player.inv = 100;
+    fireballs = [];
+    gameOver = false;
+    say(checkpoint.active ? "Checkpoint!" : "Try again");
+}
+function attackBox() {
+    return {x: player.face > 0 ? player.x + player.w : player.x - 42, y: player.y + 4, w: 42, h: 26};
+}
+function update() {
+    var left;
+    var right;
+    var jump;
+    var p;
+    var c;
+    var s;
+    var f;
+    var dx;
+    var dy;
+    var d;
+    var nextFireballs;
+    var atBossLevel;
+    if (won) {
+        return;
+    }
+    if (gameOver) {
+        if (keys.r) {
+            resetToCheckpoint();
+        }
+        return;
+    }
+    left = keys.a || keys.arrowleft;
+    right = keys.d || keys.arrowright;
+    jump = keys.w || keys.arrowup || keys[" "];
+    if (left) {
+        player.vx -= 0.75;
+        player.face = -1;
+    }
+    if (right) {
+        player.vx += 0.75;
+        player.face = 1;
+    }
+    if (!left && !right) {
+        player.vx *= 0.78;
+    }
+    player.vx = Math.max(-player.speed, Math.min(player.speed, player.vx));
+    if (jump && player.grounded) {
+        player.vy = -player.jump;
+        player.grounded = false;
+    }
+    if ((keys.f || keys.enter) && player.hasSword && player.attack <= 0) {
+        player.attack = 18;
+    }
+    player.vy += gravity;
+    player.x += player.vx;
+    player.x = Math.max(0, Math.min(946, player.x));
+    player.y += player.vy;
+    player.grounded = false;
+    for (i = 0; i < platforms.length; i++) {
+        p = platforms[i];
+        if (player.vy >= 0 && player.x + player.w > p.x && player.x < p.x + p.w && player.y + player.h >= p.y && player.y + player.h - player.vy <= p.y + 6) {
+            player.y = p.y - player.h;
+            player.vy = 0;
+            player.grounded = true;
+        }
+    }
+    for (i = 0; i < coins.length; i++) {
+        c = coins[i];
+        if (!c.got && distance(player.x + player.w / 2, player.y + player.h / 2, c.x, c.y) < c.r + 22) {
+            c.got = true;
+            player.coins++;
+            say("Gold coin!");
+        }
+        c.spin += 0.08;
+    }
+    if (!sword.got && rects(player, sword)) {
+        sword.got = true;
+        player.hasSword = true;
+        say("Sword collected! Press F to strike");
+    }
+    if (rects(player, checkpoint) && !checkpoint.active) {
+        checkpoint.active = true;
+        say("Boss checkpoint reached");
+    }
+    for (i = 0; i < spikes.length; i++) {
+        s = spikes[i];
+        if (player.inv <= 0 && rects(player, s)) {
+            player.hp--;
+            player.inv = 85;
+            player.vy = -10;
+            say("Spikes!");
+        }
+    }
+    atBossLevel = player.y < 660;
+    if (!atBossLevel) {
+        lavaY -= 0.38;
+    }
+    if (player.y + player.h > lavaY || player.hp <= 0 || player.y > worldHeight + 300) {
+        gameOver = true;
+        say("You died. Press R");
+    }
+    if (atBossLevel && boss.alive) {
+        lavaY = Math.max(lavaY, 650);
+        boss.timer++;
+        if (boss.timer % 118 === 0) {
+            dx = player.x + player.w / 2 - (boss.x + boss.w / 2);
+            dy = player.y + player.h / 2 - (boss.y + 48);
+            d = Math.max(1, Math.sqrt(dx * dx + dy * dy));
+            fireballs.push({x: boss.x + 28, y: boss.y + 56, r: 13, vx: dx / d * 4.1, vy: dy / d * 4.1});
+        }
+        if (player.attack > 0 && rects(attackBox(), boss) && boss.hurt <= 0) {
+            boss.hp--;
+            boss.hurt = 24;
+            say("Fire spirit hit!");
+            if (boss.hp <= 0) {
+                boss.alive = false;
+                won = true;
+                say("You defeated the fire spirit!", 9999);
+            }
+        }
+    }
+    nextFireballs = [];
+    for (i = 0; i < fireballs.length; i++) {
+        f = fireballs[i];
+        f.x += f.vx;
+        f.y += f.vy;
+        f.vy += 0.025;
+        if (player.inv <= 0 && distance(player.x + player.w / 2, player.y + player.h / 2, f.x, f.y) < f.r + 19) {
+            player.hp--;
+            player.inv = 70;
+            f.dead = true;
+            say("Burned!");
+        }
+        for (var j = 0; j < platforms.length; j++) {
+            p = platforms[j];
+            if (f.x > p.x && f.x < p.x + p.w && f.y + f.r > p.y && f.y - f.r < p.y + p.h) {
+                f.dead = true;
+            }
+        }
+        if (!f.dead && f.x > -80 && f.x < 1060 && f.y > -80 && f.y < worldHeight + 80) {
+            nextFireballs.push(f);
+        }
+    }
+    fireballs = nextFireballs;
+    if (player.attack > 0) {
+        player.attack--;
+    }
+    if (player.inv > 0) {
+        player.inv--;
+    }
+    if (boss.hurt > 0) {
+        boss.hurt--;
+    }
+    if (flashTime > 0) {
+        flashTime--;
+    }
+    cameraY += (player.y - H * 0.45 - cameraY) * 0.08;
+    cameraY = Math.max(0, Math.min(worldHeight - H + 90, cameraY));
+}
+function drawPlatform(p) {
+    var y = p.y - cameraY;
+    var g = ctx.createLinearGradient(0, y, 0, y + p.h);
+    var x;
+    ctx.shadowColor = "rgba(15, 23, 42, 0.85)";
+    ctx.shadowBlur = 16;
+    ctx.shadowOffsetY = 7;
+    g.addColorStop(0, "rgb(203, 213, 225)");
+    g.addColorStop(0.18, "rgb(100, 116, 139)");
+    g.addColorStop(0.58, "rgb(51, 65, 85)");
+    g.addColorStop(1, "rgb(15, 23, 42)");
+    ctx.fillStyle = g;
+    ctx.fillRect(p.x, y, p.w, p.h);
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.35)";
+    ctx.fillRect(p.x + 4, y + 3, p.w - 8, 4);
+    ctx.fillStyle = "rgba(56, 189, 248, 0.35)";
+    ctx.fillRect(p.x + 8, y + p.h - 5, p.w - 16, 2);
+    ctx.fillStyle = "rgba(0, 0, 0, 0.28)";
+    for (x = p.x + 12; x < p.x + p.w; x += 38) {
+        ctx.fillRect(x, y + 9, 18, 4);
+        ctx.fillStyle = "rgba(226, 232, 240, 0.22)";
+        ctx.beginPath();
+        ctx.arc(x + 25, y + 15, 3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "rgba(0, 0, 0, 0.28)";
+    }
+}
+function drawSpikes() {
+    var s;
+    var x;
+    var y;
+    var metal;
+    for (i = 0; i < spikes.length; i++) {
+        s = spikes[i];
+        for (x = s.x; x < s.x + s.w; x += 18) {
+            y = s.y - cameraY;
+            metal = ctx.createLinearGradient(0, y, 0, y + s.h);
+            metal.addColorStop(0, "rgb(248, 250, 252)");
+            metal.addColorStop(1, "rgb(100, 116, 139)");
+            ctx.shadowColor = "rgba(248, 250, 252, 0.55)";
+            ctx.shadowBlur = 8;
+            ctx.fillStyle = metal;
+            ctx.beginPath();
+            ctx.moveTo(x, y + s.h);
+            ctx.lineTo(x + 9, y);
+            ctx.lineTo(x + 18, y + s.h);
+            ctx.closePath();
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.strokeStyle = "rgba(15, 23, 42, 0.55)";
+            ctx.stroke();
+            ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
+            ctx.beginPath();
+            ctx.moveTo(x + 7, y + 5);
+            ctx.lineTo(x + 9, y + 1);
+            ctx.lineTo(x + 11, y + 13);
+            ctx.closePath();
+            ctx.fill();
+        }
+    }
+}
+function draw() {
+    var scale;
+    var xoff;
+    var sky;
+    var gold;
+    var aura;
+    var spirit;
+    var pg;
+    var lava;
+    var c;
+    var f;
+    var a;
+    var by;
+    var py;
+    var ly;
+    var x;
+    var y;
+    var t;
+    var glow;
+    var mx;
+    var my;
+    scale = Math.min(W / 980, 1.25);
+    xoff = (W - 980 * scale) / 2;
+    ctx.clearRect(0, 0, W, H);
+    ctx.save();
+    ctx.translate(xoff, 0);
+    ctx.scale(scale, scale);
+    sky = ctx.createLinearGradient(0, 0, 0, H / scale);
+    sky.addColorStop(0, "rgb(23, 37, 84)");
+    sky.addColorStop(0.45, "rgb(49, 46, 129)");
+    sky.addColorStop(1, "rgb(2, 6, 23)");
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, 980, H / scale);
+    t = new Date().getTime();
+    glow = ctx.createRadialGradient(760, 120, 20, 760, 120, 360);
+    glow.addColorStop(0, "rgba(251, 191, 36, 0.25)");
+    glow.addColorStop(0.45, "rgba(249, 115, 22, 0.08)");
+    glow.addColorStop(1, "rgba(2, 6, 23, 0)");
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, 980, H / scale);
+    for (i = 0; i < 3; i++) {
+        y = 360 + i * 82 - (cameraY * (0.05 + i * 0.025)) % 180;
+        ctx.fillStyle = i === 0 ? "rgba(15, 23, 42, 0.32)" : i === 1 ? "rgba(30, 41, 59, 0.34)" : "rgba(51, 65, 85, 0.28)";
+        ctx.beginPath();
+        ctx.moveTo(-80, H / scale);
+        for (x = -80; x <= 1060; x += 95) {
+            ctx.lineTo(x, y + Math.sin(x * 0.018 + i) * 32);
+            ctx.lineTo(x + 48, y - 90 - i * 28 + Math.cos(x * 0.014) * 18);
+        }
+        ctx.lineTo(1060, H / scale);
+        ctx.closePath();
+        ctx.fill();
+    }
+    ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+    for (i = 0; i < 150; i++) {
+        ctx.fillRect((i * 157 + Math.sin(t / 900 + i) * 4) % 980, ((i * 281) % worldHeight) - cameraY * 0.45, 2 + i % 3, 2 + i % 3);
+    }
+    ctx.fillStyle = "rgba(56, 189, 248, 0.10)";
+    for (i = 0; i < 10; i++) {
+        ctx.beginPath();
+        ctx.arc((i * 173 + 80) % 980, ((i * 521) % worldHeight) - cameraY * 0.35, 70 + i * 5 + Math.sin(t / 700 + i) * 8, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    for (i = 0; i < 34; i++) {
+        ctx.fillStyle = "rgba(251, 146, 60, 0.18)";
+        ctx.beginPath();
+        ctx.arc((i * 83 + Math.sin(t / 500 + i) * 24) % 980, ((i * 307) % worldHeight) - cameraY + Math.cos(t / 600 + i) * 12, 2 + i % 4, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    for (i = 0; i < platforms.length; i++) {
+        drawPlatform(platforms[i]);
+    }
+    drawSpikes();
+    for (i = 0; i < coins.length; i++) {
+        c = coins[i];
+        if (!c.got) {
+            ctx.save();
+            ctx.translate(c.x, c.y - cameraY);
+            ctx.scale(0.55 + Math.abs(Math.cos(c.spin)) * 0.45, 1);
+            gold = ctx.createRadialGradient(-4, -5, 2, 0, 0, c.r);
+            gold.addColorStop(0, "rgb(254, 243, 199)");
+            gold.addColorStop(0.45, "rgb(250, 204, 21)");
+            gold.addColorStop(1, "rgb(180, 83, 9)");
+            ctx.shadowColor = "rgb(250, 204, 21)";
+            ctx.shadowBlur = 16;
+            ctx.fillStyle = gold;
+            ctx.beginPath();
+            ctx.arc(0, 0, c.r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "rgb(253, 230, 138)";
+            ctx.fillRect(-3, -8, 6, 16);
+            ctx.restore();
+        }
+    }
+    if (!sword.got) {
+        y = sword.y - cameraY;
+        ctx.shadowColor = "rgba(147, 197, 253, 0.95)";
+        ctx.shadowBlur = 18 + Math.sin(t / 180) * 5;
+        ctx.fillStyle = "rgb(248, 250, 252)";
+        ctx.beginPath();
+        ctx.moveTo(sword.x + 9, y - 10);
+        ctx.lineTo(sword.x + 16, y + 32);
+        ctx.lineTo(sword.x + 10, y + 42);
+        ctx.lineTo(sword.x + 3, y + 32);
+        ctx.closePath();
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = "rgb(251, 191, 36)";
+        ctx.fillRect(sword.x - 3, y + 34, 25, 7);
+        ctx.fillStyle = "rgb(124, 45, 18)";
+        ctx.fillRect(sword.x + 7, y + 40, 5, 14);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
+        ctx.fillRect(sword.x + 8, y + 2, 3, 28);
+    }
+    ctx.fillStyle = checkpoint.active ? "rgb(34, 197, 94)" : "rgb(248, 250, 252)";
+    ctx.fillRect(checkpoint.x, checkpoint.y - cameraY, 8, checkpoint.h);
+    ctx.fillStyle = checkpoint.active ? "rgb(134, 239, 172)" : "rgb(239, 68, 68)";
+    ctx.beginPath();
+    ctx.moveTo(checkpoint.x + 8, checkpoint.y - cameraY);
+    ctx.lineTo(checkpoint.x + checkpoint.w, checkpoint.y + 12 - cameraY);
+    ctx.lineTo(checkpoint.x + 8, checkpoint.y + 24 - cameraY);
+    ctx.closePath();
+    ctx.fill();
+    if (boss.alive) {
+        by = boss.y - cameraY;
+        aura = ctx.createRadialGradient(boss.x + 48, by + 54, 12, boss.x + 48, by + 54, 88);
+        aura.addColorStop(0, "rgba(254, 240, 138, 0.75)");
+        aura.addColorStop(0.45, "rgba(249, 115, 22, 0.35)");
+        aura.addColorStop(1, "rgba(127, 29, 29, 0)");
+        ctx.fillStyle = aura;
+        ctx.beginPath();
+        ctx.arc(boss.x + 48, by + 54, 88, 0, Math.PI * 2);
+        ctx.fill();
+        spirit = ctx.createRadialGradient(boss.x + 34, by + 30, 10, boss.x + 48, by + 54, 62);
+        spirit.addColorStop(0, boss.hurt > 0 ? "rgb(255, 247, 237)" : "rgb(253, 230, 138)");
+        spirit.addColorStop(0.45, "rgb(251, 146, 60)");
+        spirit.addColorStop(1, "rgb(185, 28, 28)");
+        ctx.fillStyle = spirit;
+        ctx.beginPath();
+        ctx.arc(boss.x + 48, by + 54, 58, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "rgb(239, 68, 68)";
+        ctx.beginPath();
+        ctx.moveTo(boss.x + 14, by + 38);
+        ctx.lineTo(boss.x + 48, by - 24);
+        ctx.lineTo(boss.x + 82, by + 38);
+        ctx.fill();
+        ctx.fillStyle = "rgb(17, 24, 39)";
+        ctx.fillRect(boss.x + 29, by + 43, 13, 13);
+        ctx.fillRect(boss.x + 58, by + 43, 13, 13);
+        ctx.fillStyle = "rgb(254, 242, 242)";
+        ctx.fillRect(boss.x + 33, by + 46, 4, 4);
+        ctx.fillRect(boss.x + 62, by + 46, 4, 4);
+        ctx.fillStyle = "rgb(153, 27, 27)";
+        ctx.fillRect(boss.x + 24, by + 132, boss.w, 10);
+        ctx.fillStyle = "rgb(250, 204, 21)";
+        ctx.fillRect(boss.x + 24, by + 132, boss.w * Math.max(0, boss.hp / boss.maxHp), 10);
+    }
+    for (i = 0; i < fireballs.length; i++) {
+        f = fireballs[i];
+        y = f.y - cameraY;
+        glow = ctx.createRadialGradient(f.x, y, 2, f.x, y, f.r * 2.8);
+        glow.addColorStop(0, "rgba(254, 240, 138, 0.95)");
+        glow.addColorStop(0.35, "rgba(249, 115, 22, 0.65)");
+        glow.addColorStop(1, "rgba(127, 29, 29, 0)");
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(f.x, y, f.r * 2.8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "rgb(249, 115, 22)";
+        ctx.beginPath();
+        ctx.arc(f.x, y, f.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "rgb(253, 224, 71)";
+        ctx.beginPath();
+        ctx.arc(f.x - 4, y - 4, f.r * 0.45, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "rgba(127, 29, 29, 0.45)";
+        ctx.beginPath();
+        ctx.arc(f.x + 7, y + 6, f.r * 0.35, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    if (player.attack > 0) {
+        a = attackBox();
+        glow = ctx.createRadialGradient(a.x + a.w / 2, a.y - cameraY + a.h / 2, 2, a.x + a.w / 2, a.y - cameraY + a.h / 2, 54);
+        glow.addColorStop(0, "rgba(255, 255, 255, 0.9)");
+        glow.addColorStop(0.5, "rgba(147, 197, 253, 0.45)");
+        glow.addColorStop(1, "rgba(147, 197, 253, 0)");
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(a.x + a.w / 2, a.y - cameraY + a.h / 2, 54, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "rgba(226, 232, 240, 0.88)";
+        ctx.fillRect(a.x, a.y - cameraY + 8, a.w, 8);
+    }
+    py = player.y - cameraY;
+    glow = ctx.createRadialGradient(player.x + 17, py + 17, 4, player.x + 17, py + 17, 48);
+    glow.addColorStop(0, "rgba(248, 113, 113, 0.45)");
+    glow.addColorStop(1, "rgba(248, 113, 113, 0)");
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(player.x + 17, py + 17, 48, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "rgba(0, 0, 0, 0.28)";
+    ctx.save();
+    ctx.translate(player.x + 17, py + player.h + 6);
+    ctx.scale(1, 0.32);
+    ctx.beginPath();
+    ctx.arc(0, 0, 22, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+    pg = ctx.createLinearGradient(player.x, py, player.x, py + player.h);
+    pg.addColorStop(0, player.inv % 10 < 5 ? "rgb(252, 165, 165)" : "rgb(254, 202, 202)");
+    pg.addColorStop(0.45, "rgb(239, 68, 68)");
+    pg.addColorStop(1, "rgb(127, 29, 29)");
+    ctx.shadowColor = "rgba(248, 113, 113, 0.65)";
+    ctx.shadowBlur = player.inv > 0 ? 22 : 10;
+    ctx.fillStyle = pg;
+    ctx.fillRect(player.x, py, player.w, player.h);
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.38)";
+    ctx.fillRect(player.x + 4, py + 4, player.w - 8, 5);
+    ctx.fillStyle = "rgb(69, 10, 10)";
+    ctx.fillRect(player.x + (player.face > 0 ? 23 : 6), py + 10, 6, 6);
+    ctx.fillStyle = "rgb(254, 242, 242)";
+    ctx.fillRect(player.x + (player.face > 0 ? 25 : 8), py + 11, 2, 2);
+    ctx.fillStyle = "rgba(127, 29, 29, 0.55)";
+    ctx.fillRect(player.x + 6, py + 25, 8, 5);
+    ctx.fillRect(player.x + 21, py + 25, 8, 5);
+    ly = lavaY - cameraY;
+    lava = ctx.createLinearGradient(0, ly, 0, ly + 240);
+    lava.addColorStop(0, "rgb(250, 204, 21)");
+    lava.addColorStop(0.12, "rgb(251, 146, 60)");
+    lava.addColorStop(0.45, "rgb(220, 38, 38)");
+    lava.addColorStop(1, "rgb(127, 29, 29)");
+    ctx.shadowColor = "rgb(249, 115, 22)";
+    ctx.shadowBlur = 24;
+    ctx.fillStyle = lava;
+    ctx.fillRect(0, ly, 980, worldHeight);
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "rgb(254, 215, 170)";
+    for (x = 0; x < 980; x += 36) {
+        ctx.fillRect(x, ly + Math.sin(t / 160 + x) * 8, 28, 16);
+    }
+    ctx.fillStyle = "rgba(255, 255, 255, 0.22)";
+    for (x = 0; x < 980; x += 64) {
+        ctx.beginPath();
+        ctx.arc(x + Math.sin(t / 260 + x) * 12, ly + 18 + Math.cos(t / 210 + x) * 8, 8, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    ctx.fillStyle = "rgba(127, 29, 29, 0.45)";
+    for (x = 0; x < 980; x += 52) {
+        ctx.beginPath();
+        ctx.arc(x, ly + 46 + Math.sin(t / 220 + x) * 18, 18, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    glow = ctx.createLinearGradient(0, H / scale - 160, 0, H / scale);
+    glow.addColorStop(0, "rgba(249, 115, 22, 0)");
+    glow.addColorStop(1, "rgba(249, 115, 22, 0.22)");
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, H / scale - 160, 980, 160);
+    glow = ctx.createRadialGradient(490, H / scale * 0.48, 120, 490, H / scale * 0.48, 650);
+    glow.addColorStop(0, "rgba(0, 0, 0, 0)");
+    glow.addColorStop(0.7, "rgba(0, 0, 0, 0.05)");
+    glow.addColorStop(1, "rgba(0, 0, 0, 0.42)");
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, 980, H / scale);
+    ctx.restore();
+    ui.innerHTML = "HP: " + player.hp + "<br>Coins: " + player.coins + "/" + coins.length + "<br>Sword: " + (player.hasSword ? "yes" : "no") + "<br>Move: A/D or arrows | Jump: W/Space | Attack: F";
+    msg.textContent = flashTime > 0 ? flash : "";
+    if (gameOver) {
+        msg.textContent = "You died. Press R to restart.";
+    }
+    if (won) {
+        msg.textContent = "Victory! The fire spirit is defeated.";
+    }
+}
+function loop() {
+    update();
+    draw();
+    window.requestAnimationFrame(loop);
+}
+say("Climb before the lava catches you", 180);
+loop();
+</script>
+</body>
+</html>

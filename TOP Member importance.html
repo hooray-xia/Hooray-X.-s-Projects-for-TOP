@@ -1,0 +1,339 @@
+<!DOCTYPE html><!--
+
+
+i wanted a tier list maker so i can rate every show ived watched but i was too lazy to find one so i coded my own
+
+create and share your own random tier lists with other people!! (no images cuz ka sucks)
+
+
+
+
+many things are self-explainatory
+
+to move an item: click on it to select it, and click on a rank to insert it into the rank. while having an item selected, click on another item to insert it into its place
+
+to delete an item, right click on it
+
+to swap all items in 2 given ranks, left click to select a rank and left click on the other rank
+
+to swap the labels on 2 given ranks, left click to select a rank and right click on the other rank
+
+to delete a rank, right click on it
+
+to unselect an item or rank, left click on it again
+
+to save ur tier list export and copy the data and give it to people!!!
+
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>T.O.P. Member Importance Chart</title>
+    </head>
+    <style>
+        button{
+            cursor:pointer;
+        }
+    </style>
+    <body style='margin:10px;background-color:rgb(20,20,20);font-family:arial;user-select:none'>
+
+<div style='color:white'>
+Set Title: <input id='setTitle' style='width:100px;margin-right:5px'><button id='_setTitle'>Set</button>
+<div style='margin:8px'></div>
+Add Item: <input id='addItem' placeholder='...' style='width:100px;margin-right:5px'><button id='_addItem'>Add</button>
+<div style='margin:8px'></div>
+Add Rank: <input id='addRank' placeholder='...' style='width:100px;margin-right:5px'><input id='rankCol' type='color' style='width:35px;height:20px;margin-right:5px' value='#FFFFFF'><button id='_addRank'>Add</button>
+<div style='margin:8px'></div>Set Rank Heights: <input id='rankHeights' style='width:100px;margin-right:5px'><button id='_setHeights'>Set</button>
+<div style='margin:8px'></div>
+<button id='_fullscreen'>Open in New Tab</button>
+<div style='margin:8px'></div>
+<button id='_import'>Import</button>
+<button id='_export'>Export</button>
+    
+</div>
+
+<script type>
+(function(){
+    
+document.oncontextmenu=(e)=>e.preventDefault()
+
+let data={
+    
+    title:'TOP Member Importance',
+    ranks:[
+        {name:'S',col:'rgb(255,90,90)',list:['TorrentForce','MMS Matthew365','Hooray X.','Rain']},
+        {name:'A',col:'rgb(255,180,90)',list:['GalaxyRanger','DebugRanger','1001programmer1001','Apple384','Hedwig','Agodwin01']},
+        {name:'B',col:'rgb(255,255,120)',list:['Harry Bray','PinkCatSoda','justLord','Fi fi fo fum','ShadowWolf']},
+        {name:'C',col:'rgb(125,255,120)',list:['XY DoubleDragon','Robby','Panther Programming','randomblueleaf','TheChickenMaster']},
+        {name:'D',col:'rgb(100,200,255)',list:['The Fire Studios','Lettuce the Great Parrot','Josephine❤','Fluffy','Akh']},
+        {name:'F',col:'rgb(255,150,255)',list:['Exospacer','Shadow','Potato','BorbonBaseball','caleb.catt']}
+    ],
+    list:[],
+    rankHeights:75
+}
+
+
+let removeables=[]
+function create(data){
+    
+    for(let i in removeables)
+        document.body.removeChild(removeables[i])
+    removeables=[]
+    
+    
+    let mouseRank,mouseItem,mouseRankLabel,rankHeight=data.rankHeights||(data.rankHeights=75)
+    function item(list,index){
+        let name=list[index],i=document.createElement('div')
+        i.style='color:white;border:2px solid white;display:inline-block;padding-left:10px;padding-right:10px;text-align:center;font-size:19px;margin-left:10px;margin-top:5px;transform:translate(0,-50%) translate(0,25px);cursor:pointer'
+        i.innerHTML=name
+        i.LIST=list
+        i.INDEX=index
+        
+        i.onclick=(e)=>{
+            e.stopPropagation()
+            
+            mouseRank=0
+            if(mouseRankLabel)
+                mouseRankLabel.style.color='black'
+                
+            if(mouseItem){
+                if(mouseItem===i){
+                    mouseItem=0
+                    i.style.backgroundColor='rgb(0,0,0,0)'
+                }else{
+                    let n=mouseItem.LIST[mouseItem.INDEX].slice()
+                    mouseItem.LIST.splice(mouseItem.INDEX,1)
+                    list.splice(index,0,n)
+                    create(data)
+                }
+            }else{
+                mouseItem=i
+                i.style.backgroundColor='rgb(100,100,100)'
+            }
+        }
+        i.oncontextmenu=(e)=>{
+            e.stopPropagation()
+            e.preventDefault()
+            if(confirm('Do you want to delete item "'+name+'"?')){
+                list.splice(index,1)
+                create(data)
+            }
+        }
+        
+        return i
+    }
+    
+    let title=document.createElement('div')
+    title.style='color:white;text-align:center;font-size:30px;margin-top:20px;margin-bottom:20px'
+    title.innerHTML=setTitle.value=data.title
+    rankHeights.value=data.rankHeights
+    
+    removeables.push(document.body.appendChild(title))
+    
+    for(let i in data.ranks){
+        
+        let r=data.ranks[i]
+        let rank=document.createElement('div')
+        rank.style='width:100%;height:'+(rankHeight)+'px;background-color:rgb(50,50,50);margin-bottom:2px;'
+        let rankLabel=document.createElement('div')
+        rankLabel.style='postion:absolute;display:inline-block;width:60px;height:'+(rankHeight)+'px;background-color:'+r.col+';font-size:20px;cursor:pointer'
+        rankLabel.innerHTML='<div style="text-align:center"><br>'+r.name+'</div>'
+        
+        let rankList=document.createElement('div')
+        rankList.style='display:inline-block;margin-left:60px;overflow-x:auto;width:'+(window.innerWidth-100)+'px;height:'+(rankHeight-15)+'px;transform:translate(0,'+-(rankHeight)+'px)'
+        
+        rank.onclick=(e)=>{
+            e.stopPropagation()
+            if(mouseItem){
+                let n=mouseItem.LIST[mouseItem.INDEX].slice()
+                mouseItem.LIST.splice(mouseItem.INDEX,1)
+                r.list.push(n)
+                create(data)
+            }
+        }
+        rankLabel.onclick=(e)=>{
+            
+            if(mouseItem)return
+            e.stopPropagation()
+            if(mouseRank){
+                let l=data.ranks[mouseRank].list.slice()
+                data.ranks[mouseRank].list=data.ranks[i].list.slice()
+                data.ranks[i].list=l
+                create(data)
+            }else{
+                
+                mouseRank=i
+                mouseRankLabel=rankLabel
+                rankLabel.style.color='rgb(150,150,150)'
+            }
+        }
+        rankLabel.oncontextmenu=(e)=>{
+            e.stopPropagation()
+            e.preventDefault()
+            if(mouseRank){
+                let l=data.ranks[mouseRank].name
+                data.ranks[mouseRank].name=data.ranks[i].name
+                data.ranks[i].name=l
+                l=data.ranks[mouseRank].col
+                data.ranks[mouseRank].col=data.ranks[i].col
+                data.ranks[i].col=l
+                create(data)
+            }else{
+                
+                if(confirm('Do you want to delete rank "'+r.name+'"?')){
+                    data.ranks.splice(i,1)
+                    create(data)
+                }
+            }
+        }
+        
+        rank.appendChild(rankLabel)
+        rank.appendChild(rankList)
+        for(let j in r.list){
+            rankList.appendChild(item(r.list,j))
+        }
+        removeables.push(document.body.appendChild(rank))
+    }
+    
+    for(let i in data.list){
+        removeables.push(document.body.appendChild(item(data.list,i)))
+    }
+    
+    let empty=document.createElement('div')
+    empty.style='color:white;display:inline-block;padding-left:10px;padding-right:10px;text-align:center;font-size:19px;margin-left:10px;height:20px;width:'+(window.innerWidth-100)+'px;transform:translate(0,-50%) translate(0,30px);'
+    removeables.push(document.body.appendChild(empty))
+    
+    document.body.onclick=(e)=>{
+        
+        e.stopPropagation()
+        if(mouseItem){
+            let n=mouseItem.LIST[mouseItem.INDEX].slice()
+            mouseItem.LIST.splice(mouseItem.INDEX,1)
+            data.list.push(n)
+            create(data)
+        }
+    }
+    
+    _setTitle.onclick=(e)=>{
+        e.stopPropagation()
+        data.title=setTitle.value
+        create(data)
+    }
+    _addItem.onclick=(e)=>{
+        e.stopPropagation()
+        data.list.push(addItem.value)
+        create(data)
+    }
+    _addRank.onclick=(e)=>{
+        e.stopPropagation()
+        data.ranks.push({name:addRank.value,col:rankCol.value,list:[]})
+        create(data)
+    }
+    _setHeights.onclick=(e)=>{
+        e.stopPropagation()
+        data.rankHeights=rankHeights.value
+        create(data)
+    }
+    _import.onclick=(e)=>{
+        e.stopPropagation()
+        alert('To import, have the JSON data copied to your clipboard and use CTRL+V directly in the webpage.')
+    }
+    _export.onclick=(e)=>{
+        e.stopPropagation()
+        let d=JSON.stringify(data)
+        console.log(d)
+        
+        document.body.innerHTML='<textarea style="background-color:black;color:white;user-select:text;width:100%;height:500px" spellcheck="false">'+d+'</textarea>'
+    }
+    _fullscreen.onclick=(e)=>{
+        for(let i in removeables)
+            document.body.removeChild(removeables[i])
+        removeables=[]
+        let w=window.open()
+        w.document.open()
+        w.document.write('<!doctype html><html>'+document.querySelector('html').innerHTML)
+        w.document.close()
+        create(data)
+    }
+    document.onpaste=(e)=>{
+        try{
+            if(confirm('Do you want to import? This will overide current data.')){
+                let text=e.clipboardData.getData('text/plain')
+                create(JSON.parse(text))
+            }
+        }catch(e){
+            alert('Error importing.')
+            console.log(e)
+        }
+    }
+    
+    let selection=document.createElement('div')
+    selection.style='position:fixed;text-align:center;font-size:19px;pointer-events:none;padding-left:10px;padding-right:10px;transform:translate(-50%,-50%)'
+    removeables.push(document.body.appendChild(selection))
+    
+    for(let i in removeables){
+        document.onmousemove=removeables[i].onmousemove=(e)=>{
+            selection.style.display='none'
+            
+            if(mouseItem){
+                selection.style.color='white'
+                selection.style.border='2px solid white'
+                selection.style.display='block'
+                selection.style.left=e.clientX+'px'
+                selection.style.top=e.clientY+'px'
+                selection.innerHTML=mouseItem.LIST[mouseItem.INDEX]
+            }
+            if(mouseRank){
+                selection.style.color='rgb(150,150,150)'
+                selection.style.border='none'
+                selection.style.display='block'
+                selection.style.left=e.clientX+'px'
+                selection.style.top=e.clientY+'px'
+                selection.innerHTML=data.ranks[mouseRank].name
+            }
+        }
+    }
+    
+}
+
+if(window.innerWidth)create(data)
+else
+window.onresize=()=>create(data)
+
+
+`
+{"title":"every show ive watched but abbreviated beyond reconition","ranks":[{"name":"stan","col":"rgb(255,90,90)","list":["KP","3WBF","RvL","MTL:\"H\"BML","MSP","HSF","2wrlds","SMYM","Rvmp:TUS","F4:Th","TMoTB","Engm","Trg","IFYLitA","1000s","MoD","TPlyr","CM(Th)"]},{"name":"greatt","col":"rgb(255,180,90)","list":["BupS","ThmPo","TG","TGG","NM","OB!","HmSc","PcPrp","MMP","VV","TSgn","SiYH","BB","IPYtM","WAre","ITSAY","OS2:BBx1000s","NLMG","HCtM","TWE","ThtSm","MoR"]},{"name":"nice","col":"rgb(255,255,120)","list":["LT","Kmjr","GrFmNw","DR","4m","CLW","SoM:IFYLitA2","TSAFY","WG","TEclps","DBK","TJ","MLMU(Th)","DFF","OF","OS2:NLMG","MnCkn","TShpr","SOTUS","SOTUSS","CP2Y","CP","OS1:KS","TMS2:OUS","TMS","WtSY","2g","TCnlt","WByy"]},{"name":"meh","col":"rgb(125,255,120)","list":["LDay","BMF","IT,MT","Encnt","SmErr","OL(Th)","Mo0:CLW","S2g","23.5","OS1:TN","OS2:TE","CMS","GHGH","CYMB","FUTS","BkerBs","ABaaB","MrC","OS2:ABaaB","LB","N'sB","TSAFY2(SH)","OS2:MSP","OS2:VV"]},{"name":"ew","col":"rgb(100,200,255)","list":["OS2:SiMM","ToL","SiMM"]},{"name":"<b style=\"font-size:10px\">DUMPSTER FIRE</b>","col":"rgb(255,150,255)","list":["HA","TMPPiMP","CC","ALN","WshY"]}],"list":[],"rankHeights":"100"}
+`
+})()
+//<script>
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script type>
+    //Bluebird@birdwatcher03!!!
+    var r = 600;
+    var s = document.documentElement.clientWidth;
+    window.parent.html2canvas = e => {
+        try {
+            html2canvas(document.body, {
+                width: s,
+                height: s,
+                useCORS: true,
+            }).then(e => {
+                var c = document.createElement("canvas");
+                c.width = r;
+                c.height = r;
+                c.getContext('2d').drawImage(e, 0, 0, e.width, e.height, 0, 0, r, r);
+                window.top.postMessage(c.toDataURL(), "*");
+            }).catch(e => {
+                alert("Thumbnail Script Error: " + e);
+            });
+        } catch {
+            window.top.postMessage(document.createElement("canvas").toDataURL(), "*");
+        }
+    };
+</script>
+
+
+    </body>
+</html>
